@@ -14,7 +14,10 @@ public class ChatbotController {
         System.out.println("/keyboard");    
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "buttons");
-		jobjBtn.put("buttons",new String[] {"시작하기", "환경설정"});
+		String button_[]=new String[2];
+		button_[0]= "시작하기";
+        button_[1]="환경설정";
+		jobjBtn.put("buttons",button_);
 
         return jobjBtn.toJSONString();
     }
