@@ -18,9 +18,7 @@ public class ChatbotController {
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "text");
 
-        JSONObject input = new JSONObject();
-        input.put("content","시작하기");
-        message(input);
+
         return jobjBtn.toJSONString();
     }
     // 메세지
@@ -65,6 +63,13 @@ public class ChatbotController {
 	public String addKakaoFriend(@RequestBody JSONObject resObj) 
 	{
 		System.out.println(resObj.toJSONString());
+		
+		JSONObject input = new JSONObject();
+        input.put("content","시작하기");
+		input.put("user_key",resObj.toJSONString());
+        input.put("type","text");
+        message(input);
+		
 		return resObj.toJSONString();
 	}
 }
