@@ -1,4 +1,5 @@
 package kr.or.connect.chatbotserver.api;
+import com.fasterxml.jackson.core.JsonEncoding;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -109,6 +110,7 @@ public class ChatbotController {
                 data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
                 arr.add(data);
             }
+            break;
         }
         jobjTest.put("message_button",arr);
     }
