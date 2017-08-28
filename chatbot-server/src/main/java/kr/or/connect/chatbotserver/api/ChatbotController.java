@@ -45,7 +45,7 @@ public class ChatbotController {
         if(content.contains("안녕")){
             jobjText.put("text","안녕 하세요");
         } else if(content.contains("사랑")){
-            jobjText.put("text","나도 너무너무 사랑해");
+            jobjText.put("text","나도 너무너무 사랑해d");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
         } else if(content.equals("알림")){
