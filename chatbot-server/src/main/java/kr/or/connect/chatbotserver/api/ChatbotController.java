@@ -66,7 +66,8 @@ public class ChatbotController {
 		
 		JSONObject input = new JSONObject();
         input.put("content","시작하기");
-		input.put("user_key",resObj.toJSONString());
+		String user_key_ = (String) resObj.get("user_key");
+		input.put("user_key",user_key_);
         input.put("type","text");
         message(input);
 		
