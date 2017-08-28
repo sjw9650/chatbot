@@ -18,14 +18,16 @@ public class ChatbotController {
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "text");
 
+        JSONObject input = new JSONObject();
+        input.put("content","시작하기");
+        message(input);
         return jobjBtn.toJSONString();
     }
-
     // 메세지
     @RequestMapping(value = "/message", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public String message(@RequestBody JSONObject resObj) {
-
+		
         System.out.println("/message");
         System.out.println(resObj.toJSONString());
 
@@ -45,7 +47,10 @@ public class ChatbotController {
             jobjText.put("text","졸리면 언능 세수하러 가용!");
         } else if(content.contains("시간")||content.contains("몇 시")){
             jobjText.put("text","섹시");
-        } else {
+        }else if(content.contains("시작하기")){
+            jobjText.put("text","초기에 시작하는 방법을 안내");
+        }else
+        {
             jobjText.put("text","흠... 아직 지정해 두지 않은 말인걸.");
         }
 
