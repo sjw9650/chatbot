@@ -9,6 +9,8 @@ import org.jsoup.select.Elements;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -100,19 +102,17 @@ public class ChatbotController {
         }
         Document doc = Jsoup.connect(URL).get();
         Elements links = doc.select("div.tab_cont ul li");
-        JSONArray arr = new JSONArray();
+        HashMap<String,String> data = new HashMap<>();
         for (Element link : links) {
             Elements attr = link.select("a[href]");
             Elements img = link.select("img[src]");
-            if (!(img.isEmpty())) {
-                JSONObject data = new JSONObject();
+            if (!(img.isEmpty())){
                 data.put("label", attr.text());
                 data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
-                arr.add(data);
                 break;
             }
 
         }
-        jobjTest.put("message_button",arr);
+        jobjTest.put("message_button",data);
     }
 }
