@@ -59,4 +59,12 @@ public class ChatbotController {
 
         return  jobjRes.toJSONString();
     }
+	
+	//사용자가 옐로아이디를 친구추가했을 때 호출되는 API
+	@RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
+	public String addKakaoFriend(@RequestBody JSONObject resObj) 
+	{
+		System.out.println(resObj.toJSONString());
+		return resObj.toJSONString();
+	}
 }
