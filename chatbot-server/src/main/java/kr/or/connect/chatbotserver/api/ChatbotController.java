@@ -37,20 +37,19 @@ public class ChatbotController {
         JSONObject jobjRes = new JSONObject();
         JSONObject jobjText = new JSONObject();
 
-        // 사용자 구현
+        // 메시지 구현 
         if(content.contains("안녕")){
             jobjText.put("text","안녕 하세요");
         } else if(content.contains("사랑")){
             jobjText.put("text","나도 너무너무 사랑해");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-        } else if(content.contains("졸려")){
-            jobjText.put("text","졸리면 언능 세수하러 가용!");
-        } else if(content.contains("시간")||content.contains("몇 시")){
-            jobjText.put("text","섹시");
+        } else if(content.equals("알림")){
+            jobjText.put("text","준비 중 입니다...");
+        } else if(content.equals("공지사항")){
+            jobjText.put("text","준비 중 입니다...");
         }else if(content.equals("시작하기")){
-            jobjText.put("text","사용법은 다음과 같습니다. (굿)");
-            jobjText.put("text","학교 공지사항을 보고 싶으면 \"공지사항\"를 입력해주세요.");
+            jobjText.put("text","사용법은 다음과 같습니다. (굿)\n학교 공지사항을 보고 싶으면 \"공지사항\"를 입력해주세요.");
         }else
         {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
