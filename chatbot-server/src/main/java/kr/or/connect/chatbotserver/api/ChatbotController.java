@@ -109,8 +109,9 @@ public class ChatbotController {
                 data.put("label", attr.text());
                 data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
                 arr.add(data);
+                break;
             }
-            break;
+
         }
         jobjTest.put("message_button",arr);
     }
