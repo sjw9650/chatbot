@@ -2,6 +2,7 @@ package kr.or.connect.chatbotserver.api;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 
 
 @RestController
@@ -14,10 +15,11 @@ public class ChatbotController {
         System.out.println("/keyboard");    
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "buttons");
-		String button_[]=new String[2];
-		button_[0]= "시작하기";
-        button_[1]="환경설정";
-		jobjBtn.put("buttons",button_);
+        ArrayList<String> btns = new ArrayList<>();
+        btns.add("시작하기");
+        btns.add("환경설정");
+
+        jobjBtn.put("buttons",btns);
 
         return jobjBtn.toJSONString();
     }
