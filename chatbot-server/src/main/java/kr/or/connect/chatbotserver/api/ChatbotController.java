@@ -3,24 +3,22 @@ import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 
-/**
- * Created by annakim on 7/6/17.
- */
+
 @RestController
 public class ChatbotController {
 
-    // 키보드
+    // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
     public String keyboard() {
 
-        System.out.println("/keyboard");
-
+        System.out.println("/keyboard");    
         JSONObject jobjBtn = new JSONObject();
-        jobjBtn.put("type", "text");
-
+        jobjBtn.put("type", "buttons");
+		jobjBtn.put("buttons",new String[] {"시작하기", "환경설정"});
 
         return jobjBtn.toJSONString();
     }
+
     // 메세지
     @RequestMapping(value = "/message", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
@@ -49,7 +47,7 @@ public class ChatbotController {
             jobjText.put("text","초기에 시작하는 방법을 안내");
         }else
         {
-            jobjText.put("text","흠... 아직 지정해 두지 않은 말인걸.");
+            jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
         }
 
         jobjRes.put("message", jobjText);
@@ -63,14 +61,6 @@ public class ChatbotController {
 	public String addKakaoFriend(@RequestBody JSONObject resObj) 
 	{
 		System.out.println(resObj.toJSONString());
-		
-		JSONObject input = new JSONObject();
-        input.put("content","시작하기");
-		String user_key_ = (String) resObj.get("user_key");
-		input.put("user_key",user_key_);
-        input.put("type","text");
-        message(input);
-		
 		return resObj.toJSONString();
 	}
 }
