@@ -67,11 +67,12 @@ public class ChatbotController {
             noticeCrawling("일반",jobjText);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
-        }
-        else if(content.equals("시작하기")){
+        } else if(content.equals("시작하기")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)\n학교 공지사항을 보고 싶으면 \"공지사항\"를 입력해주세요.");
-        }else
-        {
+        } else if(content.equals("reply_msg")) {
+        	jobjText.put("text", resObj.get("contents"));
+        }
+        else {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
         }
 
