@@ -115,7 +115,7 @@ public class ChatbotController {
             Elements attr = link.select("a[href]");
             Elements img = link.select("img[src]");
             if (!(img.isEmpty())){
-                data= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
+                data+= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
             }
         }
         jobjTest.put("text",data);
