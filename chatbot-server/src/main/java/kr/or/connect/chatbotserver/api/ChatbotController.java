@@ -59,7 +59,6 @@ public class ChatbotController {
             noticeCrawling("일반",jobjText);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
-        }
         }else if(content.equals("분실물")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
         }else if(content.equals("일정")){
