@@ -101,7 +101,16 @@ public class ChatbotController {
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }
-
+    @RequestMapping(value = "reply/{msgs}",method=RequestMethod.GET)
+    public void sendMsgs(@PathVariable("msgs") String msgs) throws Exception{
+    	
+    	JSONObject requestObj = new JSONObject();
+    	requestObj.put("user_key", "fGsm2mpvKZCP");
+    	requestObj.put("content", "reply_msg");
+    	requestObj.put("contents", msgs);
+    	message(requestObj);
+    	
+    }
 	
     public void reminder(String subject,JSONObject jobjTest) throws  Exception{
 
