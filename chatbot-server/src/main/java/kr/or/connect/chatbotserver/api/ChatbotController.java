@@ -19,16 +19,14 @@ public class ChatbotController {
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
     public String keyboard() {
-
+		
         System.out.println("/keyboard");
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         btns.add("시작하기");
         btns.add("환경설정");
-
         jobjBtn.put("buttons",btns);
-
         return jobjBtn.toJSONString();
     }
 
@@ -45,15 +43,8 @@ public class ChatbotController {
         JSONObject jobjRes = new JSONObject();
         JSONObject jobjText = new JSONObject();
         // 메시지 구현 
-        if(content.contains("안녕")){
-            jobjText.put("text","안녕 하세요");
-        } else if(content.contains("사랑")){
-            jobjText.put("text","나도 너무너무 사랑해d");
-        } else if(content.contains("잘자")){
-            jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-        } else if(content.equals("알림")){
-            jobjText.put("text","준비 중 입니다...");
-        } else if(content.equals("공지사항")){
+		
+        if(content.equals("공지사항")){
             jobjText.put("text","사용법은 다음과 같습니다. " +
                     "(굿)\n취업관련 사항은 \"취업\" " +
                     "장학금관련 사항은 \"장학금\" " +
@@ -67,28 +58,59 @@ public class ChatbotController {
             noticeCrawling("일반",jobjText);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
+        } else if(content.contains("알림")){
+			reminder(content,jobjText);
         }
         else if(content.equals("시작하기")){
-            jobjText.put("text","사용법은 다음과 같습니다. (굿)\n학교 공지사항을 보고 싶으면 \"공지사항\"를 입력해주세요.");
-        }else
-        {
-            jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
+            jobjText.put("text","사용법은 다음과 같습니다. (굿)"+
+						"\n학교 공지사항의 정보를 알고 싶으면 \"공지사항\"를 입력해주세요."+
+						"\n알림기능에 대한 정보를 알고 싶으면 \"알림\"을 입력해주세요.");
+        }else if(content.contains("안녕")){
+            jobjText.put("text","안녕 하세요");
+        } else if(content.contains("사랑해")){
+            jobjText.put("text","나도 너무너무 사랑해");
+        } else if(content.contains("잘자")){
+            jobjText.put("text","꿈 속에서도 너를 볼꺼야");
+		}
+        else{
+            jobjText.put("text","지정하지 않은 답변입니다. 사용법을 알고 싶으면 \"시작하기\"를 입력하세요.");
         }
 
         jobjRes.put("message", jobjText);
         System.out.println(jobjRes.toJSONString());
-
         return  jobjRes.toJSONString();
     }
 
     //사용자가 옐로아이디를 친구추가했을 때 호출되는 API
-    @RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
-    public String addKakaoFriend(@RequestBody JSONObject resObj)
+	
+    @RequestMapping(value = {"/friend","/message"}, method = RequestMethod.POST, headers = "Accept=application/json")
+    public String addKakaoFriend(@RequestBody JSONObject resObj) throws Exception
     {
+		String user_key;
+        user_key = (String) resObj.get("user_key");
+        JSONObject jobinfo = new JSONObject();
+		jobinfo.put("user_key",user_key);
+		jobinfo.put("type","text");
+		jobinfo.put("content","시작하기");
+		message(jobinfo);
+
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }
 
+	
+    public void reminder(String subject,JSONObject jobjTest) throws  Exception{
+
+		if(subject.contains("알림 추가")){
+			
+        }else if(subject.contains("알림 삭제")){
+			
+        }else if(subject.contains("알림 수정")){
+			
+        }
+        jobjTest.put("message","알림 내용을 안내해드리겠습니다.");
+    }
+	
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
         if(subject.equals("취업")){
@@ -111,7 +133,6 @@ public class ChatbotController {
                 data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
                 break;
             }
-
         }
         jobjTest.put("message_button",data);
     }
