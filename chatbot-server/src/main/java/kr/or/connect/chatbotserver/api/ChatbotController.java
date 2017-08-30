@@ -24,8 +24,9 @@ public class ChatbotController {
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
-        btns.add("시작하기");
-        btns.add("환경설정");
+        btns.add("공지사항");
+        btns.add("일정");
+        btns.add("분실물");
         jobjBtn.put("buttons",btns);
         return jobjBtn.toJSONString();
     }
@@ -58,13 +59,11 @@ public class ChatbotController {
             noticeCrawling("일반",jobjText);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
-        } else if(content.contains("알림")){
-			reminder(content,jobjText);
         }
-        else if(content.equals("시작하기")){
-            jobjText.put("text","사용법은 다음과 같습니다. (굿)"+
-						"\n학교 공지사항의 정보를 알고 싶으면 \"공지사항\"를 입력해주세요."+
-						"\n알림기능에 대한 정보를 알고 싶으면 \"알림\"을 입력해주세요.");
+        }else if(content.equals("분실물")){
+            jobjText.put("text","사용법은 다음과 같습니다. (굿)");
+        }else if(content.equals("일정")){
+            jobjText.put("text","사용법은 다음과 같습니다. (굿)");
         }else if(content.contains("안녕")){
             jobjText.put("text","안녕 하세요");
         } else if(content.contains("사랑해")){
@@ -72,9 +71,6 @@ public class ChatbotController {
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
 		}
-        else if(content.equals("reply_msg")) {
-        	jobjText.put("text", resObj.get("contents"));
-        }
         else {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
 
@@ -100,28 +96,6 @@ public class ChatbotController {
 
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
-    }
-    @RequestMapping(value = "reply/{msgs}",method=RequestMethod.GET)
-    public void sendMsgs(@PathVariable("msgs") String msgs) throws Exception{
-    	
-    	JSONObject requestObj = new JSONObject();
-    	requestObj.put("user_key", "fGsm2mpvKZCP");
-    	requestObj.put("content", "reply_msg");
-    	requestObj.put("contents", msgs);
-    	message(requestObj);
-    	
-    }
-	
-    public void reminder(String subject,JSONObject jobjTest) throws  Exception{
-
-		if(subject.contains("알림 추가")){
-			
-        }else if(subject.contains("알림 삭제")){
-			
-        }else if(subject.contains("알림 수정")){
-			
-        }
-        jobjTest.put("message","알림 내용을 안내해드리겠습니다.");
     }
 	
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
