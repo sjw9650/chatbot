@@ -96,7 +96,7 @@ public class ChatbotController {
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }
-	
+
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
         if(subject.equals("취업")){
@@ -110,16 +110,14 @@ public class ChatbotController {
         }
         Document doc = Jsoup.connect(URL).get();
         Elements links = doc.select("div.tab_cont ul li");
-        HashMap<String,String> data = new HashMap<>();
+        String data="";
         for (Element link : links) {
             Elements attr = link.select("a[href]");
             Elements img = link.select("img[src]");
             if (!(img.isEmpty())){
-                data.put("label", attr.text());
-                data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
-                break;
+                data= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
             }
         }
-        jobjTest.put("message_button",data);
+        jobjTest.put("text",data);
     }
 }
