@@ -72,8 +72,12 @@ public class ChatbotController {
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
 		}
-        else{
-            jobjText.put("text","지정하지 않은 답변입니다. 사용법을 알고 싶으면 \"시작하기\"를 입력하세요.");
+        else if(content.equals("reply_msg")) {
+        	jobjText.put("text", resObj.get("contents"));
+        }
+        else {
+            jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
+
         }
 
         jobjRes.put("message", jobjText);
