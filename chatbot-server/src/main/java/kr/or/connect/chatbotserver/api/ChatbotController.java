@@ -64,7 +64,7 @@ public class ChatbotController {
         }else if(content.equals("일정")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
         }else if(content.contains("안녕")){
-            jobjText.put("text","안녕 하세요");
+            jobjText.put("text","초면에 반말이시네요");
         } else if(content.contains("사랑해")){
             jobjText.put("text","나도 너무너무 사랑해");
         } else if(content.contains("잘자")){
