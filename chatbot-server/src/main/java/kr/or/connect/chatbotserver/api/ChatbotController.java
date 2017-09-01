@@ -25,6 +25,7 @@ public class ChatbotController {
 
 	@Autowired
 	ScheduleService ScheduleService;
+    @Autowired
 	UserService userService;
 	
 	
