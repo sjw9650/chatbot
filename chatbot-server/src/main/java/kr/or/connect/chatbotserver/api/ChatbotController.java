@@ -1,21 +1,30 @@
 package kr.or.connect.chatbotserver.api;
-import com.fasterxml.jackson.core.JsonEncoding;
-import org.json.simple.JSONArray;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.or.connect.chatbotserver.model.Schedule;
+import kr.or.connect.chatbotserver.service.ScheduleService;
+
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 public class ChatbotController {
 
+	@Autowired
+	ScheduleService ScheduleService;
+	
+	
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
     public String keyboard() {
@@ -50,7 +59,14 @@ public class ChatbotController {
                     "(굿)\n취업관련 사항은 \"취업\" " +
                     "장학금관련 사항은 \"장학금\" " +
                     "일반관련 사항은 \"일반\" " +
-                    "행사관련 사항은 \"행사\"를 입력해주세요." );
+                    "행사관련 사항은 \"행사\"를 선택 해주세요." );
+            jobjText.put("type","buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("취업");
+            btns.add("장학금");
+            btns.add("일반");
+            btns.add("행사");
+            jobjText.put("buttons",btns);
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
         } else if(content.equals("장학금")){
@@ -63,13 +79,23 @@ public class ChatbotController {
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
         }else if(content.equals("일정")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
-        }else if(content.contains("안녕")){
+        } else if(content.contains("안녕")){
             jobjText.put("text","초면에 반말이시네요!!");
         } else if(content.contains("사랑해")){
             jobjText.put("text","나도 너무너무 사랑해d");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-		} else if(content.contains("설문조사")){
+        } else if(content.equals("일정 가져와")){
+
+          String contents = "";
+
+          List<Schedule> list = ScheduleService.getAllSchedules();
+          for(Schedule schedule : list){
+            contents += schedule.getContent() + "\n";
+          }
+          jobjText.put("text", contents);
+          
+        } else if(content.contains("설문조사")){
             jobjText.put("text","등록된 설문조사가 없습니다.(화남)");
         }
         else {
@@ -119,6 +145,10 @@ public class ChatbotController {
             if (!(img.isEmpty())){
                 data+= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
             }
+        }
+        if(data.equals("")){
+            data+="최신정보가 없습니다. 홈페이지를 통해서 확인해주세요.\n";
+            data+=URL;
         }
         jobjTest.put("text",data);
     }
