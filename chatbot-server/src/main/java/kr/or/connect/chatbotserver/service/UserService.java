@@ -15,6 +15,7 @@ public class UserService {
     private UserDAO userDAO;
 
     public User getUserbykey(String user_key){
+        System.out.println("debug4");
         return userDAO.getUserbyKey(user_key);
     }
 

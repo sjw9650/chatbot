@@ -59,9 +59,11 @@ public class ChatbotController {
 
         String user_key = (String)resObj.get("user_key");
         User user = new User();
+        System.out.println("debug1");
         user = userService.getUserbykey(user_key);
-        System.out.println(user.getDepth());
+        System.out.println("debug2");
         System.out.println(user.getUser_key());
+
 
 
         if(content.equals("공지사항")){
