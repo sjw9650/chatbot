@@ -66,7 +66,7 @@ public class ChatbotController {
         }else if(content.contains("안녕")){
             jobjText.put("text","초면에 반말이시네요!!");
         } else if(content.contains("사랑해")){
-            jobjText.put("text","나도 너무너무 사랑해");
+            jobjText.put("text","나도 너무너무 사랑해d");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
 		} else if(content.contains("설문조사")){
@@ -98,7 +98,7 @@ public class ChatbotController {
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }
-	
+
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
         if(subject.equals("취업")){
@@ -112,16 +112,14 @@ public class ChatbotController {
         }
         Document doc = Jsoup.connect(URL).get();
         Elements links = doc.select("div.tab_cont ul li");
-        HashMap<String,String> data = new HashMap<>();
+        String data="";
         for (Element link : links) {
             Elements attr = link.select("a[href]");
             Elements img = link.select("img[src]");
             if (!(img.isEmpty())){
-                data.put("label", attr.text());
-                data.put("url","http://www.inu.ac.kr/user/" + attr.attr("href"));
-                break;
+                data+= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
             }
         }
-        jobjTest.put("message_button",data);
+        jobjTest.put("text",data);
     }
 }
