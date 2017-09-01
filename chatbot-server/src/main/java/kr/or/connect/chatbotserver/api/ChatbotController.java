@@ -1,21 +1,30 @@
 package kr.or.connect.chatbotserver.api;
-import com.fasterxml.jackson.core.JsonEncoding;
-import org.json.simple.JSONArray;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.or.connect.chatbotserver.model.Schedule;
+import kr.or.connect.chatbotserver.service.ScheduleService;
+
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 public class ChatbotController {
 
+	@Autowired
+	ScheduleService ScheduleService;
+	
+	
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
     public String keyboard() {
@@ -69,6 +78,16 @@ public class ChatbotController {
             jobjText.put("text","나도 너무너무 사랑해d");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
+		} else if(content.equals("일정 가져와")){
+			
+			String contents = "";
+			
+			List<Schedule> list = ScheduleService.getAllSchedules();
+			for(Schedule schedule : list){
+				contents += schedule.getContent() + "\n";
+			}
+			jobjText.put("text", contents);
+			
 		}
         else {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");

@@ -3,6 +3,9 @@
 
 	// Your starting point. Enjoy the ride!
 	$(document).ready(function(){
+		
+		findAllTask();
+		
 		$(".new-todo").keypress(function (e) {
 		    if (e.which == 13){
 		    	insertTask();
@@ -42,3 +45,31 @@
 	
 	
 })(window);
+
+function findAllTask(){
+	$.ajax({
+        type: "GET"
+        ,url: "user/schedules"
+        ,success: function(data){
+        	var todoListSize = data.length;
+        	$(".todo-list").empty();
+        	data.forEach(function(item){
+        		addTodoHTML(item);
+        	});
+        }
+        ,error : function(data, status, err) {
+        	console.log(err);
+        }
+	});
+}
+//todoList HTML 추가해주는 함수.
+function addTodoHTML(item){
+	$(".todo-list").prepend("<li class='view'>" + 
+			"<div class='view'>" +
+				"<input class='toggle' type='checkbox' onclick=\"checkTodoCompletion(this,\'" + item.userKey + "\',\'" + item.content +"\');\" checked/>" +
+				"<label>" + item.content + "</label>" +
+				"<button class='destroy' onclick=\"deleteTask(this,\'" + item.userKey +"\');\"></button>" +
+			"</div>" + 
+			"<input class='edit' value='Create a TodoMVC template'>" + 
+		"</li>");
+}
