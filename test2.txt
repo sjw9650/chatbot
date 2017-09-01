@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 hello hi how are you
 =======
 test by test
 test by test
 >>>>>>> sjw
+=======
+test by test
+test by test
+>>>>>>> 06c71fbbf427cfeaf827f5423b8b5d558f10c10f
