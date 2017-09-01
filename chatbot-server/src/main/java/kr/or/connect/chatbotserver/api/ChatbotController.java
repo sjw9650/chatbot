@@ -69,7 +69,9 @@ public class ChatbotController {
             jobjText.put("text","나도 너무너무 사랑해");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-		}
+		} else if(content.contains("설문조사")){
+            jobjText.put("text","등록된 설문조사가 없습니다.(화남)");
+        }
         else {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
 
