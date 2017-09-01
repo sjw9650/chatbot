@@ -18,6 +18,7 @@ public class UserService {
         return userDAO.getUserbyKey(user_key);
     }
 
+
     public synchronized boolean AddUser(User user){
         if (userDAO.UserExists(user.getUser_key(),user.getDepth())) {
             return false;
