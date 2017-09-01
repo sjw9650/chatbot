@@ -26,11 +26,17 @@ public class UserDAO {
 
     @SuppressWarnings("unchecked")
     public boolean UserExists(String user_key, int depth) {
-        //        String hql = UserSqls.UserExists;
+        /*
+        String hql = UserSqls.UserExists;
+		int count = entityManager.createQuery(hql).setParameter(1, user_key)
+		              .setParameter(2, cdepth).getResultList().size();
+		return count > 0 ? true : false;
+        * */
+        
         System.out.println(user_key);
         User user= entityManager.find(User.class,user_key);
         System.out.println("debug3");
-        if (user.getUser_key().equals(""))
+        if (user==null)
             return true;
         else return false;
     }
