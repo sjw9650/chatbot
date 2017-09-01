@@ -13,7 +13,7 @@ public class ScheduleService {
 
 	@Autowired
 	private ScheduleDAO scheduleDAO;
-	
+
 	public List<Schedule> getAllSchedules(){
 		return scheduleDAO.getAllSchedules();
 	}
