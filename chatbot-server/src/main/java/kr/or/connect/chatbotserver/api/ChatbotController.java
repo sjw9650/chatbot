@@ -57,10 +57,23 @@ public class ChatbotController {
         // 메시지 구현 
 
 
+
+
+
         String user_key = (String)resObj.get("user_key");
+
+
+        // 현재 추가되 있는 사람들을 위한 소스로 최종 빌드시에 삭제 해야함
+        if(!userService.AddUser(user_key))
+            System.out.println("\n-------------user Add Fail---------------\n");
+
+
+
+
+        // User Key 값을 이용하여 user의 Depth를 추적
         User user = new User();
         user = userService.getUserbykey(user_key);
-        System.out.println(user.getUser_key());
+        int depth = user.getDepth();
 
 
 
@@ -127,14 +140,9 @@ public class ChatbotController {
 		String user_key;
         user_key = (String) resObj.get("user_key");
 
-        User user= new User();
-        user.setUser_key(user_key);
-        user.setDepth(0);
-
-        if(userService.AddUser(user))
-            System.out.println(user.getUser_key());
-
-        System.out.println("debug2");
+        // 초기 등록시에 USER 키와 Depth를 삽입해서 넣어준다.
+        if(!userService.AddUser(user_key))
+            System.out.println("\n-------------user Add Fail---------------\n");
 
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
@@ -162,7 +170,8 @@ public class ChatbotController {
             }
         }
         if(data.equals("")){
-            data+="최신정보가 없습니다. 홈페이지를 통해서 확인해주세요.\n";
+            data+="(훌쩍) 최신정보가 없습니다.\n";
+            data+="홈페이지를 통해서 확인해주세요.(굿)(굿)(굿)\n";
             data+=URL;
         }
         jobjTest.put("text",data);

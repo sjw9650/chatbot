@@ -14,20 +14,23 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
+
+    //User_key를 이용하여 User 객체를 탐색
     public User getUserbykey(String user_key){
-        System.out.println("debug4");
         return userDAO.getUserbyKey(user_key);
     }
 
+    //user_key를 이용하여 database에 insert
+    public synchronized boolean AddUser(String user_key){
 
-    public synchronized boolean AddUser(User user){
-
-
-        if (userDAO.UserExists(user.getUser_key(),user.getDepth())) {
-            System.out.println("debug4");
+        if (userDAO.UserExists(user_key)) {
+            // 아이디가 존재하면
             return false;
         } else {
-            System.out.println("debug5");
+            // 존재하지않으면
+            User user = new User();
+            user.setDepth(0);
+            user.setUser_key(user_key);
             userDAO.addUser(user);
             return true;
         }

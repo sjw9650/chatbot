@@ -15,17 +15,21 @@ public class UserDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    // user_key의 값으로 User 객체를 탐색
     @SuppressWarnings("unchecked")
     public User getUserbyKey(String user_key){
         return entityManager.find(User.class,user_key);
     }
+
+    //User를 insert함
     @SuppressWarnings("unchecked")
     public void addUser(User user){
         entityManager.persist(user);
     }
 
+    //user_key를 이용하여 이미 등록되어 있는 지 확인
     @SuppressWarnings("unchecked")
-    public boolean UserExists(String user_key, int depth) {
+    public boolean UserExists(String user_key) {
         /*
         String hql = UserSqls.UserExists;
 		int count = entityManager.createQuery(hql).setParameter(1, user_key)
@@ -33,12 +37,11 @@ public class UserDAO {
 		return count > 0 ? true : false;
         * */
 
-        System.out.println(user_key);
         User user= entityManager.find(User.class,user_key);
-        System.out.println("debug3");
         if (user==null)
             return false;
         else return true;
     }
+
 
 }
