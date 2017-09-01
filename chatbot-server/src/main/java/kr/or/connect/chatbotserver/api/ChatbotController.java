@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.connect.chatbotserver.model.Schedule;
+import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 
+import kr.or.connect.chatbotserver.service.UserService;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,6 +25,7 @@ public class ChatbotController {
 
 	@Autowired
 	ScheduleService ScheduleService;
+	UserService userService;
 	
 	
     // 키보드 초기화면에 대한 설정
@@ -47,13 +50,20 @@ public class ChatbotController {
 
         System.out.println("/message");
         System.out.println(resObj.toJSONString());
-
         String content;
         content = (String) resObj.get("content");
         JSONObject jobjRes = new JSONObject();
         JSONObject jobjText = new JSONObject();
         // 메시지 구현 
-		
+
+
+        String user_key = (String)resObj.get("user_key");
+        User user ;
+        user = userService.getUserbykey(user_key);
+        System.out.println(user.getDepth());
+        System.out.println(user.getUser_key());
+
+
         if(content.equals("공지사항")){
             jobjText.put("text","사용법은 다음과 같습니다. " +
                     "(굿)\n취업관련 사항은 \"취업\" " +
@@ -115,12 +125,13 @@ public class ChatbotController {
     {
 		String user_key;
         user_key = (String) resObj.get("user_key");
-        JSONObject jobinfo = new JSONObject();
-		jobinfo.put("user_key",user_key);
-		jobinfo.put("type","text");
-		jobinfo.put("content","시작하기");
-		message(jobinfo);
 
+        User user= new User();
+        user.setUser_key(user_key);
+        user.setDepth(0);
+        if(userService.AddUser(user))
+            System.out.println(user.getUser_key());
+        
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }
