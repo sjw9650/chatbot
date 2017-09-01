@@ -72,23 +72,25 @@ public class ChatbotController {
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
         }else if(content.equals("일정")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");
-        }else if(content.contains("안녕")){
+        } else if(content.contains("안녕")){
             jobjText.put("text","초면에 반말이시네요!!");
         } else if(content.contains("사랑해")){
             jobjText.put("text","나도 너무너무 사랑해d");
         } else if(content.contains("잘자")){
             jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-		} else if(content.equals("일정 가져와")){
-			
-			String contents = "";
-			
-			List<Schedule> list = ScheduleService.getAllSchedules();
-			for(Schedule schedule : list){
-				contents += schedule.getContent() + "\n";
-			}
-			jobjText.put("text", contents);
-			
-		}
+        } else if(content.equals("일정 가져와")){
+
+          String contents = "";
+
+          List<Schedule> list = ScheduleService.getAllSchedules();
+          for(Schedule schedule : list){
+            contents += schedule.getContent() + "\n";
+          }
+          jobjText.put("text", contents);
+          
+        } else if(content.contains("설문조사")){
+            jobjText.put("text","등록된 설문조사가 없습니다.(화남)");
+        }
         else {
             jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
 
