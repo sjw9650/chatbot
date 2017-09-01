@@ -32,13 +32,13 @@ public class UserDAO {
 		              .setParameter(2, cdepth).getResultList().size();
 		return count > 0 ? true : false;
         * */
-        
+
         System.out.println(user_key);
         User user= entityManager.find(User.class,user_key);
         System.out.println("debug3");
         if (user==null)
-            return true;
-        else return false;
+            return false;
+        else return true;
     }
 
 }
