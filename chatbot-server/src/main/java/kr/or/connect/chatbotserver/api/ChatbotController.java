@@ -170,8 +170,8 @@ public class ChatbotController {
             }
         }
         if(data.equals("")){
-            data+="(훌쩍) 최신정보가 없습니다.\n";
-            data+="홈페이지를 통해서 확인해주세요.(굿)(굿)(굿)\n";
+            data+="최신정보가 없습니다.\n";
+            data+="홈페이지를 통해서 확인해주세요.(훌쩍)\n";
             data+=URL;
         }
         jobjTest.put("text",data);
