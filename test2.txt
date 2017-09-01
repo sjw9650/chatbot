@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 hello hi how are you
+=======
+test by test
+test by test
+>>>>>>> sjw
