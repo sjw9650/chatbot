@@ -59,7 +59,14 @@ public class ChatbotController {
                     "(굿)\n취업관련 사항은 \"취업\" " +
                     "장학금관련 사항은 \"장학금\" " +
                     "일반관련 사항은 \"일반\" " +
-                    "행사관련 사항은 \"행사\"를 입력해주세요." );
+                    "행사관련 사항은 \"행사\"를 선택 해주세요." );
+            jobjText.put("type","buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("취업");
+            btns.add("장학금");
+            btns.add("일반");
+            btns.add("행사");
+            jobjText.put("buttons",btns);
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
         } else if(content.equals("장학금")){
@@ -138,6 +145,10 @@ public class ChatbotController {
             if (!(img.isEmpty())){
                 data+= attr.text()+'\n'+"http://www.inu.ac.kr/user/" + attr.attr("href")+"\n\n";
             }
+        }
+        if(data.equals("")){
+            data+="최신정보가 없습니다. 홈페이지를 통해서 확인해주세요.\n";
+            data+=URL;
         }
         jobjTest.put("text",data);
     }
