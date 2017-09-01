@@ -22,7 +22,6 @@ public class UserService {
 
     public synchronized boolean AddUser(User user){
 
-        System.out.println("debug3");
 
         if (userDAO.UserExists(user.getUser_key(),user.getDepth())) {
             System.out.println("debug4");

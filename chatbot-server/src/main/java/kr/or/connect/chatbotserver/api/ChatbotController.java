@@ -131,9 +131,6 @@ public class ChatbotController {
         user.setUser_key(user_key);
         user.setDepth(0);
 
-
-        System.out.println("debug1");
-
         if(userService.AddUser(user))
             System.out.println(user.getUser_key());
 

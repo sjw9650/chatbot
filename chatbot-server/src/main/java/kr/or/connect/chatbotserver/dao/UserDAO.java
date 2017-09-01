@@ -27,14 +27,14 @@ public class UserDAO {
     @SuppressWarnings("unchecked")
     public boolean UserExists(String user_key, int depth) {
 
-        System.out.println("debug6");
+//        String hql = UserSqls.UserExists;
 
-        String hql = UserSqls.UserExists;
-
-        System.out.println("debug7");
+        String hql = "FROM User as user WHERE user.user_key = ? and user.depth = ?";
 
         int count = entityManager.createQuery(hql).setParameter(1, user_key)
                 .setParameter(2, depth).getResultList().size();
+
+        System.out.println("debug3");
         return count > 0 ? true : false;
     }
 
