@@ -5,7 +5,6 @@ import java.util.List;
 import kr.or.connect.chatbotserver.model.Schedule;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.ScheduleService;
-
 import kr.or.connect.chatbotserver.service.UserService;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -60,9 +59,7 @@ public class ChatbotController {
 
         String user_key = (String)resObj.get("user_key");
         User user = new User();
-        System.out.println("debug1");
         user = userService.getUserbykey(user_key);
-        System.out.println("debug2");
         System.out.println(user.getUser_key());
 
 
@@ -134,7 +131,7 @@ public class ChatbotController {
         user.setUser_key(user_key);
         user.setDepth(0);
         if(userService.AddUser(user))
-            System.out.println(user.getUser_key());
+            System.out.println((String)user.getUser_key());
         
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();

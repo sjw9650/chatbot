@@ -35,7 +35,7 @@ public class User implements Serializable {
         return depth;
     }
 
-    public void setDepth(int Depth) {
+    public void setDepth(int depth) {
         this.depth = depth;
     }
 

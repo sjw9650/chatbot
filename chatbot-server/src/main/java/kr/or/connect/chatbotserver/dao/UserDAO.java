@@ -17,7 +17,6 @@ public class UserDAO {
 
     @SuppressWarnings("unchecked")
     public User getUserbyKey(String user_key){
-        System.out.println("debug3");
         return entityManager.find(User.class,user_key);
     }
     @SuppressWarnings("unchecked")
