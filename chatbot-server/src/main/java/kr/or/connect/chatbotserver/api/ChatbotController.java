@@ -120,9 +120,10 @@ public class ChatbotController {
 
     //사용자가 옐로아이디를 친구추가했을 때 호출되는 API
 	
-    @RequestMapping(value = {"/friend"}, method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
     public String addKakaoFriend(@RequestBody JSONObject resObj) throws Exception
     {
+        System.out.println("/frinde");
 		String user_key;
         user_key = (String) resObj.get("user_key");
 
