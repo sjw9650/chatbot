@@ -123,16 +123,22 @@ public class ChatbotController {
     @RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
     public String addKakaoFriend(@RequestBody JSONObject resObj) throws Exception
     {
-        System.out.println("/frinde");
+        System.out.println("/friend");
 		String user_key;
         user_key = (String) resObj.get("user_key");
 
         User user= new User();
         user.setUser_key(user_key);
         user.setDepth(0);
+
+
+        System.out.println("debug1");
+
         if(userService.AddUser(user))
-            System.out.println((String)user.getUser_key());
-        
+            System.out.println(user.getUser_key());
+
+        System.out.println("debug2");
+
         System.out.println(resObj.toJSONString());
         return resObj.toJSONString();
     }

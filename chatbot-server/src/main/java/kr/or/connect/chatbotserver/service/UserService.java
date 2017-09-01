@@ -21,9 +21,14 @@ public class UserService {
 
 
     public synchronized boolean AddUser(User user){
+
+        System.out.println("debug3");
+
         if (userDAO.UserExists(user.getUser_key(),user.getDepth())) {
+            System.out.println("debug4");
             return false;
         } else {
+            System.out.println("debug5");
             userDAO.addUser(user);
             return true;
         }
