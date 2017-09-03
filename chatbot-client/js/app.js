@@ -53,7 +53,6 @@ function findAllTask(){
         	var todoListSize = data.length;
         	$(".todo-list").empty();
         	data.forEach(function(item){
-        		console.log(item);
         		addTodoHTML(item);
         	});
         }

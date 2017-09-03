@@ -2,7 +2,11 @@
 {
 	padding: 50px;
 }
-
+.schedule_btn
+{
+	width : 400px;
+	margin: 0 auto;
+}
 .animate
 {
 	transition: all 0.1s;
