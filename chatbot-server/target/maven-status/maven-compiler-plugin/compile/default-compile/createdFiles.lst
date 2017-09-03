@@ -1,2 +1,16 @@
-kr\or\connect\chatbotserver\api\ChatbotController.class
+kr\or\connect\chatbotserver\sql\UserSqls.class
+kr\or\connect\chatbotserver\sql\ScheduleSqls.class
+kr\or\connect\chatbotserver\dao\LostDAO.class
+kr\or\connect\chatbotserver\service\UserService.class
+kr\or\connect\chatbotserver\dao\ScheduleDAO.class
+kr\or\connect\chatbotserver\service\LostService.class
+kr\or\connect\chatbotserver\service\ScheduleService.class
+kr\or\connect\chatbotserver\model\User.class
+kr\or\connect\chatbotserver\api\ScheduleController.class
+kr\or\connect\chatbotserver\sql\LostSqls.class
+kr\or\connect\chatbotserver\lost\ImageGet.class
 kr\or\connect\chatbotserver\ChatbotServerApplication.class
+kr\or\connect\chatbotserver\api\ChatbotController.class
+kr\or\connect\chatbotserver\model\Lost.class
+kr\or\connect\chatbotserver\model\Schedule.class
+kr\or\connect\chatbotserver\dao\UserDAO.class
