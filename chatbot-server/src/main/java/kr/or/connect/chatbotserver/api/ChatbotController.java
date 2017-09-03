@@ -70,6 +70,7 @@ public class ChatbotController {
         // 현재 추가되 있는 사람들을 위한 소스로 최종 빌드시에 삭제 해야함
         if(!userService.AddUser(user_key))
             System.out.println("\n-------------user Add Fail---------------\n");
+
         // User Key 값을 이용하여 user의 Depth를 추적
         User user = new User();
         user = userService.getUserbykey(user_key);
