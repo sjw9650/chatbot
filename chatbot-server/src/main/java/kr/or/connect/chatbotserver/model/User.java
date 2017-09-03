@@ -43,11 +43,11 @@ public class User implements Serializable {
     }
 
 	public String getConvertId() {
-		return convertId;
+		return convertid;
 	}
 
 	public void setConvertId(String convertId) {
-		this.convertId = convertId;
+		this.convertid = convertId;
 	}
 
 }

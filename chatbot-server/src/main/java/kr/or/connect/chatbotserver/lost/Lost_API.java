@@ -63,7 +63,7 @@ public class Lost_API {
         return jobjRes;
     }
     public JSONObject request_getplace(){
-        lostService.addLost(user.getUser_key(),content);
+        lostService.addLost(user.getConvertId(),content);
         jobjText.put("text", content+"을(를) 습득하셨네요~(우와)\n" +
                 content+"을(를) 어디서 발견하셨나요?? \n" +
                 "상세할 수록 좋습니다.(씨익)\n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
@@ -73,8 +73,8 @@ public class Lost_API {
         return jobjRes;
     }
     public JSONObject request_date(){
-        lostService.setLost(user.getUser_key(),1,content);
-        String content_ = lostService.getContent(user.getUser_key());
+        lostService.setLost(user.getConvertId(),1,content);
+        String content_ = lostService.getContent(user.getConvertId());
         jobjText.put("text", content+"에서 습득하셨네요~(우와)\n" +
                 content_+"을(를) 언제 발견하셨나요?? \n" +
                 "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
@@ -105,8 +105,8 @@ public class Lost_API {
                 }else {
                     date_=content;
                 }
-                lostService.setLost(user.getUser_key(),2,date_);
-                String content_ = lostService.getContent(user.getUser_key());
+                lostService.setLost(user.getConvertId(),2,date_);
+                String content_ = lostService.getContent(user.getConvertId());
                 jobjText.put("text", date_+"시 쯤에 습득하셨네요~(우와)\n" +
                         content_+"을(를) 맡기신 곳이 있다면 어디에 맡기셨나요??\n" +
                         "혹은 가지고 계시다면 자신이 누구인지 알려주실 수 있으신가요??\n\n" +
@@ -118,7 +118,7 @@ public class Lost_API {
         }
         else {
                 // 입력값이 이상하면
-            String content_ = lostService.getContent(user.getUser_key());
+            String content_ = lostService.getContent(user.getConvertId());
             jobjText.put("text","입력된 시간 값이 올바르지 않습니다.(훌쩍)\n\n"+content_+"을(를) 언제 발견하셨나요?? \n" +
                     "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
                     "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
@@ -128,8 +128,8 @@ public class Lost_API {
        }
 
     public JSONObject request_img(){
-        lostService.setLost(user.getUser_key(),3,content);
-        String content_ = lostService.getContent(user.getUser_key());
+        lostService.setLost(user.getConvertId(),3,content);
+        String content_ = lostService.getContent(user.getConvertId());
         jobjText.put("text", content+"에서(가) 보관하고 있군요!!(우와)\n" +
                 content_+"을(를) 에 대한 사진이 있으시다면 사진을 보내주세요!\n" +
                 "사진이 없으면 \"없음\"을 선택해주세요. \n\n" +
@@ -150,7 +150,7 @@ public class Lost_API {
 
     public JSONObject complete_add() throws IOException {
         String content_ = "";
-        String user_key=user.getUser_key();
+        String user_key=user.getConvertId();
         if (content.equals("없음") || content.contains(".jpg")) {
             if (content.equals("없음")) content_ = "없음";
             else {
@@ -229,7 +229,7 @@ public class Lost_API {
     public JSONObject lost_() throws IOException {
 
         int depth=user.getDepth();
-        String user_key =user.getUser_key();
+        String user_key =user.getConvertId();
         String content_="";
         if(content.equals("취소")){
             jobjText=lostCancel(user);

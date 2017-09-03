@@ -33,7 +33,7 @@ public class UserService {
             user.setUser_key(user_key);
             
             String convertId = "";
-            while(!userDAO.convertIdExists(convertId)){
+            while(userDAO.convertIdExists(convertId)){
             	convertId = generateRandomNum(10).toString();
             }
             
