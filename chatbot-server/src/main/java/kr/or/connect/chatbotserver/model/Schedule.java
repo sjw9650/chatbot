@@ -20,7 +20,7 @@ public class Schedule implements Serializable {
 	@Column(name="schedule_id")
     private int scheduleId;
 	
-	@Column(name="users_user_key")
+	@Column(name="users_convertid")
     private String userKey;
 	
 	@Column(name="content")
