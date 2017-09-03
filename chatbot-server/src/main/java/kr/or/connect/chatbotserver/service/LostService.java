@@ -38,6 +38,7 @@ public class LostService {
     public String getContent(String user_key){
         int id = lostDAO.getId(user_key);
         Lost lost= new Lost();
+        lost = lostDAO.getLost(id);
         return lost.getContent();
     }
     public int getId(String user_key){

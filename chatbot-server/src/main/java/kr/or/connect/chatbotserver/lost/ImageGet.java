@@ -47,7 +47,7 @@ public class ImageGet {
             url = new URL(strUrl);
             in = url.openStream();
 
-            String reposit = "/apps/lost" + index + ".jpg";
+            String reposit = "/apps/lost/" + index + ".jpg";
             out = new FileOutputStream(reposit);
 
             while(true){
