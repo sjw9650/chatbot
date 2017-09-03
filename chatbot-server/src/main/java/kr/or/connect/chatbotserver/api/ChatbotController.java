@@ -1,11 +1,7 @@
 package kr.or.connect.chatbotserver.api;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-import kr.or.connect.chatbotserver.lost.ImageGet;
-import kr.or.connect.chatbotserver.model.Schedule;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
@@ -22,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import kr.or.connect.chatbotserver.lost.Lost_API;
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 @RestController
@@ -81,7 +74,7 @@ public class ChatbotController {
         // 33~50 = 분실물
 
         if(depth >= 33 && depth <=50){
-            Lost_API lost_api = new Lost_API(content,user);
+            LostController lost_api = new LostController(content,user);
             jobjRes = lost_api.lost_();
         }
         else {

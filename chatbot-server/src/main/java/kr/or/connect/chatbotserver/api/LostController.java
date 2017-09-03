@@ -1,16 +1,19 @@
-package kr.or.connect.chatbotserver.lost;
+package kr.or.connect.chatbotserver.api;
 
+import kr.or.connect.chatbotserver.lost.ImageGet;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Lost_API {
+@Controller
+public class LostController {
 
     @Autowired
     UserService userService;
@@ -39,12 +42,12 @@ public class Lost_API {
         this.user = user;
     }
 
-    public Lost_API(){
+    public LostController(){
         jobjText = new JSONObject();
         jobjRes = new JSONObject();
     }
 
-    public Lost_API(String content,User user){
+    public LostController(String content, User user){
         this.content=content;
         this.user=user;
         jobjText = new JSONObject();
