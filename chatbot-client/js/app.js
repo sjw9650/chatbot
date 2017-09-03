@@ -17,9 +17,8 @@
 	function insertTask() {
 		var todo = $(".new-todo").val();
 		var todoData = {};
-		todoData["content"] = "reply_msg"; 
-		todoData["user_key"] = 'fGsm2mpvKZCP';
-		todoData["contents"] = todo;
+		todoData["content"] = todo; 
+
 		
 		if(todo == ""){
 			alert("공백 입니다!!");
@@ -27,13 +26,13 @@
 			
 			$.ajax({
 		        type: "POST"
-		        ,url: "/message"
+		        ,url: "/user/schedules"
 		        ,data: JSON.stringify(todoData)
 		        ,contentType : "application/json"
 		        ,success: function(data){
-		        	
 		        	console.log(data);
-		        	
+		        	$(".new-todo").val("");
+		            addTodoHTML(data);
 		        }
 		        ,error : function(data, status, err) {
 		        	console.log(err);
@@ -54,6 +53,7 @@ function findAllTask(){
         	var todoListSize = data.length;
         	$(".todo-list").empty();
         	data.forEach(function(item){
+        		console.log(item);
         		addTodoHTML(item);
         	});
         }
@@ -68,8 +68,26 @@ function addTodoHTML(item){
 			"<div class='view'>" +
 				"<input class='toggle' type='checkbox' onclick=\"checkTodoCompletion(this,\'" + item.userKey + "\',\'" + item.content +"\');\" checked/>" +
 				"<label>" + item.content + "</label>" +
-				"<button class='destroy' onclick=\"deleteTask(this,\'" + item.userKey +"\');\"></button>" +
+				"<button class='destroy' onclick=\"deleteTask(this,\'" + item.scheduleId +"\');\"></button>" +
 			"</div>" + 
 			"<input class='edit' value='Create a TodoMVC template'>" + 
 		"</li>");
+}
+function deleteTask(obj, id){
+	
+	var todoData = {};
+	todoData["scheduleId"] = id;
+	
+	$.ajax({
+        type: "DELETE"
+        ,url: "/user/schedules"
+        ,data: JSON.stringify(todoData)
+        ,contentType : "application/json"
+        ,success: function(data){
+        	$(obj).closest('li').remove();
+        }
+        ,error : function(data, status, err) {
+        	console.log(err);
+        }
+	});
 }

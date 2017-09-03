@@ -1,6 +1,7 @@
 package kr.or.connect.chatbotserver.service;
 
 import java.util.List;
+import java.util.Random;
 
 import kr.or.connect.chatbotserver.dao.UserDAO;
 import kr.or.connect.chatbotserver.model.User;
@@ -30,11 +31,33 @@ public class UserService {
             User user = new User();
             user.setDepth(0);
             user.setUser_key(user_key);
+            
+            String convertId = "";
+            while(!userDAO.convertIdExists(convertId)){
+            	convertId = generateRandomNum(10).toString();
+            }
+            
+            user.setConvertId(convertId);
             userDAO.addUser(user);
             return true;
         }
     }
     public void setDepth(User user){
         userDAO.SetDepth(user);
+    }
+    
+    //랜덤 난수 생성
+    private StringBuffer generateRandomNum(int length){
+    	Random rnd =new Random();
+		StringBuffer sb =new StringBuffer();
+
+		for(int i = 0; i < length; i++){
+		    if(rnd.nextBoolean()){
+		        sb.append((char)((int)(rnd.nextInt(26))+97));
+		    }else{
+		        sb.append((rnd.nextInt(10))); 
+		    }
+		}
+		return sb;
     }
 }
