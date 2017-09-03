@@ -17,7 +17,7 @@ public class UserDAO {
 
     // user_key의 값으로 User 객체를 탐색
     public User getUserbyKey(String user_key){
-        return entityManager.find(User.class,user_key);
+        return entityManager.find(User.class, user_key);
     }
 
     //User를 insert함
@@ -28,12 +28,20 @@ public class UserDAO {
     //user_key를 이용하여 이미 등록되어 있는 지 확인
     public boolean UserExists(String user_key) {
 
-        User user= entityManager.find(User.class,user_key);
+        User user= entityManager.find(User.class, user_key);
         if (user==null)
             return false;
         else return true;
     }
 
+    //convertId를 이용하여 이미 등록되어 있는 지 확인
+    public boolean convertIdExists(String convertId) {
+
+        User user= entityManager.find(User.class, convertId);
+        if (user==null)
+            return false;
+        else return true;
+    }
     public void SetDepth(User user){
             entityManager.merge(user);
     }

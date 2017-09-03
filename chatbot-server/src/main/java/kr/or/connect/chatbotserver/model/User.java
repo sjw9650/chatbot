@@ -22,6 +22,8 @@ public class User implements Serializable {
     @Column(name="depth")
     private int depth;
 
+    @Column(name="convertId")
+    private String convertId;
 
     public String getUser_key() {
         return user_key;
@@ -38,5 +40,13 @@ public class User implements Serializable {
     public void setDepth(int depth) {
         this.depth = depth;
     }
+
+	public String getConvertId() {
+		return convertId;
+	}
+
+	public void setConvertId(String convertId) {
+		this.convertId = convertId;
+	}
 
 }

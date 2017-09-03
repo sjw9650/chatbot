@@ -6,7 +6,6 @@ import java.util.*;
 import kr.or.connect.chatbotserver.lost.ImageGet;
 import kr.or.connect.chatbotserver.model.Schedule;
 import kr.or.connect.chatbotserver.model.User;
-
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
@@ -110,9 +109,11 @@ public class ChatbotController {
                 System.out.println(user);
                 userService.setDepth(user);
             }else if(content.equals("일정")){
-            	String url = "http://13.124.220.140:9090/user/schedules/start/" + user_key;
+            	String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
                 jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                                     "하실수 있습니다.(굿)\n" + url);
+                
+                
             } else if(content.contains("안녕")){
                 jobjText.put("text","초면에 반말이시네요!!");
             } else if(content.contains("사랑해")){
@@ -140,7 +141,6 @@ public class ChatbotController {
         System.out.println("/friend");
 		String user_key;
         user_key = (String) resObj.get("user_key");
-
         // 초기 등록시에 USER 키와 Depth를 삽입해서 넣어준다.
         if(!userService.AddUser(user_key))
             System.out.println("\n-------------user Add Fail---------------\n");
