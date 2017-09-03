@@ -110,7 +110,7 @@ public class ChatbotController {
                 System.out.println(user);
                 userService.setDepth(user);
             }else if(content.equals("일정")){
-            	String url = "13.124.220.140:9090/user/schedules/" + user_key;
+            	String url = "http://13.124.220.140:9090/user/schedules/start/" + user_key;
                 jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                                     "하실수 있습니다.(굿)\n" + url);
             } else if(content.contains("안녕")){
