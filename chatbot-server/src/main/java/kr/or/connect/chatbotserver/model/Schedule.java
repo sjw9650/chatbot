@@ -17,10 +17,10 @@ public class Schedule implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="schdule_index")
-    private int schduleId;
+	@Column(name="schedule_id")
+    private int scheduleId;
 	
-	@Column(name="user_key")
+	@Column(name="users_user_key")
     private String userKey;
 	
 	@Column(name="content")
@@ -29,12 +29,12 @@ public class Schedule implements Serializable {
 	@Column(name="date")	
 	private String date;
 
-	public int getSchduleId() {
-		return schduleId;
+	public int getScheduleId() {
+		return scheduleId;
 	}
 
-	public void setSchduleId(int schduleId) {
-		this.schduleId = schduleId;
+	public void setScheduleId(int scheduleId) {
+		this.scheduleId = scheduleId;
 	}
 
 	public String getUserKey() {

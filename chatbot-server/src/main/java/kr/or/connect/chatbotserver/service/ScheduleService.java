@@ -14,7 +14,15 @@ public class ScheduleService {
 	@Autowired
 	private ScheduleDAO scheduleDAO;
 
-	public List<Schedule> getAllSchedules(){
-		return scheduleDAO.getAllSchedules();
+	public List<Schedule> getAllSchedules(Schedule schedule){
+		return scheduleDAO.getAllSchedules(schedule);
+	}
+	
+	public void insertSchedule(Schedule schedule){
+		scheduleDAO.insertSchedule(schedule);
+	}
+	
+	public void deleteSchedule(Schedule schedule){
+		scheduleDAO.deleteSchedule(schedule);
 	}
 }
