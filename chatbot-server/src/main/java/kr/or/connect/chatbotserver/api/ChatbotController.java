@@ -94,13 +94,6 @@ public class ChatbotController {
                         "장학금관련 사항은 \"장학금\" " +
                         "일반관련 사항은 \"일반\" " +
                         "행사관련 사항은 \"행사\"를 선택 해주세요." );
-                jobjText.put("type","buttons");
-                ArrayList<String> btns = new ArrayList<>();
-                btns.add("취업");
-                btns.add("장학금");
-                btns.add("일반");
-                btns.add("행사");
-                jobjText.put("buttons",btns);
             } else if(content.equals("취업")){
                 noticeCrawling("취업",jobjText);
             } else if(content.equals("장학금")){
@@ -127,7 +120,6 @@ public class ChatbotController {
             } else if(content.equals("일정 가져와")){
 
                 String contents = "";
-
                 List<Schedule> list = ScheduleService.getAllSchedules();
                 for(Schedule schedule : list){
                     contents += schedule.getContent() + "\n";
@@ -139,9 +131,7 @@ public class ChatbotController {
             }
             else {
                 jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
-
             }
-
             jobjRes.put("message", jobjText);
         }
 
@@ -200,6 +190,7 @@ public class ChatbotController {
 
         JSONObject jobjText = new JSONObject();
         JSONObject jobjRes = new JSONObject();
+
         int depth = user.getDepth();
         String user_key = user.getUser_key();
         String content_="";
@@ -208,6 +199,7 @@ public class ChatbotController {
             if(depth!=34){
                 lostService.removeLost(user_key);
             }
+            jobjRes.put("message", jobjText);
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
@@ -216,13 +208,13 @@ public class ChatbotController {
                         "주우신 물건이 어떤 건가요??\n" +
                         "자세히 묘사해주시면 감사하겠습니다.(반함)\n\n" +
                         "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
-                jobjRes.put("message",jobjText);
+                jobjRes.put("message", jobjText);
                 user.setDepth(34);
                 userService.setDepth(user);
             }
             else if(content.equals("찾기")){
                 jobjText.put("text", "준비중입니다.");
-                jobjRes.put("message",jobjText);
+                jobjRes.put("message", jobjText);
                 user.setDepth(0);
                 userService.setDepth(user);
             }
@@ -232,7 +224,7 @@ public class ChatbotController {
             jobjText.put("text", content+"을(를) 습득하셨네요~(우와)\n" +
                     content+"을(를) 어디서 발견하셨나요?? \n" +
                     "상세할 수록 좋습니다.(씨익)\n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
-            jobjRes.put("message",jobjText);
+            jobjRes.put("message", jobjText);
             user.setDepth(35);
             userService.setDepth(user);
         }
@@ -243,7 +235,7 @@ public class ChatbotController {
                     content_+"을(를) 언제 발견하셨나요?? \n" +
                     "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
                     "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
-            jobjRes.put("message",jobjText);
+            jobjRes.put("message", jobjText);
             user.setDepth(36);
             userService.setDepth(user);
         }else if(depth==36){
@@ -309,7 +301,7 @@ public class ChatbotController {
                             content_+"을(를) 맡기신 곳이 있다면 어디에 맡기셨나요??\n" +
                             "혹은 가지고 계시다면 자신이 누구인지 알려주실 수 있으신가요??\n\n" +
                             "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
-                    jobjRes.put("message",jobjText);
+                    jobjRes.put("message", jobjText);
                     user.setDepth(37);
                     userService.setDepth(user);
                 }
@@ -318,7 +310,7 @@ public class ChatbotController {
                     jobjText.put("text","입력된 시간 값이 올바르지 않습니다.(훌쩍)\n\n"+content_+"을(를) 언제 발견하셨나요?? \n" +
                             "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
                             "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
-                    jobjRes.put("message",jobjText);
+                    jobjRes.put("message", jobjText);
                 }
             }
             else {
@@ -376,7 +368,7 @@ public class ChatbotController {
             }
         }
 
-        return jobjText;
+        return jobjRes;
     }
     private JSONObject lostCancel(User user){
         JSONObject jobjText = new JSONObject();
