@@ -16,6 +16,7 @@ public class Lost implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public Lost(){
+        completed =0;
         date_ = "";
         content ="";
         put_place ="";
@@ -43,8 +44,12 @@ public class Lost implements Serializable {
     @Column(name="picture")
     private String picture;
 
-    @Column(name="users_user_key")
+    @Column(name="users_convertid")
     private String user_key;
+
+    @Column(name="completed")
+    private int completed;
+
 
 
     public int getId() {
@@ -70,32 +75,32 @@ public class Lost implements Serializable {
     public String getUser_key() {
         return user_key;
     }
+    public int getCompleted() {
+        return completed;
+    }
 
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
     public void setUser_key(String user_key) {
         this.user_key = user_key;
     }
-
     public void setGet_place(String get_place) {
         this.get_place = get_place;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
-
     public void setDate_(String date_) {
         this.date_ = date_;
     }
-
     public void setId(int id) {
         this.id = id;
     }
     public void setPut_place(String put_place) {
         this.put_place = put_place;
     }
-
     public void setPicture(String picture) {
         this.picture = picture;
     }
-
 }

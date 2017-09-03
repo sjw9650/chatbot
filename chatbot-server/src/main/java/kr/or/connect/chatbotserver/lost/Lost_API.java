@@ -161,9 +161,10 @@ public class Lost_API {
             lostService.setLost(user_key,4,content_);
             content_ = lostService.getContent(user_key);
             jobjText.put("text", content_+"의 분실물 등록을 모두 하였습니다.(우와)\n" +
-                    "\n등록하시느라 고생 많으셨습니다. (박수)" +
+                    "\n등록하시느라 고생 많으셨습니다.(오케이)" +
                     "\n등록된 분실물은 주인을 찾을 수 있도록 노력하겠습니다." +
-                    "\n감사합니다.(최고)(최고)(최고)");
+                    "\n감사합니다.(최고)(최고)(최고)"+
+                    "\n\n\"시작하기\"를 입력해주세요(최고)");
             jobjRes.put("message",jobjText);
             user.setDepth(0);
             userService.setDepth(user);
@@ -232,38 +233,53 @@ public class Lost_API {
         String content_="";
         if(content.equals("취소")){
             jobjText=lostCancel(user);
-            if(depth!=34){
+            if(depth!=34&&depth!=33){
                 lostService.removeLost(user_key);
             }
             jobjRes.put("message", jobjText);
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
-
+                request_lost();
             }
             else if(content.equals("찾기")){
                 jobjText.put("text", "물건을 분실하셨나요?(훌쩍)\n" +
                         "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
                         "언제 잃어 버리셨나요??\n" +
+                        "예)2017년 09월 03일에 발견하였다면\n " +
+                        "\"20170903\"을 입력해주시면 됩니다.(좋아)\n" +
+                        "혹은 \"오늘\",\"어제\"와 같이 입력해주셔도 됩니다.\n\n" +
                         "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n");
                 jobjRes.put("message", jobjText);
                 user.setDepth(40);
                 userService.setDepth(user);
             }
         }
-        else if(depth==34){
+        else if(depth==40){
+            if (validity_check_date()){
+                jobjText.put("text", content+"에 분실하셨구나(훌쩍)\n" +
+                        content+"에 분실물의 발견 장소와 항목입니다.\n\n" +
+                        "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n");
+                jobjRes.put("message", jobjText);
+                user.setDepth(40);
+                userService.setDepth(user);
+            }
+            else {
 
+            }
+        }
+        else if(depth==34){
+            request_getplace();
         }
         else if(depth==35){
-
+            request_date();
         }else if(depth==36){
-
+            request_putplace();
         }else if(depth==37){
-
+            request_img();
         }else if(depth==38) {
-
+            complete_add();
         }
-
         return jobjRes;
     }
     public static boolean isStringInt(String s) {
@@ -276,7 +292,9 @@ public class Lost_API {
     }
     private JSONObject lostCancel(User user){
         JSONObject jobjText = new JSONObject();
-        jobjText.put("text","분실물 등록을 취소하였습니다~(우와) \n\n");
+        jobjText.put("text","분실물 등록을 취소하였습니다~(우와)\n\n" +
+                "다른 서비스에 대해서 안내 받으시려면" +
+                " \"시작하기\"를 입력해주세요(최고)");
         user.setDepth(0);
         userService.setDepth(user);
         return jobjText;

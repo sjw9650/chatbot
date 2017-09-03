@@ -77,11 +77,7 @@ public class ChatbotController {
         int depth = user.getDepth();
         System.out.println(Integer.toString(depth));
 
-        // 33 = 분실물
-        // 34 = 분실물 등록
-        // 35 = 분실물 등록취소 (DB 반영 전)
-        // 35 = 분실물 등록취소 (DB 반영 후)
-        // 36 = 분실물 등록 - 물건 이름 등록
+        // 33~50 = 분실물
 
         if(depth >= 33 && depth <=50){
             Lost_API lost_api = new Lost_API(content,user);
@@ -107,7 +103,7 @@ public class ChatbotController {
             }else if(content.equals("분실물")){
                 jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
                         "분실물을 찾으시는 분들은 \"찾기\"를\n"+
-                        "선택하여 주세요~(윙크)\n");
+                        "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
                 user.setDepth(33);
                 userService.setDepth(user);
             }else if(content.equals("일정")){
