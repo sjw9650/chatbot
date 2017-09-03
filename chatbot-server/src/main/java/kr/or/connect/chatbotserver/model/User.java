@@ -42,4 +42,12 @@ public class User implements Serializable {
         this.depth = depth;
     }
 
+	public String getConvertId() {
+		return convertId;
+	}
+
+	public void setConvertId(String convertId) {
+		this.convertId = convertId;
+	}
+
 }
