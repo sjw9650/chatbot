@@ -31,6 +31,7 @@ public class LostService {
             lost.setPut_place(content);
         }
         else if(index ==4 ){
+            lost.setCompleted(1);
             lost.setPicture(content);
         }
         lostDAO.setLost(lost);

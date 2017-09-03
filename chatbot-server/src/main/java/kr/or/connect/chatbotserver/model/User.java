@@ -18,12 +18,13 @@ public class User implements Serializable {
     @Id
     @Column(name="user_key")
     private String user_key;
+    
+    @Column(name="convertid")
+    private String convertid;
+
 
     @Column(name="depth")
     private int depth;
-
-    @Column(name="convertid")
-    private String convertId;
 
     public String getUser_key() {
         return user_key;
@@ -42,11 +43,11 @@ public class User implements Serializable {
     }
 
 	public String getConvertId() {
-		return convertId;
+		return convertid;
 	}
 
 	public void setConvertId(String convertId) {
-		this.convertId = convertId;
+		this.convertid = convertId;
 	}
 
 }
