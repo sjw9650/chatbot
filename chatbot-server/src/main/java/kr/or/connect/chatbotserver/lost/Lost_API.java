@@ -61,9 +61,11 @@ public class Lost_API {
         System.out.println("2222");
         user.setDepth(34);
         System.out.println("3333");
+        System.out.println(user.getUser_key());
+        System.out.println(user.getDepth());
+        System.out.println(user.getConvertId());
         userService.setDepth(user);
         System.out.println("4444");
-        System.out.println(user);
     }
     public void request_getplace(){
         lostService.addLost(user.getConvertId(),content);
