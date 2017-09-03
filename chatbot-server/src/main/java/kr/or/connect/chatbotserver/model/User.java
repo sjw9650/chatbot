@@ -16,11 +16,12 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name="user_key")
+    private String user_key;
+    
     @Column(name="convertid")
     private String convertid;
 
-    @Column(name="user_key")
-    private String user_key;
 
     @Column(name="depth")
     private int depth;
