@@ -15,7 +15,13 @@ public class Lost implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Lost(){}
+    public Lost(){
+        date_ = "";
+        content ="";
+        put_place ="";
+        picture="";
+        user_key="";
+    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

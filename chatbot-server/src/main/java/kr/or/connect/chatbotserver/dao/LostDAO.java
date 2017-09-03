@@ -26,7 +26,7 @@ public class LostDAO {
 
     public int getId(String user_key){
         String hql = LostSqls.GETIDMAX;
-        return (int) entityManager.createNativeQuery(hql).setParameter(1,user_key).getSingleResult();
+        return (int) entityManager.createQuery(hql).setParameter(1,user_key).getSingleResult();
     }
 
     public Lost getLost(int id){
@@ -38,7 +38,7 @@ public class LostDAO {
     }
 
     public void setLost(Lost lost){
-        entityManager.refresh(entityManager.merge(lost));
+        entityManager.merge(lost);
     }
 
     public void removeLost(Lost lost){
