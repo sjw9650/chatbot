@@ -17,8 +17,6 @@ public class Lost_API {
     @Autowired
     LostService lostService;
 
-    JSONObject jobjText;
-    JSONObject jobjRes;
 
     private String content;
     private User user;
@@ -40,17 +38,18 @@ public class Lost_API {
     }
 
     public Lost_API(){
-        jobjText = new JSONObject();
-        jobjRes = new JSONObject();
+
     }
 
     public Lost_API(String content,User user){
         this.content=content;
         this.user=user;
+    }
+    public JSONObject request_lost(){
+        JSONObject jobjText;
+        JSONObject jobjRes;
         jobjText = new JSONObject();
         jobjRes = new JSONObject();
-    }
-    public void request_lost(){
         jobjText.put("text", "분실물을 습득하셨네요~(우와)\n" +
                 "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
                 "주우신 물건이 어떤 건가요??\n" +
@@ -59,8 +58,13 @@ public class Lost_API {
         jobjRes.put("message", jobjText);
         user.setDepth(34);
         userService.setDepth(user);
+        return jobjRes;
     }
-    public void request_getplace(){
+    public JSONObject request_getplace(){
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         lostService.addLost(user.getConvertId(),content);
         jobjText.put("text", content+"을(를) 습득하셨네요~(우와)\n" +
                 content+"을(를) 어디서 발견하셨나요?? \n" +
@@ -68,8 +72,14 @@ public class Lost_API {
         jobjRes.put("message", jobjText);
         user.setDepth(35);
         userService.setDepth(user);
+
+        return jobjRes;
     }
-    public void request_date(){
+    public JSONObject request_date(){
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         lostService.setLost(user.getConvertId(),1,content);
         String content_ = lostService.getContent(user.getConvertId());
         jobjText.put("text", content+"에서 습득하셨네요~(우와)\n" +
@@ -79,8 +89,14 @@ public class Lost_API {
         jobjRes.put("message", jobjText);
         user.setDepth(36);
         userService.setDepth(user);
+
+        return jobjRes;
     }
-    public void request_putplace(){
+    public JSONObject request_putplace(){
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         if(validity_check_date()) {
             String[] strArr = content.split(" ");
             String date_="";
@@ -120,9 +136,14 @@ public class Lost_API {
                     "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
             jobjRes.put("message", jobjText);
         }
+        return jobjRes;
     }
 
-    public void request_img(){
+    public JSONObject request_img(){
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         lostService.setLost(user.getConvertId(),3,content);
         String content_ = lostService.getContent(user.getConvertId());
         jobjText.put("text", content+"에서(가) 보관하고 있군요!!(우와)\n" +
@@ -140,9 +161,14 @@ public class Lost_API {
         jobjRes.put("keyboard",josonKeyboard);
         user.setDepth(38);
         userService.setDepth(user);
+        return jobjRes;
     }
 
-    public void complete_add() throws IOException {
+    public JSONObject complete_add() throws IOException {
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         String content_ = "";
         String user_key=user.getConvertId();
         if (content.equals("없음") || content.contains(".jpg")) {
@@ -175,6 +201,7 @@ public class Lost_API {
             btns.add("취소");
             jobjRes.put("buttons",btns);
         }
+        return jobjRes;
     }
 
     public boolean validity_check_date(){
@@ -221,6 +248,10 @@ public class Lost_API {
 
     public JSONObject lost_() throws IOException {
 
+        JSONObject jobjText;
+        JSONObject jobjRes;
+        jobjText = new JSONObject();
+        jobjRes = new JSONObject();
         int depth=user.getDepth();
         String user_key =user.getConvertId();
         String content_="";
@@ -233,7 +264,7 @@ public class Lost_API {
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
-                request_lost();
+                jobjRes=request_lost();
             }
             else if(content.equals("찾기")){
                 jobjText.put("text", "물건을 분실하셨나요?(훌쩍)\n" +
@@ -262,16 +293,16 @@ public class Lost_API {
             }
         }
         else if(depth==34){
-            request_getplace();
+            jobjRes=request_getplace();
         }
         else if(depth==35){
-            request_date();
+            jobjRes=request_date();
         }else if(depth==36){
             request_putplace();
         }else if(depth==37){
-            request_img();
+            jobjRes=request_img();
         }else if(depth==38) {
-            complete_add();
+            jobjRes=complete_add();
         }
         return jobjRes;
     }
