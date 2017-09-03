@@ -22,7 +22,7 @@ public class User implements Serializable {
     @Column(name="depth")
     private int depth;
 
-    @Column(name="convertId")
+    @Column(name="convertid")
     private String convertId;
 
     public String getUser_key() {
