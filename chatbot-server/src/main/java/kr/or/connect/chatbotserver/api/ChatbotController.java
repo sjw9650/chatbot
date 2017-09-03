@@ -72,6 +72,7 @@ public class ChatbotController {
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
+        System.out.println(Integer.toString(depth));
 
         // 33 = 분실물
         // 34 = 분실물 등록
@@ -79,7 +80,7 @@ public class ChatbotController {
         // 35 = 분실물 등록취소 (DB 반영 후)
         // 36 = 분실물 등록 - 물건 이름 등록
 
-        if(depth >= 33){
+        if(depth >= 33 && depth <=50){
             jobjText = lost_(content,user);
         }
         else if(content.equals("공지사항")){
@@ -108,6 +109,7 @@ public class ChatbotController {
                                 "분실물을 찾으시는 분들은 \"찾기\"를\n"+
                                 "선택하여 주세요~(윙크)\n");
             user.setDepth(33);
+            System.out.println(user);
             userService.setDepth(user);
         }else if(content.equals("일정")){
             jobjText.put("text","사용법은 다음과 같습니다. (굿)");

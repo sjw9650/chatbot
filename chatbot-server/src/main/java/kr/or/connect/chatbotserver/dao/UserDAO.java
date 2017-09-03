@@ -35,7 +35,7 @@ public class UserDAO {
     }
 
     public void SetDepth(User user){
-        entityManager.refresh(entityManager.merge(user));
+            entityManager.merge(user);
     }
 
 }
