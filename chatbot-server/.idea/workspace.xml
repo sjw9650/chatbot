@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="2b9037b8-08a1-4e99-9c75-0f66565e8ae9" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="2b9037b8-08a1-4e99-9c75-0f66565e8ae9" name="Default" comment="" />
+=======
     <list default="true" id="2b9037b8-08a1-4e99-9c75-0f66565e8ae9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java" />
     </list>
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+>>>>>>> master
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +25,13 @@
       <file leaf-file-name="ChatbotController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/api/ChatbotController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="74">
+              <caret line="65" column="54" lean-forward="false" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
+=======
             <state relative-caret-position="120">
               <caret line="67" column="54" lean-forward="false" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -26,28 +39,70 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="27" />
+              <folding>
+                <element signature="e#622#623#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+                <element signature="e#701#702#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+                <element signature="e#770#771#0" expanded="true" />
+                <element signature="e#798#799#0" expanded="true" />
+                <element signature="e#837#838#0" expanded="true" />
+                <element signature="e#871#872#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#927#928#0" expanded="true" />
+                <element signature="e#974#975#0" expanded="true" />
+                <element signature="e#1007#1008#0" expanded="true" />
+              </folding>
+=======
       <file leaf-file-name="ScheduleDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/ScheduleDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
               <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="LostSqls.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/LostSqls.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="3" column="110" lean-forward="true" selection-start-line="3" selection-start-column="110" selection-end-line="3" selection-end-column="110" />
+              <folding />
+=======
       <file leaf-file-name="ScheduleController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/api/ScheduleController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="552">
               <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding>
-                <marker date="1504434600062" expanded="true" signature="900:905" ph="{...}" />
+                <marker date="1504434745321" expanded="true" signature="900:905" ph="{...}" />
               </folding>
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="LostDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/LostDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#879#880#0" expanded="true" />
+                <element signature="e#935#936#0" expanded="true" />
+=======
       <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,11 +117,24 @@
                 <element signature="e#803#804#0" expanded="true" />
                 <element signature="e#842#843#0" expanded="true" />
                 <element signature="e#876#877#0" expanded="true" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="UserDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/UserDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#535#536#0" expanded="true" />
+                <marker date="1504434961364" expanded="false" signature="1205:1219" ph=" { " />
+                <marker date="1504434961364" expanded="false" signature="1245:1251" ph=" }" />
+=======
       <file leaf-file-name="LostDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/LostDAO.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,11 +144,21 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#879#880#0" expanded="true" />
                 <element signature="e#935#936#0" expanded="true" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="667">
+              <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+              <folding>
+                <marker date="1504434961406" expanded="true" signature="1583:1590" ph="{...}" />
+=======
       <file leaf-file-name="UserDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,56 +167,136 @@
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#535#536#0" expanded="true" />
+<<<<<<< HEAD
+                <marker date="1504434745336" expanded="false" signature="965:979" ph=" { " />
+                <marker date="1504434745336" expanded="false" signature="1005:1011" ph=" }" />
+=======
                 <marker date="1504434600075" expanded="false" signature="965:979" ph=" { " />
                 <marker date="1504434600075" expanded="false" signature="1005:1011" ph=" }" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-              <folding>
-                <marker date="1504434600129" expanded="true" signature="974:981" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+<<<<<<< HEAD
       <file leaf-file-name="ScheduleService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/ScheduleService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="115">
               <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <marker date="1504434600123" expanded="true" signature="454:457" ph=" }" />
+                <marker date="1504434961400" expanded="true" signature="665:668" ph=" }" />
+=======
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+              <folding>
+<<<<<<< HEAD
+                <marker date="1504434745387" expanded="true" signature="974:981" ph="{...}" />
+=======
+                <marker date="1504434600129" expanded="true" signature="974:981" ph="{...}" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="LostService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/LostService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding />
+=======
+      <file leaf-file-name="ScheduleService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/ScheduleService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <marker date="1504434745380" expanded="true" signature="454:457" ph=" }" />
+              </folding>
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="Lost.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/Lost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="874">
+              <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+              <folding>
+                <element signature="e#1044#1045#0" expanded="true" />
+                <element signature="e#1069#1070#0" expanded="true" />
+                <element signature="e#1102#1103#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
+                <element signature="e#1163#1164#0" expanded="true" />
+                <element signature="e#1191#1192#0" expanded="true" />
+                <element signature="e#1227#1228#0" expanded="true" />
+                <element signature="e#1259#1260#0" expanded="true" />
+                <element signature="e#1294#1295#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1360#1361#0" expanded="true" />
+                <element signature="e#1390#1391#0" expanded="true" />
+                <element signature="e#1424#1425#0" expanded="true" />
+                <element signature="e#1455#1456#0" expanded="true" />
+                <element signature="e#1503#1504#0" expanded="true" />
+                <element signature="e#1543#1544#0" expanded="true" />
+                <element signature="e#1593#1594#0" expanded="true" />
+                <element signature="e#1635#1636#0" expanded="true" />
+                <element signature="e#1681#1682#0" expanded="true" />
+                <element signature="e#1719#1720#0" expanded="true" />
+                <element signature="e#1761#1762#0" expanded="true" />
+                <element signature="e#1795#1796#0" expanded="true" />
+                <element signature="e#1828#1829#0" expanded="true" />
+                <element signature="e#1856#1857#0" expanded="true" />
+                <element signature="e#1905#1906#0" expanded="true" />
+                <element signature="e#1947#1948#0" expanded="true" />
+                <element signature="e#1993#1994#0" expanded="true" />
+                <element signature="e#2031#2032#0" expanded="true" />
+=======
       <file leaf-file-name="LostService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/LostService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
               <folding>
+<<<<<<< HEAD
+                <marker date="1504434745374" expanded="true" signature="1147:1297" ph="{...}" />
+                <marker date="1504434745374" expanded="true" signature="1335:1403" ph="{...}" />
+                <marker date="1504434745374" expanded="true" signature="1448:1598" ph="{...}" />
+=======
                 <marker date="1504434600116" expanded="true" signature="1147:1297" ph="{...}" />
                 <marker date="1504434600116" expanded="true" signature="1335:1403" ph="{...}" />
                 <marker date="1504434600116" expanded="true" signature="1448:1598" ph="{...}" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="ScheduleSqls.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/ScheduleSqls.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="3" column="60" lean-forward="true" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+=======
       <file leaf-file-name="Lost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/Lost.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="667">
               <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
               <folding />
             </state>
           </provider>
@@ -179,10 +337,13 @@
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/lost/ImageGet.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/lost/Lost_function.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/api/ChatbotController.java" />
+<<<<<<< HEAD
+=======
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/lost/Lost_API.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/Lost.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/LostSqls.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/LostService.java" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         <option value="$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java" />
       </list>
     </option>
@@ -309,6 +470,15 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chatbotserver" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chatbot-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chatbot-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chatbotserver" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chatbot-server" type="b2602c69:ProjectViewProjectNode" />
@@ -480,7 +650,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="64107000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="53432000" />
+=======
     <option name="totallyTimeSpent" value="63835000" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
+>>>>>>> master
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1044" extended-state="6" />
@@ -532,7 +710,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -552,6 +734,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/ChatbotServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+=======
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/api/ChatbotController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -722,14 +914,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/ScheduleSqls.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="552">
+          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <marker date="1504434961349" expanded="true" signature="2575:2580" ph="{...}" />
+          </folding>
+=======
         <state relative-caret-position="69">
           <caret line="3" column="60" lean-forward="true" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
           <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="368">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+=======
         <state relative-caret-position="667">
           <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
@@ -776,12 +980,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="69">
+          <caret line="3" column="74" lean-forward="false" selection-start-line="3" selection-start-column="74" selection-end-line="3" selection-end-column="74" />
+=======
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -800,6 +1009,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
@@ -807,6 +1017,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
           <caret line="49" column="41" lean-forward="false" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+<<<<<<< HEAD
+=======
         </state>
       </provider>
     </entry>
@@ -815,19 +1027,29 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="667">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+=======
         <state relative-caret-position="115">
           <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/LostDAO.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
         <state relative-caret-position="575">
           <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding>
@@ -835,22 +1057,33 @@
             <element signature="e#879#880#0" expanded="true" />
             <element signature="e#935#936#0" expanded="true" />
           </folding>
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/UserSqls.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
         <state relative-caret-position="69">
           <caret line="3" column="74" lean-forward="false" selection-start-line="3" selection-start-column="74" selection-end-line="3" selection-end-column="74" />
           <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/LostSqls.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
         <state relative-caret-position="69">
           <caret line="3" column="108" lean-forward="false" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
           <folding />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
         </state>
       </provider>
     </entry>
@@ -861,8 +1094,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#535#536#0" expanded="true" />
-            <marker date="1504434600075" expanded="false" signature="965:979" ph=" { " />
-            <marker date="1504434600075" expanded="false" signature="1005:1011" ph=" }" />
+            <marker date="1504434745336" expanded="false" signature="965:979" ph=" { " />
+            <marker date="1504434745336" expanded="false" signature="1005:1011" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -906,12 +1139,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/LostService.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/ChatbotServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+=======
         <state relative-caret-position="345">
           <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
           <folding>
-            <marker date="1504434600116" expanded="true" signature="1147:1297" ph="{...}" />
-            <marker date="1504434600116" expanded="true" signature="1335:1403" ph="{...}" />
-            <marker date="1504434600116" expanded="true" signature="1448:1598" ph="{...}" />
+            <marker date="1504434745374" expanded="true" signature="1147:1297" ph="{...}" />
+            <marker date="1504434745374" expanded="true" signature="1335:1403" ph="{...}" />
+            <marker date="1504434745374" expanded="true" signature="1448:1598" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -938,7 +1190,7 @@
         <state relative-caret-position="115">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <marker date="1504434600123" expanded="true" signature="454:457" ph=" }" />
+            <marker date="1504434745380" expanded="true" signature="454:457" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -948,7 +1200,7 @@
         <state relative-caret-position="483">
           <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding>
-            <marker date="1504434600129" expanded="true" signature="974:981" ph="{...}" />
+            <marker date="1504434745387" expanded="true" signature="974:981" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -957,17 +1209,156 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/api/ScheduleController.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="74">
+          <caret line="65" column="54" lean-forward="false" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/LostDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/ScheduleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <marker date="1504434961400" expanded="true" signature="665:668" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+          <folding>
+            <marker date="1504434961406" expanded="true" signature="1583:1590" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/dao/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <marker date="1504434961364" expanded="false" signature="1205:1219" ph=" { " />
+            <marker date="1504434961364" expanded="false" signature="1245:1251" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="27" />
+          <folding>
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+            <element signature="e#701#702#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#871#872#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#927#928#0" expanded="true" />
+            <element signature="e#974#975#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+=======
         <state relative-caret-position="552">
           <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
+<<<<<<< HEAD
+            <marker date="1504434745321" expanded="true" signature="900:905" ph="{...}" />
+=======
             <marker date="1504434600062" expanded="true" signature="900:905" ph="{...}" />
+>>>>>>> 6dbf293a5ee40634c22ed507f179eb088d8f3c0c
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/model/Lost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding>
+            <element signature="e#1044#1045#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+            <element signature="e#1227#1228#0" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1424#1425#0" expanded="true" />
+            <element signature="e#1455#1456#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
+            <element signature="e#1543#1544#0" expanded="true" />
+            <element signature="e#1593#1594#0" expanded="true" />
+            <element signature="e#1635#1636#0" expanded="true" />
+            <element signature="e#1681#1682#0" expanded="true" />
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1761#1762#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1856#1857#0" expanded="true" />
+            <element signature="e#1905#1906#0" expanded="true" />
+            <element signature="e#1947#1948#0" expanded="true" />
+            <element signature="e#1993#1994#0" expanded="true" />
+            <element signature="e#2031#2032#0" expanded="true" />
+>>>>>>> master
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/ScheduleSqls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="60" lean-forward="true" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/sql/LostSqls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="110" lean-forward="true" selection-start-line="3" selection-start-column="110" selection-end-line="3" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/or/connect/chatbotserver/service/LostService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
