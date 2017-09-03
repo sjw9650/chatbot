@@ -110,22 +110,15 @@ public class ChatbotController {
                 System.out.println(user);
                 userService.setDepth(user);
             }else if(content.equals("일정")){
-                jobjText.put("text","사용법은 다음과 같습니다. (굿)");
+            	String url = "13.124.220.140:9090/user/schedules/" + user_key;
+                jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
+                                    "하실수 있습니다.(굿)\n" + url);
             } else if(content.contains("안녕")){
                 jobjText.put("text","초면에 반말이시네요!!");
             } else if(content.contains("사랑해")){
                 jobjText.put("text","나도 너무너무 사랑해d");
             } else if(content.contains("잘자")){
                 jobjText.put("text","꿈 속에서도 너를 볼꺼야");
-            } else if(content.equals("일정 가져와")){
-
-                String contents = "";
-                List<Schedule> list = ScheduleService.getAllSchedules();
-                for(Schedule schedule : list){
-                    contents += schedule.getContent() + "\n";
-                }
-                jobjText.put("text", contents);
-
             } else if(content.contains("설문조사")){
                 jobjText.put("text","등록된 설문조사가 없습니다.(화남)");
             }
