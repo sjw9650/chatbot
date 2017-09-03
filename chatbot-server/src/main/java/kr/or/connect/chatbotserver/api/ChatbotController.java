@@ -216,11 +216,13 @@ public class ChatbotController {
                         "주우신 물건이 어떤 건가요??\n" +
                         "자세히 묘사해주시면 감사하겠습니다.(반함)\n\n" +
                         "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
+                jobjRes.put("message",jobjText);
                 user.setDepth(34);
                 userService.setDepth(user);
             }
             else if(content.equals("찾기")){
                 jobjText.put("text", "준비중입니다.");
+                jobjRes.put("message",jobjText);
                 user.setDepth(0);
                 userService.setDepth(user);
             }
