@@ -14,7 +14,6 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
-
     //User_key를 이용하여 User 객체를 탐색
     public User getUserbykey(String user_key){
         return userDAO.getUserbyKey(user_key);
@@ -34,5 +33,8 @@ public class UserService {
             userDAO.addUser(user);
             return true;
         }
+    }
+    public void setDepth(User user){
+        userDAO.SetDepth(user);
     }
 }

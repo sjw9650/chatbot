@@ -16,26 +16,17 @@ public class UserDAO {
     private EntityManager entityManager;
 
     // user_key의 값으로 User 객체를 탐색
-    @SuppressWarnings("unchecked")
     public User getUserbyKey(String user_key){
         return entityManager.find(User.class,user_key);
     }
 
     //User를 insert함
-    @SuppressWarnings("unchecked")
     public void addUser(User user){
         entityManager.persist(user);
     }
 
     //user_key를 이용하여 이미 등록되어 있는 지 확인
-    @SuppressWarnings("unchecked")
     public boolean UserExists(String user_key) {
-        /*
-        String hql = UserSqls.UserExists;
-		int count = entityManager.createQuery(hql).setParameter(1, user_key)
-		              .setParameter(2, cdepth).getResultList().size();
-		return count > 0 ? true : false;
-        * */
 
         User user= entityManager.find(User.class,user_key);
         if (user==null)
@@ -43,5 +34,8 @@ public class UserDAO {
         else return true;
     }
 
+    public void SetDepth(User user){
+        entityManager.refresh(entityManager.merge(user));
+    }
 
 }
