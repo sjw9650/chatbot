@@ -53,7 +53,7 @@ public class LostController {
         jobjText = new JSONObject();
         jobjRes = new JSONObject();
     }
-    public void request_lost(){
+    public void request_lost(User user_){
         System.out.println("1111");
         jobjText.put("text", "분실물을 습득하셨네요~(우와)\n" +
                 "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
@@ -62,12 +62,12 @@ public class LostController {
                 "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
         jobjRes.put("message", jobjText);
         System.out.println("2222");
-        user.setDepth(34);
+        user_.setDepth(34);
         System.out.println("3333");
-        System.out.println(user.getUser_key());
-        System.out.println(user.getDepth());
-        System.out.println(user.getConvertId());
-        userService.setDepth(user);
+        System.out.println(user_.getUser_key());
+        System.out.println(user_.getDepth());
+        System.out.println(user_.getConvertId());
+        userService.setDepth(user_);
         System.out.println("4444");
     }
     public void request_getplace(){
@@ -232,7 +232,7 @@ public class LostController {
             return true;
     }
 
-    public JSONObject lost_() throws IOException {
+    public JSONObject lost_(User user_) throws IOException {
         int depth=user.getDepth();
         String user_key =user.getConvertId();
         String content_="";
@@ -248,7 +248,7 @@ public class LostController {
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
-                request_lost();
+                request_lost(user_);
             }
             else if(content.equals("찾기")){
                 jobjText.put("text", "물건을 분실하셨나요?(훌쩍)\n" +
