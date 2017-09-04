@@ -15,11 +15,10 @@ import java.util.*;
 @Controller
 public class LostController {
 
-    UserService userService;
-
     @Autowired
     LostService lostService;
 
+    UserService userService;
 
     JSONObject jobjText;
     JSONObject jobjRes;

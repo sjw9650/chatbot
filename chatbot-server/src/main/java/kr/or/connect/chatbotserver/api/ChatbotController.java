@@ -27,8 +27,6 @@ public class ChatbotController {
 	ScheduleService ScheduleService;
     @Autowired
 	UserService userService;
-    @Autowired
-    LostService lostService;
 	
 	
     // 키보드 초기화면에 대한 설정
