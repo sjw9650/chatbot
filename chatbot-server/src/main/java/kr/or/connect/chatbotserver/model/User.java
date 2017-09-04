@@ -18,10 +18,13 @@ public class User implements Serializable {
     @Id
     @Column(name="user_key")
     private String user_key;
+    
+    @Column(name="convertid")
+    private String convertid;
+
 
     @Column(name="depth")
     private int depth;
-
 
     public String getUser_key() {
         return user_key;
@@ -38,5 +41,13 @@ public class User implements Serializable {
     public void setDepth(int depth) {
         this.depth = depth;
     }
+
+	public String getConvertId() {
+		return convertid;
+	}
+
+	public void setConvertId(String convertId) {
+		this.convertid = convertId;
+	}
 
 }
