@@ -179,12 +179,14 @@ public class LostController {
 
     public boolean validity_check_date(){
         String date_="";
-        if(!content.contains(" ")) return false;
+        if(!content.contains(" ")) {
+            System.out.println(content+"   1111");
+            return false;}
         String[] strArr = content.split(" ");
-        if(isStringInt(strArr[1])) return false;
+        if(isStringInt(strArr[1])) {System.out.println(strArr[1]+"   2222");return false;}
         int time_ =Integer.parseInt(strArr[1]);
-        if(time_ <0 &&time_>24) return false;
-        if(!strArr[0].equals("어제")||!strArr[0].equals("오늘")||!isStringInt(strArr[0])) return false;
+        if(time_ <0 &&time_>24) {System.out.println(strArr[1]+"   3333");return false;}
+        if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")&&!isStringInt(strArr[0])){System.out.println("   444");return false;}
         if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")) {
             int days_ = 0;
             int day_ = 0;
