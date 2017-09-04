@@ -48,7 +48,7 @@ public class LostController {
         System.out.println("1111");
         jobjText.put("text", "분실물을 습득하셨네요~(우와)\n" +
                 "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
-                "주우신 물건이 어떤 건가요??\n" +
+                "주우신 물건이 어떤(궁금) 건가요??\n" +
                 "자세히 묘사해주시면 감사하겠습니다.(반함)\n\n" +
                 "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
         jobjRes.put("message", jobjText);
@@ -183,7 +183,7 @@ public class LostController {
             System.out.println(content+"   1111");
             return false;}
         String[] strArr = content.split(" ");
-        if(isStringInt(strArr[1])) {System.out.println(strArr[1]+"   2222");return false;}
+        if(!isStringInt(strArr[1])) {System.out.println(strArr[1]+"   2222");return false;}
         int time_ =Integer.parseInt(strArr[1]);
         if(time_ <0 &&time_>24) {System.out.println(strArr[1]+"   3333");return false;}
         if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")&&!isStringInt(strArr[0])){System.out.println("   444");return false;}
