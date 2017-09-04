@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@RestController
+@Controller
 public class LostController {
 
     @Autowired
@@ -26,18 +26,6 @@ public class LostController {
     private String content;
     private User user;
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -48,10 +36,11 @@ public class LostController {
 
     }
 
-    public LostController(String content, User user, UserService userService){
+    public LostController(String content, User user, UserService userService, LostService lostService){
         this.content=content;
         this.user=user;
         this.userService = userService;
+        this.lostService = lostService;
         jobjText = new JSONObject();
         jobjRes = new JSONObject();
     }
@@ -63,7 +52,6 @@ public class LostController {
                 "자세히 묘사해주시면 감사하겠습니다.(반함)\n\n" +
                 "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
         jobjRes.put("message", jobjText);
-        System.out.println("2222");
         user.setDepth(34);
         System.out.println("3333");
         userService.setDepth(user);

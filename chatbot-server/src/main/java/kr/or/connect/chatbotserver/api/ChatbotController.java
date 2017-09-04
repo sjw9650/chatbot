@@ -27,6 +27,8 @@ public class ChatbotController {
 	ScheduleService ScheduleService;
     @Autowired
 	UserService userService;
+    @Autowired
+    LostService lostService;
 	
 	
     // 키보드 초기화면에 대한 설정
@@ -72,7 +74,7 @@ public class ChatbotController {
         // 33~50 = 분실물
 
         if(depth >= 33 && depth <=50){
-            LostController lost_api = new LostController(content,user,userService);
+            LostController lost_api = new LostController(content,user,userService,lostService);
             jobjRes = lost_api.lost_();
         }
         else {
