@@ -75,7 +75,7 @@ public class ChatbotController {
 
         if(depth >= 33 && depth <=50){
             LostController lost_api = new LostController(content,user);
-            jobjRes = lost_api.lost_();
+            jobjRes = lost_api.lost_(user);
         }
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
