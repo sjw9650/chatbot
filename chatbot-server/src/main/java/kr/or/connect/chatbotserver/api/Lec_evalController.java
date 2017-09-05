@@ -17,7 +17,7 @@ import java.util.*;
 public class Lec_evalController {
 
 
-    //하이하이하이
+    
 
 
 }
