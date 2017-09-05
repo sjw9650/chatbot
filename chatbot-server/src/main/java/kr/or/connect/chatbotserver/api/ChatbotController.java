@@ -83,7 +83,7 @@ public class ChatbotController {
         //51 = 강의 평가
         else if(depth==51){
             jobjText.put("text", "depth까지 들어옴~");
-            LectureController lect_api = new LectureController();
+            LectureController lect_api = new LectureController(user);
             jobjRes = lect_api.eval_();
 
         }

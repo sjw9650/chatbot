@@ -33,11 +33,8 @@ public class LectureController {
 
     }
 
-    public LectureController(String content, User user, UserService userService, LostService lostService) {
-        this.content = content;
+    public LectureController(User user) {
         this.user = user;
-        this.userService = userService;
-        this.lostService = lostService;
         jobjText = new JSONObject();
         jobjRes = new JSONObject();
     }
