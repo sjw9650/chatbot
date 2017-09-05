@@ -116,7 +116,7 @@ public class ChatbotController {
                                     "하실수 있습니다.(굿)\n" + url);
 
             } else if(content.equals("강의평가")){
-                jobjText.put("text", "'평가' 할래 '등록' 할래? 하고 싶은거 빨리 적어라");
+                jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
                 user.setDepth(51);
                 userService.setDepth(user);
 
