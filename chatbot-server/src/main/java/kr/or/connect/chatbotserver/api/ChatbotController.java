@@ -79,6 +79,12 @@ public class ChatbotController {
             LostController lost_api = new LostController(content,user,userService,lostService);
             jobjRes = lost_api.lost_();
         }
+
+        //51 = 강의 평가
+        else if(depth==51){
+            jobjText.put("text", "'평가' 할래 '등록' 할래? 하고 싶은거 빨리 적어라");
+
+        }
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
@@ -106,9 +112,16 @@ public class ChatbotController {
             	String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
                 jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                                     "하실수 있습니다.(굿)\n" + url);
-                
-                
-            } else if(content.contains("안녕")){
+
+            } else if(content.equals("강의평가")){
+                jobjText.put("text", "'평가' 할래 '등록' 할래? 하고 싶은거 빨리 적어라");
+                user.setDepth(51);
+                userService.setDepth(user);
+
+            }
+
+
+            else if(content.contains("안녕")){
                 jobjText.put("text","오냐~~~");
             } else if(content.contains("사랑해")){
                 jobjText.put("text","나도 너무너무 사랑해");
