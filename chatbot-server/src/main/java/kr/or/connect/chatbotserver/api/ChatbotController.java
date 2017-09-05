@@ -82,7 +82,7 @@ public class ChatbotController {
 
         //51 = 강의 평가
         else if(depth==51){
-            jobjText.put("text", "'평가' 할래 '등록' 할래? 하고 싶은거 빨리 적어라");
+            jobjText.put("text", "depth까지 들어옴~");
 
         }
         else {
