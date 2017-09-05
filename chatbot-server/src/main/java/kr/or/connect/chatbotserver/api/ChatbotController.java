@@ -25,6 +25,7 @@ public class ChatbotController {
 
 	@Autowired
 	ScheduleService ScheduleService;
+
     @Autowired
 	UserService userService;
     @Autowired
@@ -41,6 +42,7 @@ public class ChatbotController {
         btns.add("공지사항");
         btns.add("일정");
         btns.add("분실물");
+        btns.add("강의평가");
         jobjBtn.put("buttons",btns);
         return jobjBtn.toJSONString();
     }
