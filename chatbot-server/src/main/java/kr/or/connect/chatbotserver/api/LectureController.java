@@ -48,7 +48,7 @@ public class LectureController {
             if (content.equals("보기")) {
                 jobjText.put("text", "보고싶어?");
             } else if (content.equals("평가")) {
-                jobjText.put("text", "평가 하고싶어? 강의명을 입력해~");
+                jobjText.put("text", "평가 하고싶어? 강의명을 입력해~~~");
                 jobjRes.put("message", jobjText);
                 user.setDepth(52);
                 userService.setDepth(user);
