@@ -3,6 +3,7 @@ package kr.or.connect.chatbotserver.api;
 import java.util.*;
 
 import kr.or.connect.chatbotserver.model.User;
+import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
@@ -29,7 +30,8 @@ public class ChatbotController {
 	UserService userService;
     @Autowired
     LostService lostService;
-	
+	@Autowired
+    CafeteriaMenuService cafeteriaMenuService;
 	
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
@@ -41,6 +43,7 @@ public class ChatbotController {
         btns.add("공지사항");
         btns.add("일정");
         btns.add("분실물");
+        btns.add("학식메뉴");
         jobjBtn.put("buttons",btns);
         return jobjBtn.toJSONString();
     }
@@ -106,7 +109,16 @@ public class ChatbotController {
                                     "하실수 있습니다.(굿)\n" + url);
                 
                 
-            } else if(content.contains("안녕")){
+            } else if(content.equals("학식메뉴")){
+                jobjText.put("text","사용법은 다음과 같습니다. " +
+                        "(굿)\n학생식당메뉴는  \"학생식당\" " +
+                        "를 선택 해주세요." );
+            }else if(content.equals("학식식당")){
+                jobjText.put("text","사용법은 다음과 같습니다. " +
+                        "(굿)\n학생식당메뉴는  \"학생식당\" " +
+                        "를 선택 해주세요." );
+            }
+            else if(content.contains("안녕")){
                 jobjText.put("text","초면에 반말이시네요!!");
             } else if(content.contains("사랑해")){
                 jobjText.put("text","나도 너무너무 사랑해");
