@@ -104,8 +104,6 @@ public class ChatbotController {
             	String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
                 jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                                     "하실수 있습니다.(굿)\n" + url);
-                
-                
             } else if(content.contains("안녕")){
                 jobjText.put("text","초면에 반말이시네요!!");
             } else if(content.contains("사랑해")){
