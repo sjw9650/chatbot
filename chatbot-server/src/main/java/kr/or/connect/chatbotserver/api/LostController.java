@@ -19,6 +19,7 @@ public class LostController {
     @Autowired
     LostService lostService;
 
+    @Autowired
     UserService userService;
 
     JSONObject jobjText;
