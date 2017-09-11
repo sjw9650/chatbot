@@ -41,8 +41,11 @@ public class ChatbotController {
         ArrayList<String> btns = new ArrayList<>();
         btns.add("공지사항");
         btns.add("일정");
-        btns.add("분실물");
+        btns.add("학교식당");
+        btns.add("도서관");
         btns.add("강의평가");
+        btns.add("분실물");
+        btns.add("기타");
         jobjBtn.put("buttons",btns);
         return jobjBtn.toJSONString();
     }
@@ -85,7 +88,6 @@ public class ChatbotController {
             jobjText.put("text", "depth까지 들어옴~");
             LectureController lect_api = new LectureController(user);
             jobjRes = lect_api.eval_();
-
         }
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
@@ -108,6 +110,12 @@ public class ChatbotController {
                 jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
                         "분실물을 찾으시는 분들은 \"찾기\"를\n"+
                         "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
+                jobjRes.put("type", "buttons");
+                ArrayList<String> btns = new ArrayList<>();
+                btns.add("등록");
+                btns.add("찾기");
+                btns.add("취소");
+                jobjRes.put("buttons",btns);
                 user.setDepth(33);
                 userService.setDepth(user);
             }else if(content.equals("일정")){
@@ -118,9 +126,7 @@ public class ChatbotController {
                 jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
                 user.setDepth(51);
                 userService.setDepth(user);
-
             }
-
             else if(content.contains("안녕")){
                 jobjText.put("text","오냐~~~");
             } else if(content.contains("사랑해")){

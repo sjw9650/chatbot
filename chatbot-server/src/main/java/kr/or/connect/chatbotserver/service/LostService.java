@@ -5,6 +5,9 @@ import kr.or.connect.chatbotserver.model.Lost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class LostService {
 
@@ -36,11 +39,11 @@ public class LostService {
         }
         lostDAO.setLost(lost);
     }
-    public String getContent(String user_key){
+    public Lost getLost(String user_key){
         int id = lostDAO.getId(user_key);
         Lost lost= new Lost();
         lost = lostDAO.getLost(id);
-        return lost.getContent();
+        return lost;
     }
     public int getId(String user_key){
         int id = lostDAO.getId(user_key);
@@ -52,5 +55,19 @@ public class LostService {
         Lost lost= new Lost();
         lost = lostDAO.getLost(id);
         lostDAO.removeLost(lost);
+    }
+    public List<Lost> seek_lostofdate(Lost lost){
+        List <Lost> lostList = lostDAO.seek_lostofday(lost);
+        int sizeoflist = lostList.size();
+        List <Lost> returnList=new ArrayList<>();
+
+        for(int i=0;i<sizeoflist;i++){
+            Lost temp = lostList.get(i);
+            if(temp.getCompleted()==1){
+                returnList.add(temp);
+            }
+        }
+        return returnList;
+
     }
 }
