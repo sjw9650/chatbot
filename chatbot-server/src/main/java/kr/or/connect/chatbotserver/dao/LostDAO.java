@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
+import antlr.debug.DebuggingInputBuffer;
 import kr.or.connect.chatbotserver.model.Lost;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.sql.LostSqls;
@@ -48,7 +49,9 @@ public class LostDAO {
 
     public List<Lost> seek_lostofday(Lost lost){
         String hql = LostSqls.SELECT_LOST;
-        return (List<Lost>) entityManager.createNativeQuery(hql).setParameter(1,lost.getDate_()).getResultList();
+        System.out.println(lost.getDate_());
+
+        return (List<Lost>) entityManager.createNativeQuery(hql).setParameter("date",lost.getDate_()).getResultList();
     }
 
 }
