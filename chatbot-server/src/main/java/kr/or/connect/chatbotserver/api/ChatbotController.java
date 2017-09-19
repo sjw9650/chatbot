@@ -105,18 +105,23 @@ public class ChatbotController {
                     "분실물을 찾으시는 분들은 \"찾기\"를\n"+
                     "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
             jobjRes.put("message", jobjText);
-            jobjRes.put("type", "buttons");
+
+            JSONObject josonKeyboard =new JSONObject();
+            josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("등록");
             btns.add("찾기");
             btns.add("취소");
-            jobjRes.put("buttons",btns);
+            josonKeyboard.put("buttons",btns);
+            jobjRes.put("keyboard",josonKeyboard);
+
             user.setDepth(33);
             userService.setDepth(user);
         }else if(content.equals("일정")){
             String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                     "하실수 있습니다.(굿)\n" + url);
+            jobjRes.put("message", jobjText);
             user.setDepth(0);
             userService.setDepth(user);
         } else if(content.equals("강의평가")){
