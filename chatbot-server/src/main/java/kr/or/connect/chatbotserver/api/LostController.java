@@ -238,11 +238,9 @@ public class LostController {
 
         if(content.equals("취소")){
             lostCancel();
-            if(depth!=34&&depth!=33){
+            if(depth!=34&&depth!=33&&depth<40) {
                 lostService.removeLost(user_key);
             }
-            jobjRes.put("message", jobjText);
-            set_main_btn();
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
@@ -418,6 +416,8 @@ public class LostController {
         jobjText.put("text","분실물 등록을 취소하였습니다~(허걱)\n\n" +
                 "다른 서비스에 대해서 안내 받으시려면" +
                 " \"시작하기\"를 입력해주세요(최고)");
+        jobjRes.put("message",jobjText);
+        set_main_btn();
         user.setDepth(0);
         userService.setDepth(user);
     }
