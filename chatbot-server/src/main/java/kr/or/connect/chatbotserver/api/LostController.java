@@ -399,7 +399,9 @@ public class LostController {
         userService.setDepth(user);
     }
     private void set_main_btn(){
-        jobjRes.put("type", "buttons");
+
+        JSONObject josonKeyboard =new JSONObject();
+        josonKeyboard.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         btns.add("공지사항");
         btns.add("일정");
@@ -408,7 +410,9 @@ public class LostController {
         btns.add("강의평가");
         btns.add("분실물");
         btns.add("기타");
-        jobjRes.put("buttons",btns);
+        josonKeyboard.put("buttons",btns);
+        jobjRes.put("keyboard",josonKeyboard);
+
     }
     private void lostCancel(){
         jobjText.put("text","분실물 등록을 취소하였습니다~(허걱)\n\n" +
