@@ -55,9 +55,7 @@ public class LostController {
                 "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
         jobjRes.put("message", jobjText);
         user.setDepth(34);
-        System.out.println("3333");
         userService.setDepth(user);
-        System.out.println("4444");
     }
     public void request_getplace(){
         lostService.addLost(user.getConvertId(),content);
@@ -85,7 +83,6 @@ public class LostController {
         if(validity_check_date(1)) {
             String[] strArr = content.split(" ");
             String date_="";
-
                 Calendar cal = new GregorianCalendar(Locale.KOREA);
                 cal.setTime(new Date());
                 SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
@@ -121,7 +118,6 @@ public class LostController {
                     "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
             jobjRes.put("message", jobjText);
         }
-
     }
 
     public void request_img(){
@@ -154,14 +150,18 @@ public class LostController {
                 ImageGet imageGet = new ImageGet(content, content_);
                 imageGet.saveImage();
             }
-            lostService.setLost(user_key, 4, content_);
-            content_ = lostService.getLost(user_key).getContent();
-            jobjText.put("text", content_ + "의 분실물 등록을 모두 하였습니다.(우와)\n" +
+            lostService.setLost(user_key, 4, content);
+            Lost templost = new Lost();
+            templost = lostService.getLost(user_key);
+            jobjText.put("text",
+                            templost.getDate_()+"시 에 "+ templost.getGet_place()+"에서 발견하신\n"+
+                                    templost.getContent()+ "의 분실물 등록을 모두 하였습니다.(우와)\n" +
+                                    "분실하신 분께 " +templost.getPut_place()+"에서 보관하고 있다고 전달하겠습니다. \n"+
                     "\n등록하시느라 고생 많으셨습니다.(오케이)" +
                     "\n등록된 분실물은 주인을 찾을 수 있도록 노력하겠습니다." +
-                    "\n감사합니다.(최고)(최고)(최고)" +
-                    "\n\n\"시작하기\"를 입력해주세요(최고)");
+                    "\n감사합니다.(최고)(최고)(최고)\n");
             jobjRes.put("message", jobjText);
+            set_main_btn();
             user.setDepth(0);
             userService.setDepth(user);
         } else {
@@ -242,6 +242,7 @@ public class LostController {
                 lostService.removeLost(user_key);
             }
             jobjRes.put("message", jobjText);
+            set_main_btn();
         }
         else if(depth==33 ){
             if(content.equals("등록")) {
@@ -264,14 +265,14 @@ public class LostController {
             if (validity_check_date(2)){
 
                 Calendar cal = new GregorianCalendar(Locale.KOREA);
-                cal.setTime(new Date());
-                SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
-                Lost lost = new Lost();
-                lost.setUser_key(user_key);
-                String strDate="";
-                if(content.equals("어제")){
-                    cal.add(Calendar.DAY_OF_MONTH, -1); // 1일을 뺀다.
-                    strDate = fm.format(cal.getTime());
+                    cal.setTime(new Date());
+                    SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
+                    Lost lost = new Lost();
+                    lost.setUser_key(user_key);
+                    String strDate="";
+                    if(content.equals("어제")){
+                        cal.add(Calendar.DAY_OF_MONTH, -1); // 1일을 뺀다.
+                        strDate = fm.format(cal.getTime());
                 }
                 else if(content.equals("오늘")) {
                     strDate = fm.format(cal.getTime());
@@ -322,7 +323,42 @@ public class LostController {
             }
         }
         else if(depth==41){
+            if(isStringInt(content)){
+                Lost templost = new Lost();
+                templost = lostService.getLost(Integer.parseInt(content));
+                if(templost.getContent()==""){
+                    jobjText.put("text", "\n잘못입력하셨습니다.\n\n 초기화면으로 이동합니다.\n");
+                    jobjRes.put("message", jobjText);
+                }
+                else{
+                    String out_ = "";
+                    out_ +=templost.getContent()+"는 현재 \n"
+                            +templost.getPut_place()+"에서 보관중입니다.";
+                    if (templost.getPicture().equals("없음")){
+                        out_ += "\n\n아쉽게도 사진과 함께 올라오진 않았습니다.";
+                        jobjText.put("text",out_);
+                        jobjRes.put("message", jobjText);
 
+                    }
+                    else {
+                        jobjText.put("text",out_);
+                        JSONObject jobjPhoto = new JSONObject();
+                        jobjPhoto.put("url",templost.getPicture());
+                        jobjPhoto.put("width",640);
+                        jobjPhoto.put("height",480);
+                        jobjRes.put("message", jobjText);
+                        jobjRes.put("photo", jobjPhoto);
+                    }
+
+                }
+            }else {
+                jobjText.put("text", "\n잘못입력하셨습니다.\n\n 초기화면으로 이동합니다.\n");
+                jobjRes.put("message", jobjText);
+
+            }
+            user.setDepth(0);
+            userService.setDepth(user);
+            set_main_btn();
         }
         else if(depth==34){
             request_getplace();
@@ -336,7 +372,8 @@ public class LostController {
         }else if(depth==38) {
             complete_add();
         }
-        if(jobjRes.isEmpty()) {
+
+        if(jobjText.get("text")=="") {
             error_server();
             if(depth!=34&&depth!=33){
                 lostService.removeLost(user_key);
@@ -356,6 +393,7 @@ public class LostController {
         jobjText.put("text","서버 연결에 대한 지연으로 초기화면으로 이동합니다.(우와)\n\n" +
                 "다른 서비스에 대해서 안내 받으시려면" +
                 " \"시작하기\"를 입력해주세요(최고)");
+        jobjRes.put("message",jobjText);
         set_main_btn();
         user.setDepth(0);
         userService.setDepth(user);
@@ -376,7 +414,6 @@ public class LostController {
         jobjText.put("text","분실물 등록을 취소하였습니다~(허걱)\n\n" +
                 "다른 서비스에 대해서 안내 받으시려면" +
                 " \"시작하기\"를 입력해주세요(최고)");
-        set_main_btn();
         user.setDepth(0);
         userService.setDepth(user);
     }

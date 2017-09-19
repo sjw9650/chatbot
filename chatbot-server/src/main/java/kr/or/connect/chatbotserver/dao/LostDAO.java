@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 
 import kr.or.connect.chatbotserver.model.Lost;
+import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.sql.LostSqls;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,7 @@ public class LostDAO {
     public void removeLost(Lost lost){
         entityManager.remove(lost);
     }
+
     public List<Lost> seek_lostofday(Lost lost){
         String hql = LostSqls.SELECT_LOST;
         return (List<Lost>) entityManager.createQuery(hql).setParameter(1,lost.getDate_()).getResultList();
