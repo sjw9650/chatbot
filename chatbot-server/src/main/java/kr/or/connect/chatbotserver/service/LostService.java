@@ -39,8 +39,15 @@ public class LostService {
         }
         lostDAO.setLost(lost);
     }
+
     public Lost getLost(String user_key){
         int id = lostDAO.getId(user_key);
+        Lost lost= new Lost();
+        lost = lostDAO.getLost(id);
+        return lost;
+    }
+
+    public Lost getLost(int id){
         Lost lost= new Lost();
         lost = lostDAO.getLost(id);
         return lost;

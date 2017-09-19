@@ -71,8 +71,42 @@ public class ChatbotController {
         int depth = user.getDepth();
         System.out.println(Integer.toString(depth));
 
-        // 33~50 = 분실물
-        if(depth >= 33 && depth <=50){
+        if(content.equals("공지사항")){
+            jobjText.put("text","사용법은 다음과 같습니다. " +
+                    "(굿)\n취업관련 사항은 \"취업\" " +
+                    "장학금관련 사항은 \"장학금\" " +
+                    "일반관련 사항은 \"일반\" " +
+                    "행사관련 사항은 \"행사\"를 선택 해주세요." );
+        } else if(content.equals("취업")){
+            noticeCrawling("취업",jobjText);
+        } else if(content.equals("장학금")){
+            noticeCrawling("장학금",jobjText);
+        } else if(content.equals("일반")){
+            noticeCrawling("일반",jobjText);
+        } else if(content.equals("행사")){
+            noticeCrawling("행사",jobjText);
+        }else if(content.equals("분실물")){
+            jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
+                    "분실물을 찾으시는 분들은 \"찾기\"를\n"+
+                    "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
+            jobjRes.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("등록");
+            btns.add("찾기");
+            btns.add("취소");
+            jobjRes.put("buttons",btns);
+            user.setDepth(33);
+            userService.setDepth(user);
+        }else if(content.equals("일정")){
+            String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
+            jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
+                    "하실수 있습니다.(굿)\n" + url);
+        } else if(content.equals("강의평가")){
+            jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
+            user.setDepth(51);
+            userService.setDepth(user);
+        }
+        else if(depth >= 33 && depth <=50){    // 33~50 = 분실물
             LostController lost_api = new LostController(content,user,userService,lostService);
             jobjRes = lost_api.lost_();
         }
@@ -85,42 +119,7 @@ public class ChatbotController {
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
-            if(content.equals("공지사항")){
-                jobjText.put("text","사용법은 다음과 같습니다. " +
-                        "(굿)\n취업관련 사항은 \"취업\" " +
-                        "장학금관련 사항은 \"장학금\" " +
-                        "일반관련 사항은 \"일반\" " +
-                        "행사관련 사항은 \"행사\"를 선택 해주세요." );
-            } else if(content.equals("취업")){
-                noticeCrawling("취업",jobjText);
-            } else if(content.equals("장학금")){
-                noticeCrawling("장학금",jobjText);
-            } else if(content.equals("일반")){
-                noticeCrawling("일반",jobjText);
-            } else if(content.equals("행사")){
-                noticeCrawling("행사",jobjText);
-            }else if(content.equals("분실물")){
-                jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
-                        "분실물을 찾으시는 분들은 \"찾기\"를\n"+
-                        "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
-                jobjRes.put("type", "buttons");
-                ArrayList<String> btns = new ArrayList<>();
-                btns.add("등록");
-                btns.add("찾기");
-                btns.add("취소");
-                jobjRes.put("buttons",btns);
-                user.setDepth(33);
-                userService.setDepth(user);
-            }else if(content.equals("일정")){
-            	String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
-                jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
-                                    "하실수 있습니다.(굿)\n" + url);
-            } else if(content.equals("강의평가")){
-                jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
-                user.setDepth(51);
-                userService.setDepth(user);
-            }
-            else if(content.contains("안녕")){
+            if(content.contains("안녕")){
                 jobjText.put("text","오냐~~~");
             } else if(content.contains("사랑해")){
                 jobjText.put("text","나도 너무너무 사랑해");
