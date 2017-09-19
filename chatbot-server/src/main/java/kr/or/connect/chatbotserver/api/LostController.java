@@ -1,6 +1,7 @@
 package kr.or.connect.chatbotserver.api;
 
 import kr.or.connect.chatbotserver.lost.ImageGet;
+import kr.or.connect.chatbotserver.model.Lost;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.UserService;
@@ -70,7 +71,7 @@ public class LostController {
     }
     public void request_date(){
         lostService.setLost(user.getConvertId(),1,content);
-        String content_ = lostService.getContent(user.getConvertId());
+        String content_ = lostService.getLost(user.getConvertId()).getContent();
         jobjText.put("text", content+"에서 습득하셨네요~(우와)\n" +
                 content_+"을(를) 언제 발견하셨나요?? \n" +
                 "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
@@ -81,7 +82,7 @@ public class LostController {
 
     }
     public void request_putplace(){
-        if(validity_check_date()) {
+        if(validity_check_date(1)) {
             String[] strArr = content.split(" ");
             String date_="";
 
@@ -102,7 +103,7 @@ public class LostController {
                     date_=content;
                 }
                 lostService.setLost(user.getConvertId(),2,date_);
-                String content_ = lostService.getContent(user.getConvertId());
+                String content_ = lostService.getLost(user.getConvertId()).getContent();
                 jobjText.put("text", date_+"시 쯤에 습득하셨네요~(우와)\n" +
                         content_+"을(를) 맡기신 곳이 있다면 어디에 맡기셨나요??\n" +
                         "혹은 가지고 계시다면 자신이 누구인지 알려주실 수 있으신가요??\n\n" +
@@ -114,7 +115,7 @@ public class LostController {
         }
         else {
                 // 입력값이 이상하면
-            String content_ = lostService.getContent(user.getConvertId());
+            String content_ = lostService.getLost(user.getConvertId()).getContent();
             jobjText.put("text","입력된 시간 값이 올바르지 않습니다.(훌쩍)\n\n"+content_+"을(를) 언제 발견하셨나요?? \n" +
                     "예)2017년 09월 03일 17시~18시에 발견하였다면\n  \"20170903 17\"을 입력해주시면 됩니다.(좋아)\n" +
                     "혹은 \"오늘 17\",\"어제 17\"와 같이 입력해주셔도 됩니다. \n\n" + "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");
@@ -125,7 +126,7 @@ public class LostController {
 
     public void request_img(){
         lostService.setLost(user.getConvertId(),3,content);
-        String content_ = lostService.getContent(user.getConvertId());
+        String content_ = lostService.getLost(user.getConvertId()).getContent();
         jobjText.put("text", content+"에서(가) 보관하고 있군요!!(우와)\n" +
                 content_+"을(를) 에 대한 사진이 있으시다면 사진을 보내주세요!\n" +
                 "사진이 없으면 \"없음\"을 선택해주세요. \n\n" +
@@ -154,7 +155,7 @@ public class LostController {
                 imageGet.saveImage();
             }
             lostService.setLost(user_key, 4, content_);
-            content_ = lostService.getContent(user_key);
+            content_ = lostService.getLost(user_key).getContent();
             jobjText.put("text", content_ + "의 분실물 등록을 모두 하였습니다.(우와)\n" +
                     "\n등록하시느라 고생 많으셨습니다.(오케이)" +
                     "\n등록된 분실물은 주인을 찾을 수 있도록 노력하겠습니다." +
@@ -164,7 +165,7 @@ public class LostController {
             user.setDepth(0);
             userService.setDepth(user);
         } else {
-            content_ = lostService.getContent(user_key);
+            content_ = lostService.getLost(user_key).getContent();
             jobjText.put("text", "잘못입력하셨습니다.\n" + content + "에서(가) 보관하고 있군요!!(우와)\n" +
                     content_ + "을(를) 에 대한 사진이 있으시다면 사진을 보내주세요!\n" +
                     "사진이 없으면 \"없음\"을 선택해주세요. \n\n" +
@@ -178,16 +179,24 @@ public class LostController {
         }
     }
 
-    public boolean validity_check_date(){
+    private boolean validity_check_date(int type){
         String date_="";
-        if(!content.contains(" ")) {
-            System.out.println(content+"   1111");
-            return false;}
+        if (!content.contains(" ")&& type==1) {
+            return false;
+        }
         String[] strArr = content.split(" ");
-        if(!isStringInt(strArr[1])) {System.out.println(strArr[1]+"   2222");return false;}
-        int time_ =Integer.parseInt(strArr[1]);
-        if(time_ <0 &&time_>24) {System.out.println(strArr[1]+"   3333");return false;}
-        if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")&&!isStringInt(strArr[0])){System.out.println("   444");return false;}
+        if(type ==1 )// 등록시에
+        {
+
+            if (!isStringInt(strArr[1])) {
+                return false;
+            }
+            int time_ = Integer.parseInt(strArr[1]);
+            if (time_ < 0 && time_ > 24) {
+                return false;
+            }
+        }
+        if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")&&!isStringInt(strArr[0])){return false;}
         if(!strArr[0].equals("어제")&&!strArr[0].equals("오늘")) {
             int days_ = 0;
             int day_ = 0;
@@ -226,11 +235,9 @@ public class LostController {
         int depth=user.getDepth();
         String user_key =user.getConvertId();
         String content_="";
-        System.out.println(content);
-        System.out.println(user);
 
         if(content.equals("취소")){
-            lostCancel(user);
+            lostCancel();
             if(depth!=34&&depth!=33){
                 lostService.removeLost(user_key);
             }
@@ -254,17 +261,68 @@ public class LostController {
             }
         }
         else if(depth==40){
-            if (validity_check_date()){
-                jobjText.put("text", content+"에 분실하셨구나(훌쩍)\n" +
-                        content+"에 분실물의 발견 장소와 항목입니다.\n\n" +
-                        "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n");
+            if (validity_check_date(2)){
+
+                Calendar cal = new GregorianCalendar(Locale.KOREA);
+                cal.setTime(new Date());
+                SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
+                Lost lost = new Lost();
+                lost.setUser_key(user_key);
+                String strDate="";
+                if(content.equals("어제")){
+                    cal.add(Calendar.DAY_OF_MONTH, -1); // 1일을 뺀다.
+                    strDate = fm.format(cal.getTime());
+                }
+                else if(content.equals("오늘")) {
+                    strDate = fm.format(cal.getTime());
+                }else{
+                    strDate=content;
+                }
+                lost.setDate_(strDate);
+                //분실물을 DB에 추가한다. 그 이유는 이후에 사용하려고
+                //앞으로 해야할 작업들은 controller를 간소화하고 service에 코딩하는 것이다.
+
+                List<Lost> seek_result= lostService.seek_lostofdate(lost);
+                String output_= "";
+                if(seek_result.isEmpty()){
+                    output_=strDate+"에 접수된 분실물은 없습니다.(훌쩍) \n" +
+                            "다른 날의 분실물을 보고 싶으시면 날짜를 입력하세요"+
+                            "예)2017년 09월 03일에 발견하였다면\n " +
+                            "\"20170903\"을 입력해주시면 됩니다.(좋아)\n" +
+                            "혹은 \"오늘\",\"어제\"와 같이 입력해주셔도 됩니다.\n\n" +
+                            "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n";
+                }else{
+                    output_ = strDate+"에 분실하셨구나(훌쩍)\n" +
+                        content+"에 분실물의 발견 장소와 항목입니다.\n\n";
+                    int size_list = seek_result.size();
+                    for(int i=0;i<size_list;i++){
+                        output_+=Integer.toString(seek_result.get(i).getId())+"번 ";
+                        output_+=seek_result.get(i).getGet_place()+ "에서 발견된";
+                        output_+=seek_result.get(i).getContent()+" 입니다. \n";
+                    }
+                    output_ +="찾으시는 물건이 있다면 해당되는 번호를 입력해주세요.\n" +
+                            "입력하시면 사진과 함께 어디에 보관되어 있는지 알려드리겠습니다.\n\n"+
+                            "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n";
+                }
+
+                jobjText.put("text", output_);
                 jobjRes.put("message", jobjText);
-                user.setDepth(40);
+                user.setDepth(41);
                 userService.setDepth(user);
             }
             else {
-
+                jobjText.put("text", "날짜 정보를 잘못 입력 하셨습니다.\n\n\n"+"물건을 분실하셨나요?(훌쩍)\n" +
+                        "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
+                        "언제 잃어 버리셨나요??\n" +
+                        "예)2017년 09월 03일에 발견하였다면\n " +
+                        "\"20170903\"을 입력해주시면 됩니다.(좋아)\n" +
+                        "혹은 \"오늘\",\"어제\"와 같이 입력해주셔도 됩니다.\n\n" +
+                        "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n");
+                jobjRes.put("message", jobjText);
             }
+        }
+        else if(depth==41){
+
         }
         else if(depth==34){
             request_getplace();
@@ -278,6 +336,12 @@ public class LostController {
         }else if(depth==38) {
             complete_add();
         }
+        if(jobjRes.isEmpty()) {
+            error_server();
+            if(depth!=34&&depth!=33){
+                lostService.removeLost(user_key);
+            }
+        }
         return jobjRes;
     }
     public static boolean isStringInt(String s) {
@@ -288,10 +352,31 @@ public class LostController {
             return false;
         }
     }
-    private void lostCancel(User user){
-        jobjText.put("text","분실물 등록을 취소하였습니다~(우와)\n\n" +
+    private void error_server(){
+        jobjText.put("text","서버 연결에 대한 지연으로 초기화면으로 이동합니다.(우와)\n\n" +
                 "다른 서비스에 대해서 안내 받으시려면" +
                 " \"시작하기\"를 입력해주세요(최고)");
+        set_main_btn();
+        user.setDepth(0);
+        userService.setDepth(user);
+    }
+    private void set_main_btn(){
+        jobjRes.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        btns.add("공지사항");
+        btns.add("일정");
+        btns.add("학교식당");
+        btns.add("도서관");
+        btns.add("강의평가");
+        btns.add("분실물");
+        btns.add("기타");
+        jobjRes.put("buttons",btns);
+    }
+    private void lostCancel(){
+        jobjText.put("text","분실물 등록을 취소하였습니다~(허걱)\n\n" +
+                "다른 서비스에 대해서 안내 받으시려면" +
+                " \"시작하기\"를 입력해주세요(최고)");
+        set_main_btn();
         user.setDepth(0);
         userService.setDepth(user);
     }
