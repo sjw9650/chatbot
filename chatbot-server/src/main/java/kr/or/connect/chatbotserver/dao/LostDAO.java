@@ -51,7 +51,7 @@ public class LostDAO {
         String hql = LostSqls.SELECT_LOST;
         System.out.println(lost.getDate_());
 
-        return (List<Lost>) entityManager.createNativeQuery(hql).setParameter("date",lost.getDate_()).getResultList();
+        return (List<Lost>) entityManager.createNativeQuery(hql).setParameter(1,lost.getDate_()).getResultList();
     }
 
 }
