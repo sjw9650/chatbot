@@ -77,18 +77,34 @@ public class ChatbotController {
                     "장학금관련 사항은 \"장학금\" " +
                     "일반관련 사항은 \"일반\" " +
                     "행사관련 사항은 \"행사\"를 선택 해주세요." );
+            jobjRes.put("message", jobjText);
+            user.setDepth(0);
+            userService.setDepth(user);
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
+            jobjRes.put("message", jobjText);
+            user.setDepth(0);
+            userService.setDepth(user);
         } else if(content.equals("장학금")){
             noticeCrawling("장학금",jobjText);
+            jobjRes.put("message", jobjText);
+            user.setDepth(0);
+            userService.setDepth(user);
         } else if(content.equals("일반")){
             noticeCrawling("일반",jobjText);
+            jobjRes.put("message", jobjText);
+            user.setDepth(0);
+            userService.setDepth(user);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
+            jobjRes.put("message", jobjText);
+            user.setDepth(0);
+            userService.setDepth(user);
         }else if(content.equals("분실물")){
             jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
                     "분실물을 찾으시는 분들은 \"찾기\"를\n"+
                     "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
+            jobjRes.put("message", jobjText);
             jobjRes.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("등록");
@@ -101,6 +117,8 @@ public class ChatbotController {
             String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                     "하실수 있습니다.(굿)\n" + url);
+            user.setDepth(0);
+            userService.setDepth(user);
         } else if(content.equals("강의평가")){
             jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
             user.setDepth(51);
