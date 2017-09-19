@@ -72,14 +72,14 @@ public class ChatbotController {
         System.out.println(Integer.toString(depth));
 
         if(content.equals("공지사항")){
+            user.setDepth(0);
+            userService.setDepth(user);
             jobjText.put("text","사용법은 다음과 같습니다. " +
                     "(굿)\n취업관련 사항은 \"취업\" " +
                     "장학금관련 사항은 \"장학금\" " +
                     "일반관련 사항은 \"일반\" " +
                     "행사관련 사항은 \"행사\"를 선택 해주세요." );
             jobjRes.put("message", jobjText);
-            user.setDepth(0);
-            userService.setDepth(user);
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
             jobjRes.put("message", jobjText);
@@ -152,7 +152,7 @@ public class ChatbotController {
                 jobjText.put("text","등록된 설문조사가 없습니다.(화남)");
             }
             else {
-                jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶으면 \"시작하기\"를 입력하세요.");
+                jobjText.put("text","지정하지 않은 답변입니다. 사용 법을 알고 싶  으면 \"시작하기\"를 입력하세요.");
             }
             jobjRes.put("message", jobjText);
         }
