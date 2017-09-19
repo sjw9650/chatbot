@@ -65,11 +65,6 @@ public class ChatbotController {
 
         String user_key = (String)resObj.get("user_key");
 
-
-        // 현재 추가되 있는 사람들을 위한 소스로 최종 빌드시에 삭제 해야함
-        if(!userService.AddUser(user_key))
-            System.out.println("\n-------------user Add Fail---------------\n");
-
         // User Key 값을 이용하여 user의 Depth를 추적
         User user = new User();
         user = userService.getUserbykey(user_key);
@@ -77,12 +72,10 @@ public class ChatbotController {
         System.out.println(Integer.toString(depth));
 
         // 33~50 = 분실물
-
         if(depth >= 33 && depth <=50){
             LostController lost_api = new LostController(content,user,userService,lostService);
             jobjRes = lost_api.lost_();
         }
-
         //51 = 강의 평가
         else if(depth==51){
             jobjText.put("text", "depth까지 들어옴~");
