@@ -69,7 +69,6 @@ public class ChatbotController {
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
-        System.out.println(Integer.toString(depth));
 
         if(content.equals("공지사항")){
             user.setDepth(0);
