@@ -197,8 +197,8 @@ public class ChatbotController {
                 jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
                         "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
                         "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+                jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
-                jobjRes.put("message_button",jsonMB);
             }
 
         }
@@ -245,9 +245,13 @@ public class ChatbotController {
           JSONObject josonKeyboard = new JSONObject();
           josonKeyboard.put("type", "buttons");
           ArrayList<String> btns = new ArrayList<>();
-          btns.add("열람실 좌석");
-          btns.add("도서검색");
-          btns.add("취소");
+          btns.add("공지사항");
+          btns.add("일정");
+          btns.add("학교식당");
+          btns.add("도서관");
+          btns.add("강의평가");
+          btns.add("분실물");
+          btns.add("기타");
           josonKeyboard.put("buttons", btns);
           jobjRes.put("keyboard", josonKeyboard);
           return jobjRes;
