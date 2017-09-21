@@ -66,6 +66,9 @@ public class ChatbotController {
         String user_key = (String)resObj.get("user_key");
 
         // User Key 값을 이용하여 user의 Depth를 추적
+        // 30~50  분실물
+        // 61~65 도서관
+        // 51 = 강의 평가
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
@@ -99,22 +102,42 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
             user.setDepth(0);
             userService.setDepth(user);
-        }else if(content.equals("분실물")){
-            jobjText.put("text","분실물을 습득하신 분은 \"등록\"을\n"+
-                    "분실물을 찾으시는 분들은 \"찾기\"를\n"+
-                    "선택하여 주세요~(윙크)\n\n"+"이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
+        }else if(content.equals("분실물")) {
+            jobjText.put("text", "분실물을 습득하신 분은 \"등록\"을\n" +
+                    "분실물을 찾으시는 분들은 \"찾기\"를\n" +
+                    "선택하여 주세요~(윙크)\n\n" + "이전으로 돌아가시려면 \"취소\"를 입력해주세요~\n");
             jobjRes.put("message", jobjText);
 
-            JSONObject josonKeyboard =new JSONObject();
+            JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("등록");
             btns.add("찾기");
             btns.add("취소");
-            josonKeyboard.put("buttons",btns);
-            jobjRes.put("keyboard",josonKeyboard);
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
 
             user.setDepth(33);
+            userService.setDepth(user);
+        }else if(content.equals("도서관")){
+            jobjText.put("text", "도서관 이용 방법에 대해서 알려드립니다.\n\n\n" +
+                    "(방긋)도서관 열람실 정보를 확인을 위해서는\n" +
+                    "\"열람실 좌석\"을 입력해주세요.\n" +
+                    "\n(방긋)도서 검색을 위해서는\n" +
+                    "\"도서검색\"을 입력해주세요.\n\n" +
+                    "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+            jobjRes.put("message", jobjText);
+
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("열람실 좌석");
+            btns.add("도서검색");
+            btns.add("취소");
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
+
+            user.setDepth(60);
             userService.setDepth(user);
         }else if(content.equals("일정")){
             String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
@@ -132,11 +155,52 @@ public class ChatbotController {
             LostController lost_api = new LostController(content,user,userService,lostService);
             jobjRes = lost_api.lost_();
         }
-        //51 = 강의 평가
         else if(depth==51){
             jobjText.put("text", "depth까지 들어옴~");
             LectureController lect_api = new LectureController(user);
             jobjRes = lect_api.eval_();
+        }
+        else if(depth==60){
+            if(content.equals("도서검색"))
+            {
+
+            jobjText.put("text", "도서 검색 서비스입니다.\n" +
+                    "검색어를 입력해주세요.\n\n\n"+
+                    "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+            jobjRes.put("message", jobjText);
+
+            user.setDepth(61);
+            userService.setDepth(user);
+
+            }else if(content.equals("열람실 좌석")){
+            jobjRes=mainmenu();
+            jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
+                    "빠른 시일내에 서비스하겠습니다.\n\n\n"+
+                    "초기 메뉴로 이동합니다.\n\n");
+            jobjRes.put("message", jobjText);
+
+            user.setDepth(0);
+            userService.setDepth(user);
+            }else if(content.equals("취소")){
+                 jobjRes=cancle(user);  
+            }
+        }else if(depth==61){
+            if(content.equals("취소")) {
+                jobjRes = cancle(user);
+            }
+            else {
+                JSONObject jsonMB = new JSONObject();
+                jsonMB.put("label","검색 결과입니다.");
+                String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
+                searchurl+=content;
+                jsonMB.put("url",searchurl);
+                jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
+                        "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
+                        "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+                jobjRes.put("message", jobjText);
+                jobjRes.put("message_button",jsonMB);
+            }
+
         }
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
@@ -176,6 +240,29 @@ public class ChatbotController {
         return resObj.toJSONString();
     }
 
+    public JSONObject mainmenu(){
+          JSONObject jobjRes = new JSONObject();
+          JSONObject josonKeyboard = new JSONObject();
+          josonKeyboard.put("type", "buttons");
+          ArrayList<String> btns = new ArrayList<>();
+          btns.add("열람실 좌석");
+          btns.add("도서검색");
+          btns.add("취소");
+          josonKeyboard.put("buttons", btns);
+          jobjRes.put("keyboard", josonKeyboard);
+          return jobjRes;
+    }
+
+    public JSONObject cancle(User user) {
+        JSONObject jobjRes = new JSONObject();
+        JSONObject jobjText= new JSONObject();
+        jobjRes=mainmenu();
+        jobjText.put("text", "취소를 누르셨습니다.(굿)\n\n 초기메뉴로 이동하겠습니다.\n");
+        jobjRes.put("message", jobjText);
+        user.setDepth(0);
+        userService.setDepth(user);
+        return jobjRes;
+    }
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
         if(subject.equals("취업")){
