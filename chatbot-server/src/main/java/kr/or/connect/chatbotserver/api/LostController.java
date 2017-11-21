@@ -265,8 +265,10 @@ public class LostController {
                 Calendar cal = new GregorianCalendar(Locale.KOREA);
                 cal.setTime(new Date());
                 SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
+
                 Lost lost = new Lost();
                 lost.setUser_key(user_key);
+
                 String strDate="";
 
                 if(content.equals("어제")){
@@ -278,7 +280,7 @@ public class LostController {
                 }else{
                     strDate=content;
                 }
-                strDate += "%";
+
                 lost.setDate_(strDate);
                 //분실물을 DB에 추가한다. 그 이유는 이후에 사용하려고
                 //앞으로 해야할 작업들은 controller를 간소화하고 service에 코딩하는 것이다.
@@ -304,12 +306,13 @@ public class LostController {
                     output_ +="찾으시는 물건이 있다면 해당되는 번호를 입력해주세요.\n" +
                             "입력하시면 사진과 함께 어디에 보관되어 있는지 알려드리겠습니다.\n\n"+
                             "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n";
+
+                    user.setDepth(41);
+                    userService.setDepth(user);
                 }
 
                 jobjText.put("text", output_);
                 jobjRes.put("message", jobjText);
-                user.setDepth(41);
-                userService.setDepth(user);
             }
             else {
                 jobjText.put("text", "날짜 정보를 잘못 입력 하셨습니다.\n\n\n"+"물건을 분실하셨나요?(훌쩍)\n" +

@@ -60,15 +60,14 @@ public class ChatbotController {
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
-        
+
         if(content.equals("취소")){
             user.setDepth(0);
             userService.setDepth(user);
             jobjText.put("text","취소를 누르셨습니다.(굿)\n\n 초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
-        }
-        if(content.equals("공지사항")){
+        }else if(content.equals("공지사항")){
             user.setDepth(0);
             userService.setDepth(user);
             jobjText.put("text","사용법은 다음과 같습니다. " +
@@ -169,7 +168,7 @@ public class ChatbotController {
             jobjRes = lect_api.eval_();
         }
         else if(depth==60){
-
+            if(content.equals("도서검색")){
             jobjText.put("text", "도서 검색 서비스입니다.\n" +
                     "검색어를 입력해주세요.\n\n\n"+
                     "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
@@ -177,17 +176,16 @@ public class ChatbotController {
 
             user.setDepth(61);
             userService.setDepth(user);
+            }else if(content.equals("열람실 좌석")) {
+                jobjRes = mainmenu();
+                jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
+                        "빠른 시일내에 서비스하겠습니다.\n\n\n" +
+                        "초기 메뉴로 이동합니다.\n\n");
+                jobjRes.put("message", jobjText);
 
-            }else if(content.equals("열람실 좌석")){
-            jobjRes=mainmenu();
-            jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
-                    "빠른 시일내에 서비스하겠습니다.\n\n\n"+
-                    "초기 메뉴로 이동합니다.\n\n");
-            jobjRes.put("message", jobjText);
-
-            user.setDepth(0);
-            userService.setDepth(user);
-
+                user.setDepth(0);
+                userService.setDepth(user);
+            }
         }else if(depth==61){
                 JSONObject jsonMB = new JSONObject();
                 jsonMB.put("label","검색 결과입니다.");

@@ -1,5 +1,6 @@
 package kr.or.connect.chatbotserver.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -49,9 +50,8 @@ public class LostDAO {
 
     public List<Lost> seek_lostofday(Lost lost){
         String hql = LostSqls.SELECT_LOST;
-        System.out.println(lost.getDate_());
-
-        return (List<Lost>) entityManager.createNativeQuery(hql).setParameter(1,lost.getDate_()).getResultList();
+        String lostDate = lost.getDate_()+"%";
+        return (List<Lost>)  entityManager.createQuery(hql).setParameter(1,lostDate).getResultList();
     }
 
 }

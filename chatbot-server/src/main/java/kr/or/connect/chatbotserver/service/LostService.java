@@ -65,7 +65,12 @@ public class LostService {
     }
     public List<Lost> seek_lostofdate(Lost lost){
         List <Lost> lostList = lostDAO.seek_lostofday(lost);
+
+
+        System.out.println("여기는 돼 !!");
+
         int sizeoflist = lostList.size();
+
         List <Lost> returnList=new ArrayList<>();
 
         for(int i=0;i<sizeoflist;i++){
