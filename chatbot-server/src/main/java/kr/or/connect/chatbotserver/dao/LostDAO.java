@@ -52,7 +52,7 @@ public class LostDAO {
     public List<Lost> seek_lostofday(Lost lost){
         String hql = LostSqls.SELECT_LOST;
         String lostDate = lost.getDate_()+"%";
-        List<Lost> result = entityManager.createNativeQuery(hql).setParameter(1,lostDate).getResultList();
+        List<Lost> result = entityManager.createNativeQuery(hql).setParameter("date",lostDate).getResultList();
         return result;
     }
 
