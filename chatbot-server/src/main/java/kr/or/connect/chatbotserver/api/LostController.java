@@ -277,6 +277,7 @@ public class LostController {
                 }else{
                     strDate=content;
                 }
+                strDate += "%";
                 lost.setDate_(strDate);
                 //분실물을 DB에 추가한다. 그 이유는 이후에 사용하려고
                 //앞으로 해야할 작업들은 controller를 간소화하고 service에 코딩하는 것이다.
