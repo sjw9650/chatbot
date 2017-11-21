@@ -263,12 +263,13 @@ public class LostController {
             if (validity_check_date(2)){
 
                 Calendar cal = new GregorianCalendar(Locale.KOREA);
-                    cal.setTime(new Date());
-                    SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
-                    Lost lost = new Lost();
-                    lost.setUser_key(user_key);
-                    String strDate="";
-                    if(content.equals("어제")){
+                cal.setTime(new Date());
+                SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
+                Lost lost = new Lost();
+                lost.setUser_key(user_key);
+                String strDate="";
+
+                if(content.equals("어제")){
                         cal.add(Calendar.DAY_OF_MONTH, -1); // 1일을 뺀다.
                         strDate = fm.format(cal.getTime());
                 }
