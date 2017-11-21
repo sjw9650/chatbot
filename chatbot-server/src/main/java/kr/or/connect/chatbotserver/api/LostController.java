@@ -349,8 +349,8 @@ public class LostController {
                         jobjPhoto.put("url",templost.getPicture());
                         jobjPhoto.put("width",640);
                         jobjPhoto.put("height",480);
+                        jobjText.put("photo", jobjPhoto);
                         jobjRes.put("message", jobjText);
-                        jobjRes.put("photo", jobjPhoto);
                     }
 
                 }
