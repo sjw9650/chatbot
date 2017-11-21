@@ -48,10 +48,12 @@ public class LostDAO {
         entityManager.remove(lost);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Lost> seek_lostofday(Lost lost){
         String hql = LostSqls.SELECT_LOST;
         String lostDate = lost.getDate_()+"%";
-        return (List<Lost>)  entityManager.createQuery(hql).setParameter(1,lostDate).getResultList();
+        List<Lost> result = entityManager.createNativeQuery(hql).setParameter(1,lostDate).getResultList();
+        return result;
     }
 
 }
