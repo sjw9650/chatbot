@@ -2,14 +2,11 @@ package kr.or.connect.chatbotserver.api;
 
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.LostService;
-import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 
 public class LectureController {

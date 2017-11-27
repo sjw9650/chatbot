@@ -159,8 +159,13 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(depth >= 33 && depth <=50){    // 33~50 = 분실물
-            LostController lost_api = new LostController(content,user,userService,lostService);
-            jobjRes = lost_api.lost_();
+            //depth를 보내주고 받아오는데 받아오는건
+            //바뀐 뎁스랑, 제이슨
+
+            JSONObject result = lostService.lost_(user.getConvertId(),depth,content);
+            jobjRes= (JSONObject) result.get("res");
+            user.setDepth((int)result.get("depth"));
+            userService.setDepth(user);
         }
         else if(depth==51){
             jobjText.put("text", "depth까지 들어옴~");
