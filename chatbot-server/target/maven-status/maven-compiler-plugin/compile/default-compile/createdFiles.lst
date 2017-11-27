@@ -10,6 +10,7 @@ kr\or\connect\chatbotserver\api\ScheduleController.class
 kr\or\connect\chatbotserver\sql\LostSqls.class
 kr\or\connect\chatbotserver\lost\ImageGet.class
 kr\or\connect\chatbotserver\ChatbotServerApplication.class
+kr\or\connect\chatbotserver\api\LectureController.class
 kr\or\connect\chatbotserver\api\ChatbotController.class
 kr\or\connect\chatbotserver\model\Lost.class
 kr\or\connect\chatbotserver\model\Schedule.class
