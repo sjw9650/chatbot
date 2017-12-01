@@ -107,6 +107,7 @@ public class LostService {
                             "\"20170903\"을 입력해주시면 됩니다.(좋아)\n" +
                             "혹은 \"오늘\",\"어제\"와 같이 입력해주셔도 됩니다.\n\n" +
                             "분실물 찾기를 취소 하시려면 \"취소\"를 입력해주세요~\n";
+                    response.put("depth",depth);
                 }else{
                     output_ = strDate+"에 분실하셨구나(훌쩍)\n" +
                             content+"에 분실물의 발견 장소와 항목입니다.\n\n";
@@ -385,11 +386,13 @@ public class LostService {
         jsonKeyboard.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         btns.add("공지사항");
-        btns.add("일정");
         btns.add("학교식당");
         btns.add("도서관");
-        btns.add("강의평가");
         btns.add("분실물");
+        btns.add("일정");
+        btns.add("강의평가");
+        btns.add("시설물예약");
+        btns.add("교내전화번호");
         btns.add("기타");
         jsonKeyboard.put("buttons",btns);
         return jsonKeyboard;

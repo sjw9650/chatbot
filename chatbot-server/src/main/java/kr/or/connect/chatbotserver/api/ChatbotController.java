@@ -64,7 +64,7 @@ public class ChatbotController {
         if(content.equals("취소")){
             user.setDepth(0);
             userService.setDepth(user);
-            jobjText.put("text","취소를 누르셨습니다.(굿)\n\n 초기메뉴로 이동하겠습니다.\n" );
+            jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
         }else if(content.equals("공지사항")){
@@ -134,7 +134,7 @@ public class ChatbotController {
             user.setDepth(60);
             userService.setDepth(user);
         }else if(content.equals("일정")){
-            String url = "http://13.124.220.140:9090/user/schedules/start/" + user.getConvertId();
+            String url = "http://52.78.164.183:9090/user/schedules/start/" + user.getConvertId();
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                     "하실수 있습니다.(굿)\n" + url);
             jobjRes.put("message", jobjText);
@@ -246,11 +246,13 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         btns.add("공지사항");
-        btns.add("일정");
         btns.add("학교식당");
         btns.add("도서관");
-        btns.add("강의평가");
         btns.add("분실물");
+        btns.add("일정");
+        btns.add("강의평가");
+        btns.add("시설물예약");
+        btns.add("교내전화번호");
         btns.add("기타");
         jobjBtn.put("buttons",btns);
         return jobjBtn;
