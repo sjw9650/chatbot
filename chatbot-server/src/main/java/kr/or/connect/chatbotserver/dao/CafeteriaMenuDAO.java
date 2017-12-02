@@ -30,7 +30,6 @@ public class CafeteriaMenuDAO {
         String date = "%"+weekDay[num]+"%";
         return (List<CafeteriaMenu>) entityManager.createQuery(hql).setParameter("date",date).getResultList();
     }
-
     public void deleteALLSchedule(){
         String hql = CafeteriaMenuSqls.DELETE_ALL;
         entityManager.createNativeQuery("DELETE from cafeteria_menus").executeUpdate();
