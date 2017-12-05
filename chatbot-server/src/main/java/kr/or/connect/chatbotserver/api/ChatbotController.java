@@ -79,10 +79,10 @@ public class ChatbotController {
             String searchurl = "http://117.16.231.147:8080/quni/main.jsp?platform_chk=pc&sub_id=201201510&icu_mem_id=icu_public";
             jsonMB.put("url",searchurl);
             jobjText.put("text", "학교의 모든 실을 인터넷으로 예약할 수 있도록 시스템이 구성되어 있으나, 해당 대학에서 온라인 실예약 시스템을 운용하지 않을 경우에는 예약 가능한 건물목록 및 실목록이 검색창에 나타나지 않습니다.\n" +
-                    "(현재는 공동사용시설인 강당, 공연장, 소극장 및 체육시설등을 제한적으로 운영중입니다.)\n" +
+                    "\n현재는 공동사용시설인 강당, 공연장, 소극장 및 체육시설등을 제한적으로 운영중입니다.)\n" +
                     "\n" +
                     "실 예약 시스템 운영 문의는 각 대학 교학실에 연락 주시고, 예약 시스템 사용 관련 문의는 시설팀 예약관리 담당자에게 연락 주시기 바랍니다. \n" +
-                    "(콜)시스템관련문의 : 070-4618-3017 / 예약관련문의 : 032-835-9515");
+                    "(콜) 시스템관련문의 : 070-4618-3017 \n (콜) 예약관련문의 : 032-835-9515");
 
             jobjText.put("message_button",jsonMB);
             jobjRes.put("keyboard", home());
@@ -160,10 +160,14 @@ public class ChatbotController {
             user.setDepth(60);
             userService.setDepth(user);
         }else if(content.equals("일정")){
+            JSONObject jsonMB = new JSONObject();
+            jsonMB.put("label","일정");
             String url = "http://52.78.164.183:9090/user/schedules/start/" + user.getConvertId();
+            jsonMB.put("url",url);
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
-                    "하실수 있습니다.(굿)\n" + url);
+                    "하실수 있습니다.(굿)\n");
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", home());
             user.setDepth(0);
             userService.setDepth(user);
         } else if(content.equals("강의평가")){
