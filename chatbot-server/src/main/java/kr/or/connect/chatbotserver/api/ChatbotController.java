@@ -166,6 +166,7 @@ public class ChatbotController {
             jsonMB.put("url",url);
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
                     "하실수 있습니다.(굿)\n");
+            jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", home());
             user.setDepth(0);
