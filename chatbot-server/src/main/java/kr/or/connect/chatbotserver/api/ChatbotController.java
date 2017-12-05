@@ -220,7 +220,7 @@ public class ChatbotController {
 
                 JSONObject jsonMB = new JSONObject();
                 jsonMB.put("label","스터디룸 예약");
-                String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
+                String searchurl = "http://mlib.inu.ac.kr/studyroom/main";
 
                 jsonMB.put("url",searchurl);
                 jobjText.put("text", "스터디룸 이용안내\n" +
