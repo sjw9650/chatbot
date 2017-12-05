@@ -1,3 +1,5 @@
 /chatbot-server/.idea/
 .idea/
 /target/
+/.idea/
+//chatbot-client/.idea/
