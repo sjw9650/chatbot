@@ -67,6 +67,26 @@ public class ChatbotController {
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
+        }else if(content.equals("교내전화번호")) {
+            user.setDepth(0);
+            userService.setDepth(user);
+            jobjText.put("text", "교내전화번호는 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n");
+            jobjRes.put("keyboard", home());
+            jobjRes.put("message", jobjText);
+        }else if(content.equals("시설물예약")){
+            JSONObject jsonMB = new JSONObject();
+            jsonMB.put("label","시설물예약");
+            String searchurl = "http://117.16.231.147:8080/quni/main.jsp?platform_chk=pc&sub_id=201201510&icu_mem_id=icu_public";
+            jsonMB.put("url",searchurl);
+            jobjText.put("text", "학교의 모든 실을 인터넷으로 예약할 수 있도록 시스템이 구성되어 있으나, 해당 대학에서 온라인 실예약 시스템을 운용하지 않을 경우에는 예약 가능한 건물목록 및 실목록이 검색창에 나타나지 않습니다.\n" +
+                    "(현재는 공동사용시설인 강당, 공연장, 소극장 및 체육시설등을 제한적으로 운영중입니다.)\n" +
+                    "\n" +
+                    "실 예약 시스템 운영 문의는 각 대학 교학실에 연락 주시고, 예약 시스템 사용 관련 문의는 시설팀 예약관리 담당자에게 연락 주시기 바랍니다. \n" +
+                    "(콜)시스템관련문의 : 070-4618-3017 / 예약관련문의 : 032-835-9515");
+
+            jobjText.put("message_button",jsonMB);
+            jobjRes.put("keyboard", home());
+            jobjRes.put("message", jobjText);
         }else if(content.equals("공지사항")){
             user.setDepth(0);
             userService.setDepth(user);
@@ -76,24 +96,29 @@ public class ChatbotController {
                     "일반관련 사항은 \"일반\" " +
                     "행사관련 사항은 \"행사\"를 선택 해주세요." );
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
         } else if(content.equals("장학금")){
             noticeCrawling("장학금",jobjText);
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
         } else if(content.equals("일반")){
             noticeCrawling("일반",jobjText);
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
             jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
         }else if(content.equals("분실물")) {
@@ -127,6 +152,7 @@ public class ChatbotController {
             ArrayList<String> btns = new ArrayList<>();
             btns.add("열람실 좌석");
             btns.add("도서검색");
+            btns.add("스터디룸 예약");
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
@@ -159,9 +185,6 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(depth >= 33 && depth <=50){    // 33~50 = 분실물
-            //depth를 보내주고 받아오는데 받아오는건
-            //바뀐 뎁스랑, 제이슨
-
             JSONObject result = lostService.lost_(user.getConvertId(),depth,content);
             jobjRes= (JSONObject) result.get("res");
             user.setDepth((int)result.get("depth"));
@@ -174,26 +197,69 @@ public class ChatbotController {
         }
         else if(depth==60){
             if(content.equals("도서검색")){
-            jobjText.put("text", "도서 검색 서비스입니다.\n" +
-                    "검색어를 입력해주세요.\n\n\n"+
-                    "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+            jobjText.put("text", "도서 검색 서비스입니다.(찡긋)\n" +
+                    "찾으시려는 책을 입력해주세요.\n\n\n"+
+                    "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
             jobjRes.put("message", jobjText);
 
             user.setDepth(61);
             userService.setDepth(user);
             }else if(content.equals("열람실 좌석")) {
-                jobjRes = mainmenu();
                 jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
                         "빠른 시일내에 서비스하겠습니다.\n\n\n" +
                         "초기 메뉴로 이동합니다.\n\n");
                 jobjRes.put("message", jobjText);
+                jobjRes.put("keyboard", home());
+
+                user.setDepth(0);
+                userService.setDepth(user);
+            }else if(content.equals("스터디룸 예약")){
+
+                jobjRes.put("message", jobjText);
+                jobjRes.put("keyboard", home());
+
+                JSONObject jsonMB = new JSONObject();
+                jsonMB.put("label","스터디룸 예약");
+                String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
+
+                jsonMB.put("url",searchurl);
+                jobjText.put("text", "스터디룸 이용안내\n" +
+                        "\n" +
+                        "(별) 사용시간\n" +
+                        "-월 최대 20시간(최소 1시간이상 이였을 때 신청가능)\n" +
+                        "\n" +
+                        "(별) 사용방법\n" +
+                        "-사용 15일 이전에 대표이용자가 도서관 홈페이지를 통해 사전 예약\n" +
+                        "-대표이용자 외 공동이용자 함께 등록 (최소 예약 인원보다 적은 인원으로 사용하는 경우 퇴실조치 및 예약취소)\n" +
+                        "-예약 시 ID를 도용하면 도서관 이용에 제한을 받을 수 있음\n" +
+                        "\n" +
+                        "(별) 유의사항\n" +
+                        "-예약된 시간에 이용이 불가능할 경우 다음 이용자들 위해 사전에 예약을 취소할 것\n" +
+                        "-대표이용자의 예약 시간 제한 (월 20시간으로 제한)\n" +
+                        "-예약 후 취소 없이 이용하지 않을 경우 예약제한을 받을 수 있음\n" +
+                        "-예약완료(승인완료) 후에는 예약일에 각 해당 스터디룸 자료실에 방문하여 예약 확인 후 이용\n" +
+                        "-스터디룸 이용당일에는 반드시 이용자 모두 학생증을 지참하여야 함 (본인확인 후 이용가능)\n" +
+                        "\n" +
+                        "(별) 예약방법\n" +
+                        "1. 학산도서관 홈페이지 로그인 후 왼쪽하단 스터디룸 예약 선택\n" +
+                        "2. 호실 및 날짜 선택\n" +
+                        "3. 희망시간 선택(최소1시간 최대20시간)\n" +
+                        "4. 신청한 이용자의 세부사항(전화번호, 소속/학과, 이메일)을 확인\n" +
+                        "5. 주요내용에 참가인원의 수만큼 학번과 성명을 반드시 기재\n" +
+                        "6. 예약완료\n" +
+                        "7. 관리자 승인 확인 후 이용가능\n" +
+                        "※ 공동 프로젝트가 아닌 단순 스터디나 모임의 목적으로 활용시 이용에 제한을 받을 수 있습니다.");
+
+                jobjText.put("message_button",jsonMB);
+                jobjRes.put("message", jobjText);
+                jobjRes.put("keyboard", home());
 
                 user.setDepth(0);
                 userService.setDepth(user);
             }
         }else if(depth==61){
                 JSONObject jsonMB = new JSONObject();
-                jsonMB.put("label","검색 결과입니다.");
+                jsonMB.put("label",content+" 검색 결과입니다.");
                 String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
                 searchurl+=content;
                 jsonMB.put("url",searchurl);
@@ -258,11 +324,17 @@ public class ChatbotController {
         return jobjBtn;
     }
 
-    public JSONObject mainmenu(){
-          JSONObject jobjRes = new JSONObject();
-          JSONObject josonKeyboard =home();
-          jobjRes.put("keyboard", josonKeyboard);
-          return jobjRes;
+    public JSONObject noticeButton(){
+        JSONObject jobjBtn = new JSONObject();
+        jobjBtn.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        btns.add("취업");
+        btns.add("장학금");
+        btns.add("일반");
+        btns.add("행사");
+        btns.add("취소");
+        jobjBtn.put("buttons",btns);
+        return jobjBtn;
     }
 
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
