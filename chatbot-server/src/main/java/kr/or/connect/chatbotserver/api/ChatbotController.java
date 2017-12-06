@@ -124,7 +124,7 @@ public class ChatbotController {
             jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
-            
+
         }else if(content.equals("분실물")) {
             jobjText.put("text", "분실물을 습득하신 분은 \"등록\"을\n" +
                     "분실물을 찾으시는 분들은 \"찾기\"를\n" +
@@ -465,7 +465,7 @@ public class ChatbotController {
         }
         StringBuilder text = new StringBuilder("");
         for(int i=0;i<5;i++){
-            text.append(i+1+"코너\n"+temp[i]);
+            text.append("(밥)"+i+1+"코너(밥)\n"+temp[i]+'\n');
         }
         return text.toString();
     }
