@@ -465,7 +465,7 @@ public class ChatbotController {
         }
         StringBuilder text = new StringBuilder("");
         for(int i=0;i<5;i++){
-            text.append("(밥)"+i+1+"코너(밥)\n"+temp[i]+'\n');
+            text.append("(밥)"+(i+1)+"코너(밥)\n"+temp[i]+'\n');
         }
         return text.toString();
     }
