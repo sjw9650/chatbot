@@ -254,7 +254,6 @@ public class ChatbotController {
                         "6. 예약완료\n" +
                         "7. 관리자 승인 확인 후 이용가능\n" +
                         "※ 공동 프로젝트가 아닌 단순 스터디나 모임의 목적으로 활용시 이용에 제한을 받을 수 있습니다.");
-
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
                 jobjRes.put("keyboard", home());
