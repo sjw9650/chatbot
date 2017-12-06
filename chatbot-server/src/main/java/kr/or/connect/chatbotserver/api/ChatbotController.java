@@ -124,6 +124,7 @@ public class ChatbotController {
             jobjRes.put("keyboard", noticeButton());
             user.setDepth(0);
             userService.setDepth(user);
+            
         }else if(content.equals("분실물")) {
             jobjText.put("text", "분실물을 습득하신 분은 \"등록\"을\n" +
                     "분실물을 찾으시는 분들은 \"찾기\"를\n" +
