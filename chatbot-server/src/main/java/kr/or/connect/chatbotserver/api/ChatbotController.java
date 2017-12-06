@@ -191,7 +191,7 @@ public class ChatbotController {
             user.setDepth(0);
             userService.setDepth(user);
         }else if(content.equals("학식메뉴")){
-            getAllCafeteriaMenu(jobjText);
+            jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("기타")){
@@ -439,7 +439,7 @@ public class ChatbotController {
         }
     }
 
-    public void getAllCafeteriaMenu(JSONObject jobjTest) {
+    public String getAllCafeteriaMenu() {
         List<CafeteriaMenu> test = cafeteriaMenuService.getAllCafeteriaMenu();
         StringBuilder[] temp = new StringBuilder[5];
         for(int j=0;j<5;j++){
@@ -466,7 +466,7 @@ public class ChatbotController {
         for(int i=0;i<5;i++){
             text.append(i+1+"코너\n"+temp[i]);
         }
-        jobjTest.put("text",text);
+        return text.toString();
     }
 
 
