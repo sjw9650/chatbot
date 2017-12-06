@@ -25,7 +25,7 @@ public class ScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
-	
+
 	@RequestMapping(value = "/start/{user_key}", produces = "text/html", method = RequestMethod.GET)
 	public String startSchedule(HttpSession session, @PathVariable ("user_key") String user_key){
 		String session_user_key = (String) session.getAttribute("userKey");
