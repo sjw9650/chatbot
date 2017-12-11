@@ -36,10 +36,7 @@ public class ChatbotServerApplicationTests {
 	@Test
 	public void contextLoads() throws IOException {
 
-        Calendar cal = new GregorianCalendar(Locale.KOREA);
-        cal.setTime(new Date());
-        SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
-        System.out.println(cal);
+
 
 	}
  

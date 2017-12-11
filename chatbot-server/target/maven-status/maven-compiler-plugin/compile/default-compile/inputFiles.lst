@@ -1,17 +1,26 @@
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\Lost.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\ScheduleController.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\UserSqls.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\ScheduleService.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\LostDAO.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\Schedule.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\lost\ImageGet.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\LostService.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\ChatbotController.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\LectureController.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\LostSqls.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\UserService.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\ScheduleDAO.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\User.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\UserDAO.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\ChatbotServerApplication.java
-C:\Users\godz3\Desktop\project\직전 프로젝트\han\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\ScheduleSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\CafeteriaMenuDAO.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\ScheduleSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\FoodEvaluationDAO.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\ScheduleDAO.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\ChatbotController.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\LostService.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\LostDAO.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\ScheduleService.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\UserSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\LectureController.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\FoodEvaluationSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\ChatbotServerApplication.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\CafeteriaMenu.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\UserService.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\MainHandler.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\Lost.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\CafeteriaManagement.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\api\ScheduleController.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\LostSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\service\CafeteriaMenuService.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\dao\UserDAO.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\Schedule.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\sql\CafeteriaMenuSqls.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\User.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\lost\ImageGet.java
+C:\java1231\wsp\chatbot\chatbot-server\src\main\java\kr\or\connect\chatbotserver\model\FoodEvaluation.java
