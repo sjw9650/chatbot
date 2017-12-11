@@ -7,6 +7,7 @@ import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.model.User;
 import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
 import kr.or.connect.chatbotserver.service.LostService;
+import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
 
@@ -27,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatbotController {
 	@Autowired
 	ScheduleService ScheduleService;
+  
+	@Autowired
+    PhoneNumberOfUniversityService phoneNumberOfUniversityService;
     @Autowired
 	UserService userService;
     @Autowired
@@ -65,16 +69,19 @@ public class ChatbotController {
         int depth = user.getDepth();
 
         if(content.equals("취소")){
+            if(depth >= 33 && depth <=50){
+                lostService.lostCancel(user.getConvertId(),depth);
+            }
             user.setDepth(0);
             userService.setDepth(user);
+
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
         }else if(content.equals("교내전화번호")) {
-            user.setDepth(0);
+            user.setDepth(100);
             userService.setDepth(user);
-            jobjText.put("text", "교내전화번호는 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n");
-            jobjRes.put("keyboard", home());
+            jobjText.put("text", "찾으려는 교내 전화번호에 대한 검색어를 입력해주세요.(최고)\n");
             jobjRes.put("message", jobjText);
         }else if(content.equals("시설물예약")){
             JSONObject jsonMB = new JSONObject();
@@ -205,6 +212,9 @@ public class ChatbotController {
         else if(depth >= 33 && depth <=50){    // 33~50 = 분실물
             JSONObject result = lostService.lost_(user.getConvertId(),depth,content);
             jobjRes= (JSONObject) result.get("res");
+            if((int)result.get("depth")== 0 ){
+                jobjRes.put("keyboard", home());
+            }
             user.setDepth((int)result.get("depth"));
             userService.setDepth(user);
         }
@@ -267,10 +277,8 @@ public class ChatbotController {
                         "6. 예약완료\n" +
                         "7. 관리자 승인 확인 후 이용가능\n" +
                         "※ 공동 프로젝트가 아닌 단순 스터디나 모임의 목적으로 활용시 이용에 제한을 받을 수 있습니다.");
-
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
-                jobjRes.put("keyboard", home());
 
                 user.setDepth(0);
                 userService.setDepth(user);
@@ -289,7 +297,16 @@ public class ChatbotController {
         }else if(depth==66){
 
         }
-        else {
+        else if(depth==100){
+            JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
+            jobjRes= (JSONObject) result.get("res");
+            if((int)result.get("depth") == 0 ){
+                jobjRes.put("keyboard", home());
+            }
+            user.setDepth((int)result.get("depth"));
+            userService.setDepth(user);
+        }
+            else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
             if(content.contains("안녕")){
