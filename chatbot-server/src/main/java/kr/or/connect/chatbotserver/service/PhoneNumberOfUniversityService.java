@@ -30,12 +30,12 @@ public class PhoneNumberOfUniversityService {
 
         String response_result="";
         if(lenght_number ==0){
-            response_result=contetns+"에 관련된 전화번호 정보가 없습니다. (곤란)\n" +
+            response_result="\""+contetns+"\"에 관련된 전화번호 정보가 없습니다.(곤란)\n\n\n" +
                     "다시 검색하시려면 검색어를 입력해주세요.. \n\n" +
                     "이전 메뉴로 돌아가고 싶으면 취소를 입력해주세요.";
             jsonObject.put("depth",100);
         }else{
-            response_result = contetns +"에 관련된 전화번호 정보가 "+lenght_number+"건 있습니다.(방긋)\n";
+            response_result = "\""+contetns +"\"에 관련된 전화번호 정보가 "+lenght_number+"건 있습니다.(방긋)\n\n\n";
             for(int i=0;i<lenght_number;i++){
                 response_result += searching_result.get(i).getAffiliation()+" "+searching_result.get(i).getPosition()+" "+searching_result.get(i).getName()+" "+searching_result.get(i).getNumber()+"\n\n";
             }
