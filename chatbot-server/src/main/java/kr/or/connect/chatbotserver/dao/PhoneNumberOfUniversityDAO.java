@@ -15,13 +15,14 @@ import java.util.List;
 @Repository
 public class PhoneNumberOfUniversityDAO {
 
+
     @PersistenceContext
     private EntityManager entityManager;
 
     public List<PhoneNumberOfUniversity> searchingPhoneNumber(String contents){
         String hql = PhoneNumberOfUniversitySqls.selectPhonNumber;
         String searching_data = "%"+contents+"%";
-        List<PhoneNumberOfUniversity> result = entityManager.createQuery(hql).setParameter(1,searching_data).setParameter(2,searching_data).setParameter(3,searching_data).getResultList();
+        List<PhoneNumberOfUniversity> result = entityManager.createQuery(hql).setParameter("affiliation",searching_data).setParameter("assignedTask",searching_data).setParameter("name",searching_data).getResultList();
         return result;
     }
 
