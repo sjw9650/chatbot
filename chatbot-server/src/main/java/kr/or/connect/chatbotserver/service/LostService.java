@@ -1,7 +1,6 @@
 package kr.or.connect.chatbotserver.service;
 
 import kr.or.connect.chatbotserver.dao.LostDAO;
-import kr.or.connect.chatbotserver.lost.ImageGet;
 import kr.or.connect.chatbotserver.model.Lost;
 import org.json.simple.JSONObject;
 
@@ -267,8 +266,6 @@ public class LostService {
                 if (content.equals("없음")) content_ = "없음";
                 else {
                     content_ = Integer.toString(getId(user_key));
-                    ImageGet imageGet = new ImageGet(content, content_);
-                    imageGet.saveImage();
                 }
                 setLost(user_key, 4, content);
                 Lost templost = new Lost();
