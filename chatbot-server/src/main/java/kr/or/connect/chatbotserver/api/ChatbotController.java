@@ -67,20 +67,17 @@ public class ChatbotController {
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
+        user.setDepth(0);
 
         if(content.equals("취소")){
             if(depth >= 33 && depth <=50){
                 lostService.lostCancel(user.getConvertId(),depth);
             }
-            user.setDepth(0);
-            userService.setDepth(user);
 
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
-            jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
         }else if(content.equals("교내전화번호")) {
             user.setDepth(100);
-            userService.setDepth(user);
             jobjText.put("text", "찾으려는 교내 전화번호에 대한 검색어를 입력해주세요.(최고)\n");
             jobjRes.put("message", jobjText);
         }else if(content.equals("시설물예약")){
@@ -95,11 +92,9 @@ public class ChatbotController {
                     "(콜) 시스템관련문의 : 070-4618-3017 \n (콜) 예약관련문의 : 032-835-9515");
 
             jobjText.put("message_button",jsonMB);
-            jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
+
         }else if(content.equals("공지사항")){
-            user.setDepth(0);
-            userService.setDepth(user);
             jobjText.put("text","사용법은 다음과 같습니다. " +
                     "(굿)\n취업관련 사항은 \"취업\" " +
                     "장학금관련 사항은 \"장학금\" " +
@@ -107,31 +102,27 @@ public class ChatbotController {
                     "행사관련 사항은 \"행사\"를 선택 해주세요." );
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
+            user.setDepth(77);
         } else if(content.equals("취업")){
             noticeCrawling("취업",jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
-            user.setDepth(0);
-            userService.setDepth(user);
+            user.setDepth(77);
         } else if(content.equals("장학금")){
             noticeCrawling("장학금",jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
-            user.setDepth(0);
-            userService.setDepth(user);
+            user.setDepth(77);
         } else if(content.equals("일반")){
             noticeCrawling("일반",jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
-            user.setDepth(0);
-            userService.setDepth(user);
+            user.setDepth(77);
         } else if(content.equals("행사")){
             noticeCrawling("행사",jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
-            user.setDepth(0);
-            userService.setDepth(user);
-
+            user.setDepth(77);
         }else if(content.equals("분실물")) {
             jobjText.put("text", "분실물을 습득하신 분은 \"등록\"을\n" +
                     "분실물을 찾으시는 분들은 \"찾기\"를\n" +
@@ -148,7 +139,7 @@ public class ChatbotController {
             jobjRes.put("keyboard", josonKeyboard);
 
             user.setDepth(33);
-            userService.setDepth(user);
+
         }else if(content.equals("도서관")){
             jobjText.put("text", "도서관 이용 방법에 대해서 알려드립니다.\n\n\n" +
                     "(방긋)도서관 열람실 정보를 확인을 위해서는\n" +
@@ -169,7 +160,7 @@ public class ChatbotController {
             jobjRes.put("keyboard", josonKeyboard);
 
             user.setDepth(60);
-            userService.setDepth(user);
+
         }else if(content.equals("일정")){
             JSONObject jsonMB = new JSONObject();
             jsonMB.put("label","일정");
@@ -179,14 +170,12 @@ public class ChatbotController {
                     "하실수 있습니다.(굿)\n");
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard", home());
-            user.setDepth(0);
-            userService.setDepth(user);
+
         } else if(content.equals("강의평가")){
             jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
             jobjRes.put("message", jobjText);
             user.setDepth(51);
-            userService.setDepth(user);
+
         }else if(content.equals("학교식당")){
             jobjText.put("text","학식메뉴 \n\n" );
             jobjRes.put("message", jobjText);
@@ -196,15 +185,12 @@ public class ChatbotController {
             btns.add("학식메뉴");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-            user.setDepth(0);
-            userService.setDepth(user);
+
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("기타")){
-            user.setDepth(0);
-            userService.setDepth(user);
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
             jobjRes.put("message", jobjText);
@@ -216,7 +202,6 @@ public class ChatbotController {
                 jobjRes.put("keyboard", home());
             }
             user.setDepth((int)result.get("depth"));
-            userService.setDepth(user);
         }
         else if(depth==51){
             jobjText.put("text", "depth까지 들어옴~");
@@ -231,7 +216,6 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
 
             user.setDepth(61);
-            userService.setDepth(user);
             }else if(content.equals("열람실 좌석")) {
                 jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
                         "빠른 시일내에 서비스하겠습니다.\n\n\n" +
@@ -239,8 +223,6 @@ public class ChatbotController {
                 jobjRes.put("message", jobjText);
                 jobjRes.put("keyboard", home());
 
-                user.setDepth(0);
-                userService.setDepth(user);
             }else if(content.equals("스터디룸 예약")){
 
                 jobjRes.put("message", jobjText);
@@ -280,8 +262,6 @@ public class ChatbotController {
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
 
-                user.setDepth(0);
-                userService.setDepth(user);
             }
         }else if(depth==61){
                 JSONObject jsonMB = new JSONObject();
@@ -298,9 +278,7 @@ public class ChatbotController {
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
             jobjRes= (JSONObject) result.get("res");
-            if((int)result.get("depth") == 0 ){
-                jobjRes.put("keyboard", home());
-            }
+
             user.setDepth((int)result.get("depth"));
             userService.setDepth(user);
         }
@@ -322,6 +300,10 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
 
+        if(user.getDepth() == 0){
+            jobjRes.put("keyboard", home());
+        }
+        userService.setDepth(user);
         System.out.println(jobjRes.toJSONString());
         return  jobjRes.toJSONString();
     }

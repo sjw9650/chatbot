@@ -37,7 +37,7 @@ public class PhoneNumberOfUniversityService {
         }else{
             response_result = "\""+contetns +"\"에 관련된 전화번호 정보가 "+lenght_number+"건 있습니다.(방긋)\n\n\n";
             for(int i=0;i<lenght_number;i++){
-                response_result += searching_result.get(i).getAffiliation()+" "+searching_result.get(i).getPosition()+" "+searching_result.get(i).getName()+"\n-----------------------\n"+searching_result.get(i).getAssignedTask()+"+\n-----------------------\n"+searching_result.get(i).getNumber()+"\n\n";
+                response_result += searching_result.get(i).getAffiliation()+" "+searching_result.get(i).getPosition()+" "+searching_result.get(i).getName()+"\n"+searching_result.get(i).getAssignedTask()+"\n(콜)"+searching_result.get(i).getNumber()+"\n\n";
             }
             jsonObject.put("depth",0);
         }
