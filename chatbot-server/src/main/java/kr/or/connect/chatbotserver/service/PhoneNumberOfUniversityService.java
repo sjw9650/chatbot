@@ -44,7 +44,7 @@ public class PhoneNumberOfUniversityService {
         jobjText.put("text",response_result);
         jobjRes.put("message",jobjText);
         jsonObject.put("res",jobjRes);
-        return jobjRes;
+        return jsonObject;
     }
 
 }
