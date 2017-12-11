@@ -294,8 +294,6 @@ public class ChatbotController {
                         "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
-        }else if(depth==66){
-
         }
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
