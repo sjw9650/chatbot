@@ -200,6 +200,7 @@ public class ChatbotController {
             if((int)result.get("depth")== 0 ){
                 jobjRes.put("keyboard", home());
             }
+            
             user.setDepth((int)result.get("depth"));
         }
         else if(depth==51){
