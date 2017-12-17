@@ -1,7 +1,6 @@
 package kr.or.connect.chatbotserver.service;
 
 import kr.or.connect.chatbotserver.dao.LostDAO;
-import kr.or.connect.chatbotserver.lost.ImageGet;
 import kr.or.connect.chatbotserver.model.Lost;
 import org.json.simple.JSONObject;
 
@@ -23,6 +22,16 @@ public class LostService {
     public LostService(){
     }
 
+    public void lostCancel(String user_key, int depth){
+
+        if(depth!=34&&depth!=33&&depth<40) {
+            int id = lostDAO.getId(user_key);
+            Lost lost= new Lost();
+            lost = lostDAO.getLost(id);
+            lostDAO.removeLost(lost);
+        }
+    }
+
     public JSONObject lost_(String user_key, int depth, String content) throws IOException {
 
 
@@ -31,22 +40,7 @@ public class LostService {
         JSONObject jobjText= new JSONObject();
         JSONObject jobjRes = new JSONObject();
 
-        if(content.equals("취소")){
-            jobjText.put("text","분실물 등록을 취소하였습니다~(허걱)\n\n" +
-                    "다른 서비스에 대해서 안내 받으시려면" +
-                    " \"시작하기\"를 입력해주세요(최고)");
-            jobjRes.put("message",jobjText);
-            set_main_btn();
-            response.put("depth",0);
-            response.put("res",jobjRes);
-            if(depth!=34&&depth!=33&&depth<40) {
-                int id = lostDAO.getId(user_key);
-                Lost lost= new Lost();
-                lost = lostDAO.getLost(id);
-                lostDAO.removeLost(lost);
-            }
-        }
-        else if(depth==33 ){
+        if(depth==33 ){
             if(content.equals("등록")) {
                 jobjText.put("text", "분실물을 습득하셨네요~(우와)\n" +
                     "분실물에 대한 정보를 알기 위해 간단한 몇가지 질문을 하겠습니다.\n" +
@@ -177,8 +171,6 @@ public class LostService {
                 jobjRes.put("message", jobjText);
 
             }
-            JSONObject josonKeyboard = set_main_btn();
-            jobjRes.put("keyboard",josonKeyboard);
 
             response.put("depth",0);
             response.put("res",jobjRes);
@@ -274,8 +266,6 @@ public class LostService {
                 if (content.equals("없음")) content_ = "없음";
                 else {
                     content_ = Integer.toString(getId(user_key));
-                    ImageGet imageGet = new ImageGet(content, content_);
-                    imageGet.saveImage();
                 }
                 setLost(user_key, 4, content);
                 Lost templost = new Lost();
@@ -288,9 +278,6 @@ public class LostService {
                                 "\n등록된 분실물은 주인을 찾을 수 있도록 노력하겠습니다." +
                                 "\n감사합니다.(최고)(최고)(최고)\n");
                 jobjRes.put("message", jobjText);
-                JSONObject josonKeyboard = set_main_btn();
-                jobjRes.put("keyboard",josonKeyboard);
-
 
                 response.put("depth",0);
                 response.put("res",jobjRes);
@@ -314,10 +301,8 @@ public class LostService {
         }
 
         if(jobjText.get("text")=="") {
-            JSONObject josonKeyboard = set_main_btn();
             jobjText.put("text","서버에 오류가 발생하여 초기화면으로 이동합니다.");
             jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard",josonKeyboard);
 
             response.put("depth",0);
             response.put("res",jobjRes);
@@ -381,23 +366,6 @@ public class LostService {
         return true;
     }
 
-    private JSONObject set_main_btn(){
-        JSONObject jsonKeyboard =new JSONObject();
-        jsonKeyboard.put("type", "buttons");
-        ArrayList<String> btns = new ArrayList<>();
-        btns.add("공지사항");
-        btns.add("학교식당");
-        btns.add("도서관");
-        btns.add("분실물");
-        btns.add("일정");
-        btns.add("강의평가");
-        btns.add("시설물예약");
-        btns.add("교내전화번호");
-        btns.add("기타");
-        jsonKeyboard.put("buttons",btns);
-        return jsonKeyboard;
-
-    }
 
     public void addLost(String user_key,String thing){
         Lost lost = new Lost();
