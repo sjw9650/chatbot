@@ -215,7 +215,6 @@ public class ChatbotController {
                     "찾으시려는 책을 입력해주세요.\n\n\n"+
                     "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
             jobjRes.put("message", jobjText);
-
             user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
                 jobjRes.put("keyboard", libraryButton());
