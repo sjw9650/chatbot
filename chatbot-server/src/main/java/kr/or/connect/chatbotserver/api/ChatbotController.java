@@ -141,8 +141,6 @@ public class ChatbotController {
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-
-
             user.setDepth(33);
             userService.setDepth(user);
         }else if(content.equals("도서관")){
