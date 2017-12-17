@@ -17,16 +17,8 @@ public class CafeteriaMenuService {
 
     @Autowired
     private CafeteriaMenuDAO cafeteriaMenuDAO;
-
-    public void insertCafeteriaMenu(CafeteriaMenu cafeteriaMenu) {
-        cafeteriaMenuDAO.insertCafeteriaMenu(cafeteriaMenu);
-    }
-
     public List<CafeteriaMenu> getAllCafeteriaMenu(){
         return cafeteriaMenuDAO.getAllCafeteriaMenu();
-    }
-    public void deleteALLSchedule(){
-        cafeteriaMenuDAO.deleteALLSchedule();
     }
 
 }

@@ -2,10 +2,7 @@ package kr.or.connect.chatbotserver.dao;
 
 
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
-import kr.or.connect.chatbotserver.model.Schedule;
 import kr.or.connect.chatbotserver.sql.CafeteriaMenuSqls;
-import kr.or.connect.chatbotserver.sql.LostSqls;
-import kr.or.connect.chatbotserver.sql.ScheduleSqls;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
