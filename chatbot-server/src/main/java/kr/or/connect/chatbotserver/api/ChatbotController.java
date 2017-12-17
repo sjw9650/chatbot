@@ -182,8 +182,9 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
-            String btn = "학식메뉴";
-            josonKeyboard.put("buttons", btn);
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("학식메뉴");
+            josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
