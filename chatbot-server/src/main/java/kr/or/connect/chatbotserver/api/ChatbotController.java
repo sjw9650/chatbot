@@ -216,6 +216,8 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
             user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
+                jobjText.put("text","선택 해주세요\n");
+                jobjRes.put("message",jobjText);
                 jobjRes.put("keyboard", libraryButton());
                 user.setDepth(62);
             }
