@@ -186,7 +186,6 @@ public class ChatbotController {
             btns.add("학식메뉴");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-            user.setDepth(0);
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
@@ -218,14 +217,10 @@ public class ChatbotController {
             user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
                 jobjRes.put("keyboard", libraryButton());
-                user.setDepth(0);
-                userService.setDepth(user);
             }else if(content.substring(0,5).equals("자유열람실")||content.equals("노트북코너")){
                 libraryCrawling(content,jobjText);
                 jobjRes.put("message", jobjText);
                 jobjRes.put("keyboard", libraryButton());
-                user.setDepth(0);
-                userService.setDepth(user);
             }
             else if(content.equals("스터디룸 예약")){
 
