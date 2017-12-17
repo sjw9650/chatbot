@@ -217,10 +217,7 @@ public class ChatbotController {
             user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
                 jobjRes.put("keyboard", libraryButton());
-            }else if(content.substring(0,5).equals("자유열람실")||content.equals("노트북코너")){
-                libraryCrawling(content,jobjText);
-                jobjRes.put("message", jobjText);
-                jobjRes.put("keyboard", libraryButton());
+                user.setDepth(62);
             }
             else if(content.equals("스터디룸 예약")){
 
@@ -273,6 +270,11 @@ public class ChatbotController {
                         "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
+        }
+        else if(depth==62){
+            libraryCrawling(content,jobjText);
+            jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", libraryButton());
         }
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
