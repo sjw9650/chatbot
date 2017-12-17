@@ -142,6 +142,7 @@ public class ChatbotController {
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
 
+
             user.setDepth(33);
             userService.setDepth(user);
         }else if(content.equals("도서관")){
@@ -225,15 +226,17 @@ public class ChatbotController {
             user.setDepth(61);
             userService.setDepth(user);
             }else if(content.equals("열람실 좌석")) {
-                jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
-                        "빠른 시일내에 서비스하겠습니다.\n\n\n" +
-                        "초기 메뉴로 이동합니다.\n\n");
-                jobjRes.put("message", jobjText);
-                jobjRes.put("keyboard", home());
-
+                jobjRes.put("keyboard", libraryButton());
                 user.setDepth(0);
                 userService.setDepth(user);
-            }else if(content.equals("스터디룸 예약")){
+            }else if(content.substring(0,5).equals("자유열람실")||content.equals("노트북코너")){
+                noticeCrawling(content,jobjText);
+                jobjRes.put("message", jobjText);
+                jobjRes.put("keyboard", libraryButton());
+                user.setDepth(0);
+                userService.setDepth(user);
+            }
+            else if(content.equals("스터디룸 예약")){
 
                 jobjRes.put("message", jobjText);
                 jobjRes.put("keyboard", home());
@@ -358,6 +361,17 @@ public class ChatbotController {
         jobjBtn.put("buttons",btns);
         return jobjBtn;
     }
+    public JSONObject libraryButton(){
+        JSONObject jobjBtn = new JSONObject();
+        jobjBtn.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        btns.add("자유열람실1");
+        btns.add("자유열람실2");
+        btns.add("자유열람실3");
+        btns.add("노트북코너");
+        jobjBtn.put("buttons",btns);
+        return jobjBtn;
+    }
 
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
@@ -384,6 +398,32 @@ public class ChatbotController {
             data+="최신정보가 없습니다.\n";
             data+="홈페이지를 통해서 확인해주세요.(훌쩍)\n";
             data+=URL;
+        }
+        jobjTest.put("text",data);
+    }
+    public void libraryCrawling(String subject,JSONObject jobjTest) throws  Exception{
+        String URL="";
+        if(subject.equals("자유열람실1")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=1";
+        }else if(subject.equals("자유열람실2")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=2";
+        }else if(subject.equals("자유열람실3")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=3";
+        }else if(subject.equals("노트북코너")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=4";
+        }
+        Document doc = Jsoup.connect(URL).get();
+        Elements links = doc.select("b"); //b태그 안에 있는 사용중 좌석 수, 사용가능 좌석 수 Crawring
+        StringBuilder data = new StringBuilder();
+        int idx = 0;
+        for (Element link : links) {
+            if(idx==0){
+                data.append("사용중좌석 : "+link.text()+'\n');
+            }
+            else{
+                data.append("사용가능좌석 : "+link.text()+'\n');
+            }
+            idx++;
         }
         jobjTest.put("text",data);
     }
