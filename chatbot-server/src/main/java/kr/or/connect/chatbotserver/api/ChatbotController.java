@@ -420,7 +420,7 @@ public class ChatbotController {
             }
             idx++;
         }
-        jobjTest.put("text",data);
+        jobjTest.put("text",data.toString());
     }
 
     public String getAllCafeteriaMenu() {
