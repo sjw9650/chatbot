@@ -1,5 +1,6 @@
 package kr.or.connect.chatbotserver;
 
+import kr.or.connect.chatbotserver.dao.LostDAO;
 import kr.or.connect.chatbotserver.model.CafeteriaManagement;
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
@@ -37,6 +38,8 @@ public class ChatbotServerApplicationTests {
 	CafeteriaMenuService cafeteriaMenuService;
 
 	@Autowired
+	LostDAO lostDAO;
+	@Autowired
 	PhoneNumberOfUniversityService phoneNumberOfUniversityService;
 	@Test
 	public void contextLoads() throws IOException {
@@ -53,6 +56,11 @@ public class ChatbotServerApplicationTests {
 		JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber("컴퓨터");
 		System.out.println( result.get("res").toString());
 		System.out.println( result.get("depth").toString());
+	}
+
+	@Test
+	public void textError(){
+		System.out.println(lostDAO.getLost(1234));
 	}
  
 }
