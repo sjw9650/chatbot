@@ -178,7 +178,7 @@ public class ChatbotController {
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
-            jobjText.put("text","학식메뉴 \n\n" );
+            jobjText.put("text","학식메뉴 입니다\n" );
             jobjRes.put("message", jobjText);
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
