@@ -4,6 +4,7 @@ import kr.or.connect.chatbotserver.dao.LostDAO;
 import kr.or.connect.chatbotserver.model.CafeteriaManagement;
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
+import kr.or.connect.chatbotserver.service.LectureInformationService;
 import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import org.json.simple.JSONObject;
@@ -27,6 +28,9 @@ public class ChatbotServerApplicationTests {
 
 	@Autowired
 	LostDAO lostDAO;
+
+	@Autowired
+	LectureInformationService lectureInformationService;
 	@Autowired
 	PhoneNumberOfUniversityService phoneNumberOfUniversityService;
 	@Test
@@ -42,8 +46,10 @@ public class ChatbotServerApplicationTests {
 	}
 
 	@Test
-	public void textError(){
-		System.out.println(lostDAO.getLost(1234));
+	public void textError() throws IOException {
+		JSONObject result = lectureInformationService.lectureInformationDepth("1bm523dju2",52,"운동처방과실제");
+		System.out.println( result.get("res"));
+		System.out.println(result.get("depth"));
 	}
  
 }

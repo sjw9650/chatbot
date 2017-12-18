@@ -172,7 +172,7 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
 
         } else if(content.equals("강의후기")){
-            jobjText.put("text", "강의 후기에 대해서 등록하시는 건가요?? \n 검색하시려는 건가요??\ns");
+            jobjText.put("text", "강의 후기에 대해서 등록하시는 건가요?? \n 검색하시려는 건가요??\n");
             jobjRes.put("message", jobjText);
 
             JSONObject josonKeyboard = new JSONObject();
@@ -214,7 +214,7 @@ public class ChatbotController {
             }
             user.setDepth((int)result.get("depth"));
         }
-        else if(depth>=51 && depth <= 59){
+        else if(depth>= 51 && depth <= 59){
             JSONObject result = lectureInformationService.lectureInformationDepth(user.getConvertId(),depth,content);
             jobjRes= (JSONObject) result.get("res");
             if((int)result.get("depth")== 0 ){

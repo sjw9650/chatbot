@@ -28,8 +28,6 @@ public class LectureInformation {
     @Column(name="completed")
     int completed;
 
-
-
     @Column(name="users_convertid")
     String userId;
 
