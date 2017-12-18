@@ -2,6 +2,8 @@ package kr.or.connect.chatbotserver.api;
 
 import java.util.*;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import kr.or.connect.chatbotserver.model.CafeteriaManagement;
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.model.User;
@@ -136,7 +138,6 @@ public class ChatbotController {
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-
             user.setDepth(33);
 
         }else if(content.equals("도서관")){
@@ -186,15 +187,16 @@ public class ChatbotController {
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
-            jobjText.put("text","학식메뉴 \n\n" );
+            jobjText.put("text","학식메뉴 입니다\n" );
             jobjRes.put("message", jobjText);
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("학식메뉴");
+            btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-
+            user.setDepth(88);
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
@@ -226,16 +228,14 @@ public class ChatbotController {
                     "찾으시려는 책을 입력해주세요.\n\n\n"+
                     "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
             jobjRes.put("message", jobjText);
-
             user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
-                jobjText.put("text", "죄송합니다. 현재 서비스를 준비중입니다.\n" +
-                        "빠른 시일내에 서비스하겠습니다.\n\n\n" +
-                        "초기 메뉴로 이동합니다.\n\n");
-                jobjRes.put("message", jobjText);
-                jobjRes.put("keyboard", home());
-
-            }else if(content.equals("스터디룸 예약")){
+                jobjText.put("text","선택 해주세요\n");
+                jobjRes.put("message",jobjText);
+                jobjRes.put("keyboard", libraryButton());
+                user.setDepth(62);
+            }
+            else if(content.equals("스터디룸 예약")){
 
                 jobjRes.put("message", jobjText);
                 jobjRes.put("keyboard", home());
@@ -286,6 +286,11 @@ public class ChatbotController {
                         "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
                 jobjText.put("message_button",jsonMB);
                 jobjRes.put("message", jobjText);
+        }
+        else if(depth==62){
+            libraryCrawling(content,jobjText);
+            jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", libraryButton());
         }
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
@@ -366,6 +371,17 @@ public class ChatbotController {
         jobjBtn.put("buttons",btns);
         return jobjBtn;
     }
+    public JSONObject libraryButton(){
+        JSONObject jobjBtn = new JSONObject();
+        jobjBtn.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        btns.add("자유열람실1");
+        btns.add("자유열람실2");
+        btns.add("자유열람실3");
+        btns.add("노트북코너");
+        jobjBtn.put("buttons",btns);
+        return jobjBtn;
+    }
 
     public void noticeCrawling(String subject,JSONObject jobjTest) throws  Exception{
         String URL="";
@@ -395,59 +411,31 @@ public class ChatbotController {
         }
         jobjTest.put("text",data);
     }
-
-    public void insertCafeteriaMenu() throws Exception{
-        // cafeteria_menus 테이블 데이터 전체삭제, food_evaluation 테이블 데이터는 cascade 조건줘서 알아서 데이터 삭제된다
-        cafeteriaMenuService.deleteALLSchedule();
-
-        String URL[] = new String[5];
-        URL[0] = "http://www.inu.ac.kr/com/cop/mainWork/foodList1.do?siteId=inu&id=inu_050110010000&command=week";
-        URL[1] = "http://www.inu.ac.kr/com/cop/mainWork/foodList2.do?siteId=inu&id=inu_050110030000&command=week";
-        URL[2] = "http://www.inu.ac.kr/com/cop/mainWork/foodList3.do?siteId=inu&id=inu_050110040000&command=week";
-        URL[3] = "http://www.inu.ac.kr/com/cop/mainWork/foodList4.do?siteId=inu&id=inu_050110050000&command=week";
-        URL[4] = "http://www.inu.ac.kr/com/cop/mainWork/foodList5.do?siteId=inu&id=inu_050110060000&command=week";
-        CafeteriaManagement manageex = new CafeteriaManagement();
-        manageex.setPlace("학생1식당");
-        Document doc = Jsoup.connect(URL[0]).get();
-        Elements links = doc.select("table");
-        Elements days = links.select("thead");
-        Elements tbodys = links.select("tbody");
-        String krDays[] = new String[7];
-        String menus[] = new String[35];
-        int i = 0;
-        for(Element day:days) {
-            krDays[i] = day.select("th").text();
-            i++;
+    public void libraryCrawling(String subject,JSONObject jobjTest) throws  Exception{
+        String URL="";
+        if(subject.equals("자유열람실1")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=1";
+        }else if(subject.equals("자유열람실2")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=2";
+        }else if(subject.equals("자유열람실3")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=3";
+        }else if(subject.equals("노트북코너")){
+            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=4";
         }
-        i = 0;
-        for(Element tbody:tbodys) {
-            Elements menudata = tbody.select("td");
-            for(Element data:menudata){
-                if(!data.text().isEmpty()) {
-                    menus[i] = data.text();
-                    i++;
-                }
+        Document doc = Jsoup.connect(URL).get();
+        Elements links = doc.select("b"); //b태그 안에 있는 사용중 좌석 수, 사용가능 좌석 수 Crawring
+        StringBuilder data = new StringBuilder();
+        int idx = 0;
+        for (Element link : links) {
+            if(idx==0){
+                data.append("사용중좌석 : "+link.text()+'\n');
             }
-        }
-        CafeteriaMenu menuex = new CafeteriaMenu();
-        for(int j=0;j<7;j++){
-            for(int k=j*5;k<j*5+5;k++){
-                String temp[];
-                if(k-j*5<2) {
-                    temp = menus[k].split("\\/");
-                }
-                else{
-                    temp = menus[k].split("\\,");
-                }
-                for(int L=0;L<temp.length;L++) {
-                    menuex.setDay(krDays[j]);
-                    menuex.setCafeteria_managements_cafeteria_managements_id(k-j*5+1);
-                    menuex.setMenu(temp[L]);
-                    cafeteriaMenuService.insertCafeteriaMenu(menuex);
-                    menuex = new CafeteriaMenu();
-                }
+            else{
+                data.append("사용가능좌석 : "+link.text()+'\n');
             }
+            idx++;
         }
+        jobjTest.put("text",data.toString());
     }
 
     public String getAllCafeteriaMenu() {
