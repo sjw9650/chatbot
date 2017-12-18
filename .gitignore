@@ -2,4 +2,5 @@
 .idea/
 /target/
 /.idea/
-//chatbot-client/.idea/
+/chatbot-client/.idea/
+/chatbot-server/taget/
