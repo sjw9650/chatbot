@@ -184,6 +184,7 @@ public class ChatbotController {
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("학식메뉴");
+            btns.add("test");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
         }else if(content.equals("학식메뉴")){
