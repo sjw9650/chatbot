@@ -141,7 +141,7 @@ public class LostService {
             if(isStringInt(content)){
                 Lost templost = new Lost();
                 templost = getLost(Integer.parseInt(content));
-                if(templost.getContent()==""){
+                if(templost==null){
                     jobjText.put("text", "\n잘못입력하셨습니다.\n\n 초기화면으로 이동합니다.\n");
                     jobjRes.put("message", jobjText);
                 }
@@ -169,7 +169,6 @@ public class LostService {
             }else {
                 jobjText.put("text", "\n잘못입력하셨습니다.\n\n 초기화면으로 이동합니다.\n");
                 jobjRes.put("message", jobjText);
-
             }
 
             response.put("depth",0);
@@ -258,7 +257,6 @@ public class LostService {
             josonKeyboard.put("buttons",btns);
             jobjRes.put("keyboard",josonKeyboard);
 
-
             response.put("depth",38);
             response.put("res",jobjRes);
         }else if(depth==38) {
@@ -322,7 +320,6 @@ public class LostService {
         String[] strArr = content.split(" ");
         if(type ==1 )// 등록시에
         {
-
             if (!isStringInt(strArr[1])) {
                 return false;
             }
