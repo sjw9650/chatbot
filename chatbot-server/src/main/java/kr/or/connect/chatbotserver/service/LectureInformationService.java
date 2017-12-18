@@ -27,15 +27,15 @@ public class LectureInformationService {
         if(depth==51){
             if(content.equals("등록")) {
                 text="강의정보입력을 등록하시려구요?!(최고)\n" +
-                        "다른 학우에게 도움이 되어주셔서 감사합니다.\n\n" +
-                        "강의명이 어떻게 되나요?(궁금)(궁금)\n"+
+                        "다른 학우에게 도움이 되어주셔서 감사합니다.\n" +
+                        "강의명이 어떻게 되나요?(궁금)(궁금)\n\n\n"+
                         "취소하시려면 \"취소\" 를 입력해주세요.";
 
                 tempDepth=52;
             }
             else if(content.equals("검색")){
                 text = "원하는 강의 정보에 키워드를 입력해주세요.(찡긋)\n\n" +
-                        "예시) 테니스 강좌에 대한 후기가 궁금하시면 \"테니스\"를 입력해주세요.\n\n"+
+                        "예시) 테니스 강좌에 대한 후기가 궁금하시면 \"테니스\"를 입력해주세요.\n\n\n"+
                         "취소하시려면 \"취소\" 를 입력해주세요.";
 
                 tempDepth=57;
@@ -110,7 +110,7 @@ public class LectureInformationService {
             } else {
                 text = content + "에 해당하는 강의 정보목록은 총 " + listSize + "건 입니다.\n";
                 for (int i = 0; i < listSize; i++) {
-                    text += listLectureInformation.get(i).getUserId() + "번" + listLectureInformation.get(i).getProfessor() + "교수님의" + listLectureInformation.get(i).getLectureInformationId() + "\n\n";
+                    text += listLectureInformation.get(i).getLectureInformationId() + "번" + listLectureInformation.get(i).getProfessor() + "교수님의" + listLectureInformation.get(i).getLectureInformationId() + "\n\n";
                 }
                 text += "\n 보고 싶은 후기의 번호를 입력해주세요. ex) 1" +
                         "취소하시려면 \"취소\" 를 입력해주세요.";
@@ -126,7 +126,7 @@ public class LectureInformationService {
 
             }else {
                 LectureInformation lectureInformation = lectureInformationDAO.getLectureInformation(Integer.parseInt(content));
-                if(lectureInformation==null){
+                if(lectureInformation.getProfessor() == null){
                     text= "잘못된 정보를 입력하였습니다.(놀람) \n 초기 메뉴로 이동합니다.\n";
 
                 }
