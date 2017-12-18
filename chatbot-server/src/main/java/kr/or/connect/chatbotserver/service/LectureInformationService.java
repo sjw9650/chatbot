@@ -110,9 +110,9 @@ public class LectureInformationService {
             } else {
                 text = content + "에 해당하는 강의 정보목록은 총 " + listSize + "건 입니다.\n";
                 for (int i = 0; i < listSize; i++) {
-                    text += listLectureInformation.get(i).getLectureInformationId() + "번" + listLectureInformation.get(i).getProfessor() + "교수님의" + listLectureInformation.get(i).getLectureInformationId() + "\n\n";
+                    text += listLectureInformation.get(i).getLectureInformationId() + "번 " + listLectureInformation.get(i).getProfessor() + " 교수님의 " + listLectureInformation.get(i).getLecture() + "\n\n";
                 }
-                text += "\n 보고 싶은 후기의 번호를 입력해주세요. ex) 1" +
+                text += "\n 보고 싶은 후기의 번호를 입력해주세요. ex) 1\n" +
                         "취소하시려면 \"취소\" 를 입력해주세요.";
 
                 tempDepth = 59;
