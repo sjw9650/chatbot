@@ -4,9 +4,13 @@ import java.util.*;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import kr.or.connect.chatbotserver.model.CafeteriaManagement;
-import kr.or.connect.chatbotserver.model.CafeteriaMenu;
-import kr.or.connect.chatbotserver.model.User;
+import kr.or.connect.chatbotserver.dao.VoteDAO;
+import kr.or.connect.chatbotserver.model.*;
+import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
+import kr.or.connect.chatbotserver.service.LostService;
+import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
+import kr.or.connect.chatbotserver.service.ScheduleService;
+import kr.or.connect.chatbotserver.service.UserService;
 import kr.or.connect.chatbotserver.service.*;
 
 import org.json.simple.JSONObject;
@@ -24,17 +28,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ChatbotController {
-	@Autowired
-	ScheduleService ScheduleService;
-  
-	@Autowired
+    @Autowired
+    ScheduleService ScheduleService;
+
+    @Autowired
     PhoneNumberOfUniversityService phoneNumberOfUniversityService;
     @Autowired
-	UserService userService;
+    UserService userService;
     @Autowired
     LostService lostService;
     @Autowired
     CafeteriaMenuService cafeteriaMenuService;
+    @Autowired
+    VoteDAO voteDAO;
 
     @Autowired
     LectureInformationService lectureInformationService;
@@ -194,6 +200,7 @@ public class ChatbotController {
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("학식메뉴");
+            btns.add("학식평가");
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
@@ -201,6 +208,11 @@ public class ChatbotController {
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
+        }
+        else if(content.equals("학식평가")){
+            jobjText.put("text",getRankedData());
+            jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard",voteButton());
         }
         else if(content.equals("기타")){
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
@@ -225,11 +237,11 @@ public class ChatbotController {
         }
         else if(depth==60){
             if(content.equals("도서검색")){
-            jobjText.put("text", "도서 검색 서비스입니다.(찡긋)\n" +
-                    "찾으시려는 책을 입력해주세요.\n\n\n"+
-                    "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
-            jobjRes.put("message", jobjText);
-            user.setDepth(61);
+                jobjText.put("text", "도서 검색 서비스입니다.(찡긋)\n" +
+                        "찾으시려는 책을 입력해주세요.\n\n\n"+
+                        "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+                jobjRes.put("message", jobjText);
+                user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
                 jobjText.put("text","선택 해주세요\n");
                 jobjRes.put("message",jobjText);
@@ -277,16 +289,16 @@ public class ChatbotController {
 
             }
         }else if(depth==61){
-                JSONObject jsonMB = new JSONObject();
-                jsonMB.put("label",content+" 검색 결과입니다.");
-                String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
-                searchurl+=content;
-                jsonMB.put("url",searchurl);
-                jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
-                        "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
-                        "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
-                jobjText.put("message_button",jsonMB);
-                jobjRes.put("message", jobjText);
+            JSONObject jsonMB = new JSONObject();
+            jsonMB.put("label",content+" 검색 결과입니다.");
+            String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
+            searchurl+=content;
+            jsonMB.put("url",searchurl);
+            jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
+                    "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
+                    "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+            jobjText.put("message_button",jsonMB);
+            jobjRes.put("message", jobjText);
         }
         else if(depth==62){
             libraryCrawling(content,jobjText);
@@ -300,7 +312,7 @@ public class ChatbotController {
             user.setDepth((int)result.get("depth"));
             userService.setDepth(user);
         }
-            else {
+        else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
             if(content.contains("안녕")){
@@ -328,12 +340,12 @@ public class ChatbotController {
     }
 
     //사용자가 옐로아이디를 친구추가했을 때 호출되는 API
-	
+
     @RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
     public String addKakaoFriend(@RequestBody JSONObject resObj) throws Exception
     {
         System.out.println("/friend");
-		String user_key;
+        String user_key;
         user_key = (String) resObj.get("user_key");
         // 초기 등록시에 USER 키와 Depth를 삽입해서 넣어준다.
         if(!userService.AddUser(user_key))
@@ -469,7 +481,26 @@ public class ChatbotController {
         return text.toString();
     }
 
+    public JSONObject voteButton(){
+        JSONObject jobjBtn = new JSONObject();
+        List<CafeteriaMenu> temp = cafeteriaMenuService.getAllCafeteriaMenu();
+        jobjBtn.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        for(CafeteriaMenu data: temp) {
+            btns.add(data.getMenu());
+        }
+        jobjBtn.put("buttons", btns);
+        return jobjBtn;
+    }
+
+    public String getRankedData(){
+        List<Rank> test = voteDAO.getRankedData();
+        StringBuilder text = new StringBuilder();
+        for(Rank data : test){
+            text.append(data.getMenu()+" : "+data.getScore()+"표");
+        }
+        return text.toString();
+    }
 
 }
-
 
