@@ -47,7 +47,7 @@ public class ChatbotServerApplicationTests {
 
 	@Test
 	public void textError() throws IOException {
-		JSONObject result = lectureInformationService.lectureInformationDepth("1bm523dju2",52,"운동처방과실제");
+		JSONObject result = lectureInformationService.lectureInformationDepth("1bm523dju2",59,"12345");
 		System.out.println( result.get("res"));
 		System.out.println(result.get("depth"));
 	}

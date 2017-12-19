@@ -126,7 +126,7 @@ public class LectureInformationService {
 
             }else {
                 LectureInformation lectureInformation = lectureInformationDAO.getLectureInformation(Integer.parseInt(content));
-                if(lectureInformation.getProfessor() == null){
+                if(lectureInformation == null){
                     text= "잘못된 정보를 입력하였습니다.(놀람) \n 초기 메뉴로 이동합니다.\n";
 
                 }
