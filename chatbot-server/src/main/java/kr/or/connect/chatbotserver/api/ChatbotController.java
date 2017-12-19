@@ -5,10 +5,7 @@ import java.util.*;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import kr.or.connect.chatbotserver.dao.VoteDAO;
-import kr.or.connect.chatbotserver.model.CafeteriaManagement;
-import kr.or.connect.chatbotserver.model.CafeteriaMenu;
-import kr.or.connect.chatbotserver.model.User;
-import kr.or.connect.chatbotserver.model.Vote;
+import kr.or.connect.chatbotserver.model.*;
 import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
@@ -213,7 +210,7 @@ public class ChatbotController {
         }
         else if(content.equals("학식평가")){
             jobjText.put("text",getRankedData());
-            //jobjRes.put("message", jobjText);
+            jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
         }
         else if(content.equals("기타")){
@@ -496,9 +493,9 @@ public class ChatbotController {
     }
 
     public String getRankedData(){
-        List<Vote> test = voteDAO.getRankedData();
+        List<Rank> test = voteDAO.getRankedData();
         StringBuilder text = new StringBuilder();
-        for(Vote data : test){
+        for(Rank data : test){
             text.append(data.getMenu()+" : "+data.getScore()+"표");
         }
         return text.toString();
