@@ -209,6 +209,10 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("학식평가")){
+            String text = getRankedData();
+            if(text.isEmpty()){
+                text = "데이터가 없습니다\n";
+            }
             jobjText.put("text",getRankedData());
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
