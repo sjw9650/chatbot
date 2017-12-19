@@ -67,6 +67,7 @@ public class ChatbotController {
         // 51~59 = 강의 평가
         User user = new User();
         user = userService.getUserbykey(user_key);
+
         int depth = user.getDepth();
         user.setDepth(0);
 
