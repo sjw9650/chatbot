@@ -14,6 +14,7 @@ public class Vote implements Serializable {
     @Column(name="food_evaluations_id")
     private int food_evaluations_id;
 
+
     @Column(name="score")
     private int score;
     @Column(name="cafeteria_menus_cafeteria_menus_id")

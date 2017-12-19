@@ -15,6 +15,14 @@ public class LectureInformationService {
     @Autowired
     private LectureInformationDAO lectureInformationDAO;
 
+    public void lectureInformationCancel(String user_key, int depth){
+
+        if(depth!=52&&depth!=51&&depth<=55) {
+            int id = lectureInformationDAO.getId(user_key);
+            LectureInformation lectureInformation= lectureInformationDAO.getLectureInformation(id);
+            lectureInformationDAO.removeLost(lectureInformation);
+        }
+    }
 
     public JSONObject lectureInformationDepth(String user_key, int depth, String content) throws IOException {
 

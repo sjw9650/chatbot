@@ -44,6 +44,7 @@ public class ChatbotServerApplicationTests {
 	public void contextLoads() throws IOException {
 		List<Rank> test = voteDAO.getRankedData();
 		StringBuilder text = new StringBuilder();
+		System.out.println(test);
 		for(Rank data : test){
 			//text.append(data.getMenu()+" : "+data.getScore()+"표");
 			System.out.println(data.getMenu()+" : "+data.getScore()+"표");
