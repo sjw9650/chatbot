@@ -14,6 +14,7 @@ import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
+import kr.or.connect.chatbotserver.service.*;
 
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -44,6 +45,9 @@ public class ChatbotController {
     @Autowired
     VoteDAO voteDAO;
 
+    @Autowired
+    LectureInformationService lectureInformationService;
+
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
     public String keyboard() {
@@ -69,7 +73,7 @@ public class ChatbotController {
         // User Key 값을 이용하여 user의 Depth를 추적
         // 30~50  분실물
         // 61~65 도서관
-        // 51 = 강의 평가
+        // 51~59 = 강의 평가
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
@@ -176,9 +180,19 @@ public class ChatbotController {
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
 
-        } else if(content.equals("강의평가")){
-            jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
+        } else if(content.equals("강의후기")){
+            jobjText.put("text", "강의 후기에 대해서 등록하시는 건가요?? \n 검색하시려는 건가요??\n");
             jobjRes.put("message", jobjText);
+
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("등록");
+            btns.add("검색");
+            btns.add("취소");
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
+
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
@@ -215,10 +229,13 @@ public class ChatbotController {
             }
             user.setDepth((int)result.get("depth"));
         }
-        else if(depth==51){
-            jobjText.put("text", "depth까지 들어옴~");
-            LectureController lect_api = new LectureController(user);
-            jobjRes = lect_api.eval_();
+        else if(depth>= 51 && depth <= 59){
+            JSONObject result = lectureInformationService.lectureInformationDepth(user.getConvertId(),depth,content);
+            jobjRes= (JSONObject) result.get("res");
+            if((int)result.get("depth")== 0 ){
+                jobjRes.put("keyboard", home());
+            }
+            user.setDepth((int)result.get("depth"));
         }
         else if(depth==60){
             if(content.equals("도서검색")){
@@ -315,6 +332,7 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
 
+
         if(user.getDepth() == 0){
             jobjRes.put("keyboard", home());
         }
@@ -348,7 +366,7 @@ public class ChatbotController {
         btns.add("도서관");
         btns.add("분실물");
         btns.add("일정");
-        btns.add("강의평가");
+        btns.add("강의후기");
         btns.add("시설물예약");
         btns.add("교내전화번호");
         btns.add("기타");
