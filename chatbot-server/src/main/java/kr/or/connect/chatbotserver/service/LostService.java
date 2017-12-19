@@ -260,7 +260,7 @@ public class LostService {
             response.put("depth",38);
             response.put("res",jobjRes);
         }else if(depth==38) {
-            if (content.equals("없음") || content.contains(".jpg")) {
+            if (content.equals("없음") || content.contains(".jpg") ||  content.contains(".jpeg") ||  content.contains(".png") ||  content.contains(".gif")) {
                 if (content.equals("없음")) content_ = "없음";
                 else {
                     content_ = Integer.toString(getId(user_key));
@@ -281,7 +281,7 @@ public class LostService {
                 response.put("res",jobjRes);
             } else {
                 content_ = getLost(user_key).getContent();
-                jobjText.put("text", "잘못입력하셨습니다.\n" + content + "에서(가) 보관하고 있군요!!(우와)\n" +
+                jobjText.put("text", "잘못입력하셨습니다.\n" + getLost(user_key).getPut_place() + "에서(가) 보관하고 있군요!!(우와)\n" +
                         content_ + "을(를) 에 대한 사진이 있으시다면 사진을 보내주세요!\n" +
                         "사진이 없으면 \"없음\"을 선택해주세요. \n\n" +
                         "분실물 등록을 취소 하시려면 \"취소\"를 입력해주세요~\n");

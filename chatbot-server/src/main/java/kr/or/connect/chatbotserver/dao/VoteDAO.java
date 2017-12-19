@@ -29,24 +29,7 @@ public class VoteDAO {
         Calendar cal = Calendar.getInstance();
         int num = cal.get(Calendar.DAY_OF_WEEK)-1;
         String date = "%"+weekDay[num]+"%";
-        List<String> menus = (List<String>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
-       System.out.println(menus.get(0));
-        System.out.println(menus.get(1));
-        System.out.println(menus.size());
-        List<Rank> result = new ArrayList<Rank>();
-
-        hql = VoteSqls.SELECT_SUM;
-        for(int i=0;i<menus.size();i++){
-            Rank temp = new Rank();
-            temp.setMenu(menus.get(i));
-            String menu = "%"+menus.get(i)+"%";
-            System.out.println(menu);
-            BigDecimal sum = (BigDecimal)entityManager.createNativeQuery(hql).setParameter("date",date).setParameter("menu",menu).getSingleResult();
-            temp.setScore(sum.intValue());
-            result.add(temp);
-        }
-
-        return result;
+        return (List<Rank>) entityManager.createQuery(hql).setParameter("date",date).getResultList();
     }
 
 
