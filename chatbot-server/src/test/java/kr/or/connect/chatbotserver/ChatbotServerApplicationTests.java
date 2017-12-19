@@ -45,9 +45,9 @@ public class ChatbotServerApplicationTests {
 		List<Rank> test = voteDAO.getRankedData();
 		StringBuilder text = new StringBuilder();
 		for(Rank data : test){
-			//text.append(data.getMenu()+" : "+data.getScore()+"표");
 			System.out.println(data.getMenu()+" : "+data.getScore()+"표");
 		}
+
 	}
 
 	@Test
