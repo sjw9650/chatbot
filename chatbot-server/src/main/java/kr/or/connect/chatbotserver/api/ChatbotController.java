@@ -213,7 +213,7 @@ public class ChatbotController {
             if(text.isEmpty()){
                 text = "데이터가 없습니다\n";
             }
-            jobjText.put("text",getRankedData());
+            jobjText.put("text",text);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
         }
