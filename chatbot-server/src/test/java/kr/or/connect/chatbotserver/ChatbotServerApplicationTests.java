@@ -42,11 +42,7 @@ public class ChatbotServerApplicationTests {
 	VoteDAO voteDAO;
 	@Test
 	public void contextLoads() throws IOException {
-	/*	List<Rank> test = voteDAO.getRankedData();
-		StringBuilder text = new StringBuilder();
-		for(Rank data : test){
-			System.out.println(data.getMenu()+" : "+data.getScore()+"표");
-		}*/
+
 
 	}
 
