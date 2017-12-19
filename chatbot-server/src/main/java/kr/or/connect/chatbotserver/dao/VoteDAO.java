@@ -1,9 +1,7 @@
 package kr.or.connect.chatbotserver.dao;
 
 
-import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.model.Vote;
-import kr.or.connect.chatbotserver.sql.CafeteriaMenuSqls;
 import kr.or.connect.chatbotserver.sql.VoteSqls;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
