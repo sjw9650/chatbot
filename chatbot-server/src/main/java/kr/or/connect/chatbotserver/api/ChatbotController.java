@@ -506,8 +506,11 @@ public class ChatbotController {
     public String getRankedData(){
         List<Rank> test = voteDAO.getRankedData();
         StringBuilder text = new StringBuilder();
+        int idx = 0;
         for(Rank data : test){
-            text.append(data.getMenu()+" : "+data.getScore()+"표");
+            if(idx>2) break;
+            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
+            idx++;
         }
         return text.toString();
     }

@@ -19,4 +19,12 @@ public class Rank {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Rank{" +
+                "menu='" + menu + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }
