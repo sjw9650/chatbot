@@ -494,6 +494,7 @@ public class ChatbotController {
             if(data.getCafeteria_managements_cafeteria_managements_id()>3) continue;
             btns.add(data.getMenu());
         }
+        btns.add("취소");
         jobjBtn.put("buttons", btns);
         return jobjBtn;
     }
