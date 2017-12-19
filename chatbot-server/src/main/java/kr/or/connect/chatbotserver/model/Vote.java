@@ -12,7 +12,8 @@ public class Vote implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="food_evaluations_id")
-    private int food_evaluation_id;
+    private int food_evaluations_id;
+
 
     @Column(name="score")
     private int score;
@@ -24,24 +25,16 @@ public class Vote implements Serializable {
     @Column(name="users_convertid")
     private String uKey;
 
-    public String getuKey() {
-        return uKey;
-    }
-
-    public void setuKey(String uKey) {
-        this.uKey = uKey;
-    }
-
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public int getFood_evaluation_id() {
-        return food_evaluation_id;
+    public int getFood_evaluations_id() {
+        return food_evaluations_id;
     }
 
-    public void setFood_evaluation_id(int food_evaluation_id) {
-        this.food_evaluation_id = food_evaluation_id;
+    public void setFood_evaluations_id(int food_evaluations_id) {
+        this.food_evaluations_id = food_evaluations_id;
     }
 
     public int getScore() {
@@ -68,5 +61,11 @@ public class Vote implements Serializable {
         this.cafeteria_menus_cafeteria_managements_cafeteria_managements_id = cafeteria_menus_cafeteria_managements_cafeteria_managements_id;
     }
 
+    public String getuKey() {
+        return uKey;
+    }
 
+    public void setuKey(String uKey) {
+        this.uKey = uKey;
+    }
 }

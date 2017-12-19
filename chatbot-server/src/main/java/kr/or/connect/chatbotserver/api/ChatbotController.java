@@ -213,9 +213,14 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("학식평가")){
-            jobjText.put("text",getRankedData());
+            String text = getRankedData();
+            if(text.isEmpty()){
+                text = "데이터가 없습니다\n";
+            }
+            jobjText.put("text",text);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
+            user.setDepth(89);
         }
         else if(content.equals("기타")){
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
@@ -490,8 +495,10 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         for(CafeteriaMenu data: temp) {
+            if(data.getCafeteria_managements_cafeteria_managements_id()>3) continue;
             btns.add(data.getMenu());
         }
+        btns.add("취소");
         jobjBtn.put("buttons", btns);
         return jobjBtn;
     }
