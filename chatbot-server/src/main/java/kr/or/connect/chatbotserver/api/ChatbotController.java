@@ -4,9 +4,11 @@ import java.util.*;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import kr.or.connect.chatbotserver.dao.VoteDAO;
 import kr.or.connect.chatbotserver.model.CafeteriaManagement;
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.model.User;
+import kr.or.connect.chatbotserver.model.Vote;
 import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
 import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
@@ -39,6 +41,8 @@ public class ChatbotController {
     LostService lostService;
     @Autowired
     CafeteriaMenuService cafeteriaMenuService;
+    @Autowired
+    VoteDAO voteDAO;
 
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
@@ -184,6 +188,7 @@ public class ChatbotController {
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
             btns.add("학식메뉴");
+            btns.add("학식평가");
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
@@ -191,6 +196,11 @@ public class ChatbotController {
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
+        }
+        else if(content.equals("학식평가")){
+            jobjText.put("text",getRankedData());
+            jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard",voteButton());
         }
         else if(content.equals("기타")){
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
@@ -455,6 +465,26 @@ public class ChatbotController {
         return text.toString();
     }
 
+    public JSONObject voteButton(){
+        JSONObject jobjBtn = new JSONObject();
+        List<CafeteriaMenu> temp = cafeteriaMenuService.getAllCafeteriaMenu();
+        jobjBtn.put("type", "buttons");
+        ArrayList<String> btns = new ArrayList<>();
+        for(CafeteriaMenu data: temp) {
+            btns.add(data.getMenu());
+        }
+        jobjBtn.put("buttons", btns);
+        return jobjBtn;
+    }
+
+    public String getRankedData(){
+        List<Vote> test = voteDAO.getRankedData();
+        StringBuilder text = new StringBuilder();
+        for(Vote data : test){
+            text.append(data.getMenu()+" : "+data.getScore()+"표");
+        }
+        return text.toString();
+    }
 
 }
 
