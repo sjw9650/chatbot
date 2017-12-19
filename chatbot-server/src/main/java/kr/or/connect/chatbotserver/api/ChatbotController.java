@@ -449,7 +449,7 @@ public class ChatbotController {
         int idx = 0;
         for (Element link : links) {
             if(idx==0){
-                data.append("사용중좌석 : "+link.text()+'\n');
+                data.append("사용중좌석 : "+link.text()+'\n'); 
             }
             else{
                 data.append("사용가능좌석 : "+link.text()+'\n');
