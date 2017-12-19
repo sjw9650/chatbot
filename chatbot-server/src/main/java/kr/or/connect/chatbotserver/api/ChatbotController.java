@@ -213,7 +213,7 @@ public class ChatbotController {
         }
         else if(content.equals("학식평가")){
             jobjText.put("text",getRankedData());
-            jobjRes.put("message", jobjText);
+            //jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
         }
         else if(content.equals("기타")){
