@@ -14,6 +14,7 @@ import kr.or.connect.chatbotserver.service.LostService;
 import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
 import kr.or.connect.chatbotserver.service.ScheduleService;
 import kr.or.connect.chatbotserver.service.UserService;
+import kr.or.connect.chatbotserver.service.*;
 
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -30,19 +31,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ChatbotController {
-	@Autowired
-	ScheduleService ScheduleService;
-  
-	@Autowired
+    @Autowired
+    ScheduleService ScheduleService;
+
+    @Autowired
     PhoneNumberOfUniversityService phoneNumberOfUniversityService;
     @Autowired
-	UserService userService;
+    UserService userService;
     @Autowired
     LostService lostService;
     @Autowired
     CafeteriaMenuService cafeteriaMenuService;
     @Autowired
     VoteDAO voteDAO;
+
+    @Autowired
+    LectureInformationService lectureInformationService;
 
     // 키보드 초기화면에 대한 설정
     @RequestMapping(value = "/keyboard", method = RequestMethod.GET)
@@ -69,7 +73,7 @@ public class ChatbotController {
         // User Key 값을 이용하여 user의 Depth를 추적
         // 30~50  분실물
         // 61~65 도서관
-        // 51 = 강의 평가
+        // 51~59 = 강의 평가
         User user = new User();
         user = userService.getUserbykey(user_key);
         int depth = user.getDepth();
@@ -176,9 +180,19 @@ public class ChatbotController {
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
 
-        } else if(content.equals("강의평가")){
-            jobjText.put("text", "'평가' 할래 '보기' 할래? 하고 싶은거 빨리 적어라");
+        } else if(content.equals("강의후기")){
+            jobjText.put("text", "강의 후기에 대해서 등록하시는 건가요?? \n 검색하시려는 건가요??\n");
             jobjRes.put("message", jobjText);
+
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("등록");
+            btns.add("검색");
+            btns.add("취소");
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
+
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
@@ -215,18 +229,21 @@ public class ChatbotController {
             }
             user.setDepth((int)result.get("depth"));
         }
-        else if(depth==51){
-            jobjText.put("text", "depth까지 들어옴~");
-            LectureController lect_api = new LectureController(user);
-            jobjRes = lect_api.eval_();
+        else if(depth>= 51 && depth <= 59){
+            JSONObject result = lectureInformationService.lectureInformationDepth(user.getConvertId(),depth,content);
+            jobjRes= (JSONObject) result.get("res");
+            if((int)result.get("depth")== 0 ){
+                jobjRes.put("keyboard", home());
+            }
+            user.setDepth((int)result.get("depth"));
         }
         else if(depth==60){
             if(content.equals("도서검색")){
-            jobjText.put("text", "도서 검색 서비스입니다.(찡긋)\n" +
-                    "찾으시려는 책을 입력해주세요.\n\n\n"+
-                    "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
-            jobjRes.put("message", jobjText);
-            user.setDepth(61);
+                jobjText.put("text", "도서 검색 서비스입니다.(찡긋)\n" +
+                        "찾으시려는 책을 입력해주세요.\n\n\n"+
+                        "(하하)초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+                jobjRes.put("message", jobjText);
+                user.setDepth(61);
             }else if(content.equals("열람실 좌석")) {
                 jobjText.put("text","선택 해주세요\n");
                 jobjRes.put("message",jobjText);
@@ -274,16 +291,16 @@ public class ChatbotController {
 
             }
         }else if(depth==61){
-                JSONObject jsonMB = new JSONObject();
-                jsonMB.put("label",content+" 검색 결과입니다.");
-                String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
-                searchurl+=content;
-                jsonMB.put("url",searchurl);
-                jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
-                        "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
-                        "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
-                jobjText.put("message_button",jsonMB);
-                jobjRes.put("message", jobjText);
+            JSONObject jsonMB = new JSONObject();
+            jsonMB.put("label",content+" 검색 결과입니다.");
+            String searchurl = "http://mlib.inu.ac.kr/search/tot/result?si=TOTAL&st=KWRD&q=";
+            searchurl+=content;
+            jsonMB.put("url",searchurl);
+            jobjText.put("text", content+"에 대한 도서 검색 결과입니다.\n" +
+                    "다른 도서를 검색하시려면 검색 키워드를 입력해주세요\n\n\n"+
+                    "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
+            jobjText.put("message_button",jsonMB);
+            jobjRes.put("message", jobjText);
         }
         else if(depth==62){
             libraryCrawling(content,jobjText);
@@ -297,7 +314,7 @@ public class ChatbotController {
             user.setDepth((int)result.get("depth"));
             userService.setDepth(user);
         }
-            else {
+        else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
             if(content.contains("안녕")){
@@ -315,6 +332,7 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
 
+
         if(user.getDepth() == 0){
             jobjRes.put("keyboard", home());
         }
@@ -324,12 +342,12 @@ public class ChatbotController {
     }
 
     //사용자가 옐로아이디를 친구추가했을 때 호출되는 API
-	
+
     @RequestMapping(value = "/friend", method = RequestMethod.POST, headers = "Accept=application/json")
     public String addKakaoFriend(@RequestBody JSONObject resObj) throws Exception
     {
         System.out.println("/friend");
-		String user_key;
+        String user_key;
         user_key = (String) resObj.get("user_key");
         // 초기 등록시에 USER 키와 Depth를 삽입해서 넣어준다.
         if(!userService.AddUser(user_key))
@@ -348,7 +366,7 @@ public class ChatbotController {
         btns.add("도서관");
         btns.add("분실물");
         btns.add("일정");
-        btns.add("강의평가");
+        btns.add("강의후기");
         btns.add("시설물예약");
         btns.add("교내전화번호");
         btns.add("기타");
@@ -487,5 +505,4 @@ public class ChatbotController {
     }
 
 }
-
 
