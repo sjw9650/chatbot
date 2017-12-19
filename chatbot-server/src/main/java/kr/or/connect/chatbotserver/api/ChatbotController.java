@@ -491,6 +491,7 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         for(CafeteriaMenu data: temp) {
+            if(data.getCafeteria_managements_cafeteria_managements_id()>3) continue;
             btns.add(data.getMenu());
         }
         jobjBtn.put("buttons", btns);
