@@ -1,6 +1,7 @@
 package kr.or.connect.chatbotserver.dao;
 
 
+import kr.or.connect.chatbotserver.model.Rank;
 import kr.or.connect.chatbotserver.model.Vote;
 import kr.or.connect.chatbotserver.sql.VoteSqls;
 import org.springframework.stereotype.Repository;
@@ -18,13 +19,13 @@ public class VoteDAO {
     private EntityManager entityManager;
 
     @SuppressWarnings("unchecked")
-    public List<Vote> getRankedData(){
+    public List<Rank> getRankedData(){
         String hql = VoteSqls.SELECT_ALL;
         String[] weekDay = {"일", "월", "화", "수", "목", "금", "토"};
         Calendar cal = Calendar.getInstance();
         int num = cal.get(Calendar.DAY_OF_WEEK)-1;
         String date = "%"+weekDay[num]+"%";
-        return (List<Vote>) entityManager.createQuery(hql).setParameter("date",date).getResultList();
+        return (List<Rank>) entityManager.createQuery(hql).setParameter("date",date).getResultList();
     }
 
 
