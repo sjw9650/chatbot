@@ -40,6 +40,11 @@ public class ChatbotServerApplicationTests {
 	PhoneNumberOfUniversityService phoneNumberOfUniversityService;
 	@Autowired
 	VoteDAO voteDAO;
+	@Test
+	public void contextLoads() throws IOException {
+
+
+	}
 
 
 	@Test
