@@ -509,7 +509,7 @@ public class ChatbotController {
         int idx = 0;
         for(Rank data : test){
             if(idx>2) break;
-            text.append((idx+1)+"위 : "+data.getMenu()+" : "+data.getScore()+"표"+'\n');
+            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
             idx++;
         }
         return text.toString();
