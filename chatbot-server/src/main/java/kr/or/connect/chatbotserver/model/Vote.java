@@ -11,7 +11,7 @@ public class Vote implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="food_evaluation_id")
+    @Column(name="food_evaluations_id")
     private int food_evaluation_id;
 
     @Column(name="score")
@@ -21,7 +21,7 @@ public class Vote implements Serializable {
     @Column(name="cafeteria_menus_cafeteria_managements_cafeteria_managements_id")
     private int cafeteria_menus_cafeteria_managements_cafeteria_managements_id;
 
-    @Column(name="users_convertId")
+    @Column(name="users_convertid")
     private String uKey;
 
     public String getuKey() {

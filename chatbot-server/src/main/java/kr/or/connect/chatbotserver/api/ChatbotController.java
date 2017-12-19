@@ -81,6 +81,9 @@ public class ChatbotController {
             if(depth >= 33 && depth <=50){
                 lostService.lostCancel(user.getConvertId(),depth);
             }
+            else  if(depth >= 51 && depth <=59){
+                lectureInformationService.lectureInformationCancel(user.getConvertId(),depth);
+            }
 
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("message", jobjText);
