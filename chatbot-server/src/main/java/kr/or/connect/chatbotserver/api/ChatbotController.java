@@ -216,6 +216,7 @@ public class ChatbotController {
             jobjText.put("text",text);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
+            user.setDepth(89);
         }
         else if(content.equals("기타")){
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
