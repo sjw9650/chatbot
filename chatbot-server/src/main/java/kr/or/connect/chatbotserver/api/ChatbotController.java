@@ -73,12 +73,16 @@ public class ChatbotController {
         // 51~59 = 강의 평가
         User user = new User();
         user = userService.getUserbykey(user_key);
+
         int depth = user.getDepth();
         user.setDepth(0);
 
         if(content.equals("취소")){
             if(depth >= 33 && depth <=50){
                 lostService.lostCancel(user.getConvertId(),depth);
+            }
+            else  if(depth >= 51 && depth <=59){
+                lectureInformationService.lectureInformationCancel(user.getConvertId(),depth);
             }
 
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );

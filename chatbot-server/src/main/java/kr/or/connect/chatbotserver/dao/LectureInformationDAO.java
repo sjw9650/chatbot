@@ -39,4 +39,9 @@ public class LectureInformationDAO {
         return result;
     }
 
+
+    public void removeLost(LectureInformation lectureInformation){
+        entityManager.remove(lectureInformation);
+    }
+
 }
