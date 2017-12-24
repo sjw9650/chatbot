@@ -32,15 +32,16 @@ public class VoteDAO {
 
         List<String> menuList = (List<String>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
         String hql2 = VoteSqls.SELECT_SUM;
-        List<String> scoreList = (List<String>) entityManager.createNativeQuery(hql2).setParameter("date",date).getResultList();
 
         int length = menuList.size();
         List<Rank> resultRank = new ArrayList<Rank>();
 
         for(int i =0;i<length;i++){
             Rank rank = new Rank();
-            rank.setMenu(menuList.get(i));
-            rank.setScore(Integer.parseInt(scoreList.get(i)));
+            String menu = menuList.get(i);
+            rank.setMenu(menu);
+            rank.setScore(Integer.parseInt((String)entityManager.createNativeQuery(hql2).setParameter("date",date).setParameter("menu",menu).getSingleResult()));
+            System.out.println(rank.getMenu()+ " "+rank.getScore());
             resultRank.add(rank);
         }
 
