@@ -22,5 +22,46 @@ public class FoodEvaluation implements Serializable{
     private int managementId;
 
     @Column(name="users_convertid")
-    private int userId;
+    private String userId;
+
+    public int getFoodEvaluationId() {
+        return foodEvaluationId;
+    }
+
+    public void setFoodEvaluationId(int foodEvaluationId) {
+        this.foodEvaluationId = foodEvaluationId;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
+
+    public int getManagementId() {
+        return managementId;
+    }
+
+    public void setManagementId(int managementId) {
+        this.managementId = managementId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 }
