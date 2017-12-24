@@ -20,7 +20,7 @@ public class FoodEvaluationService {
         foodEvaluation.setManagementId(cafeteriaMenu.getCafeteria_managements_cafeteria_managements_id());
         foodEvaluation.setUserId(userid);
 
-        String text= "\"contents\"에 대해서 알려주세요! \n맛있어요? 추천할만한가요?\n별론가요? 추천하고싶지않아요?\n알려주세요!!(최고)\n";
+        String text= "\""+contents+"\"에 대해서 알려주세요! \n맛있어요? 추천할만한가요?\n별론가요? 추천하고싶지않아요?\n알려주세요!!(최고)\n";
         foodEvaluationDAO.addFoodEvaluation(foodEvaluation);
         return text;
     }
