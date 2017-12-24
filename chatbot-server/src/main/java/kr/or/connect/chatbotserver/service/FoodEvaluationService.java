@@ -29,7 +29,7 @@ public class FoodEvaluationService {
         String text="";
         if(contents.equals("맛있어요!")){
             foodEvaluation.setScore(1);
-            text = "오!! 맛있었어요?!!!(웃음)\n" +
+            text = "오!! 맛있었어요?!!!(하하)\n" +
                     "다른 학우분들에게 맛있다구 추천할게요!! \n" +
                     "감사합니다.(최고)\n" +
                     "초기화면으로 돌아갑니다.";
