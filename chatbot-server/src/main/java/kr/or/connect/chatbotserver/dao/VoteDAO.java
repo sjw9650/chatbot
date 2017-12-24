@@ -29,7 +29,7 @@ public class VoteDAO {
         Calendar cal = Calendar.getInstance();
         int num = cal.get(Calendar.DAY_OF_WEEK)-1;
         String date = "%"+weekDay[num]+"%";
-        return (List<Rank>) entityManager.createQuery(hql).setParameter("date",date).getResultList();
+        return (List<Rank>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
     }
 
 

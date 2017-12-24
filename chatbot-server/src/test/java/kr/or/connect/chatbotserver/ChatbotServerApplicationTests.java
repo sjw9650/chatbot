@@ -52,10 +52,6 @@ public class ChatbotServerApplicationTests {
 				idx++;
 			}
 
-		System.out.println(text);
-		if(text.toString().isEmpty()){
-			System.out.println("fuck");
-		}
 
 	}
 
