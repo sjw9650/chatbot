@@ -521,7 +521,7 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         for(CafeteriaMenu data: temp) {
-            if(data.getCafeteria_managements_cafeteria_managements_id()>3 && data.getMenu().contains("오늘은 쉽니다")) continue;
+            if(data.getCafeteria_managements_cafeteria_managements_id()>3 || data.getMenu().contains("오늘은 쉽니다")) continue;
             btns.add(data.getMenu());
         }
         btns.add("취소");
