@@ -43,6 +43,15 @@ public class ChatbotServerApplicationTests {
 	@Test
 	public void contextLoads() throws IOException {
 
+			List<Rank> test = voteDAO.getRankedData();
+			StringBuilder text = new StringBuilder();
+			int idx = 0;
+			for(Rank data : test){
+				if(idx>2) break;
+				text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
+				idx++;
+			}
+
 
 	}
 

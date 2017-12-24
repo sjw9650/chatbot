@@ -197,7 +197,8 @@ public class ChatbotController {
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
-            jobjText.put("text","학식메뉴 입니다\n" );
+            jobjText.put("text","학교식당에 메뉴에 대해서 궁금하신가요?? (웃음)\n\n " +
+                    "오늘 메뉴에 대해서 평가하실건가요?? (궁금)\n\n" );
             jobjRes.put("message", jobjText);
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
@@ -215,7 +216,7 @@ public class ChatbotController {
         else if(content.equals("학식평가")){
             String text = getRankedData();
             if(text.isEmpty()){
-                text = "데이터가 없습니다\n";
+                text = "아직 평가된 기록이 존재하지 않습니다.\n";
             }
             jobjText.put("text",text);
             jobjRes.put("message", jobjText);
@@ -448,7 +449,7 @@ public class ChatbotController {
         int idx = 0;
         for (Element link : links) {
             if(idx==0){
-                data.append("사용중좌석 : "+link.text()+'\n'); 
+                data.append("사용중좌석 : "+link.text()+'\n');
             }
             else{
                 data.append("사용가능좌석 : "+link.text()+'\n');
@@ -511,6 +512,7 @@ public class ChatbotController {
             text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
             idx++;
         }
+
         return text.toString();
     }
 
