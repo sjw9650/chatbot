@@ -42,7 +42,7 @@ public class VoteDAO {
             rank.setMenu(menu);
             int score = ((BigDecimal)(entityManager.createNativeQuery(hql2).setParameter("date",date).setParameter("menu",menu).getSingleResult())).intValue();
             rank.setScore(score);
-            
+
             System.out.println(rank.getMenu()+ " "+rank.getScore());
             resultRank.add(rank);
         }
