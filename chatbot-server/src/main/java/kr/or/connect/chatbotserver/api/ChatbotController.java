@@ -43,6 +43,9 @@ public class ChatbotController {
     VoteDAO voteDAO;
 
     @Autowired
+    FoodEvaluationService foodEvaluationService;
+
+    @Autowired
     LectureInformationService lectureInformationService;
 
     // 키보드 초기화면에 대한 설정
@@ -83,6 +86,8 @@ public class ChatbotController {
             }
             else  if(depth >= 51 && depth <=59){
                 lectureInformationService.lectureInformationCancel(user.getConvertId(),depth);
+            }else if(depth==90){
+                foodEvaluationService.foodEvaluationCancel(user.getConvertId());
             }
 
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
@@ -218,6 +223,7 @@ public class ChatbotController {
             if(text.isEmpty()){
                 text = "아직 평가된 기록이 존재하지 않습니다.\n";
             }
+            text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
             jobjText.put("text",text);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
@@ -308,11 +314,31 @@ public class ChatbotController {
                     "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
+            user.setDepth(61);
         }
         else if(depth==62){
             libraryCrawling(content,jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", libraryButton());
+        }else if(depth==89){
+            CafeteriaMenu cafeteriaMenu = new CafeteriaMenu();
+            cafeteriaMenu = cafeteriaMenuService.FindMenu(content);
+
+            jobjText.put("text",foodEvaluationService.selectMenu(cafeteriaMenu,content,user.getConvertId()));
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("맛있어요!");
+            btns.add("별로에요!");
+            btns.add("취소");
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
+            jobjRes.put("message", jobjText);
+            user.setDepth(90);
+
+        }else if(depth==90){
+            jobjText.put("text",foodEvaluationService.Evaluating(content,user.getConvertId()));
+            jobjRes.put("message", jobjText);
         }
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
@@ -495,13 +521,15 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         for(CafeteriaMenu data: temp) {
-            if(data.getCafeteria_managements_cafeteria_managements_id()>3) continue;
+            if(data.getCafeteria_managements_cafeteria_managements_id()>3 && data.getMenu().contains("오늘은 쉽니다")) continue;
             btns.add(data.getMenu());
         }
         btns.add("취소");
         jobjBtn.put("buttons", btns);
         return jobjBtn;
     }
+
+
 
     public String getRankedData(){
         List<Rank> test = voteDAO.getRankedData();
