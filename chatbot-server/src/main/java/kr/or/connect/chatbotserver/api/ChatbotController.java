@@ -380,7 +380,6 @@ public class ChatbotController {
         jobjBtn.put("buttons",btns);
         return jobjBtn;
     }
-
     public JSONObject noticeButton(){
         JSONObject jobjBtn = new JSONObject();
         jobjBtn.put("type", "buttons");
