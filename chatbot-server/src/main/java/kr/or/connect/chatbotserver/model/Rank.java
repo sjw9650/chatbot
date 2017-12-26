@@ -2,7 +2,7 @@ package kr.or.connect.chatbotserver.model;
 
 public class Rank {
     private String menu;
-    private int score;
+    private Double score;
 
     public String getMenu() {
         return menu;
@@ -12,11 +12,11 @@ public class Rank {
         this.menu = menu;
     }
 
-    public int getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 

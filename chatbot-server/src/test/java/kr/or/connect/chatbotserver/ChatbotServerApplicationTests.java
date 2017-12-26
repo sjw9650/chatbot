@@ -2,14 +2,8 @@ package kr.or.connect.chatbotserver;
 
 import kr.or.connect.chatbotserver.dao.LostDAO;
 import kr.or.connect.chatbotserver.dao.VoteDAO;
-import kr.or.connect.chatbotserver.model.CafeteriaManagement;
-import kr.or.connect.chatbotserver.model.CafeteriaMenu;
-import kr.or.connect.chatbotserver.model.Rank;
-import kr.or.connect.chatbotserver.model.Vote;
-import kr.or.connect.chatbotserver.service.CafeteriaMenuService;
-import kr.or.connect.chatbotserver.service.LectureInformationService;
-import kr.or.connect.chatbotserver.service.PhoneNumberOfUniversityService;
-import kr.or.connect.chatbotserver.service.ScheduleService;
+import kr.or.connect.chatbotserver.model.*;
+import kr.or.connect.chatbotserver.service.*;
 import org.json.simple.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,25 +34,14 @@ public class ChatbotServerApplicationTests {
 	PhoneNumberOfUniversityService phoneNumberOfUniversityService;
 	@Autowired
 	VoteDAO voteDAO;
+	@Autowired
+	FoodEvaluationService foodEvaluationService;
 	@Test
 	public void contextLoads() throws IOException {
-
-
+		System.out.println(foodEvaluationService.resultFoodEvaluation());
 	}
 
 
-	@Test
-	public void testNumber(){
-		JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber("컴퓨터");
-		System.out.println( result.get("res").toString());
-		System.out.println( result.get("depth").toString());
-	}
 
-	@Test
-	public void textError() throws IOException {
-		JSONObject result = lectureInformationService.lectureInformationDepth("1bm523dju2",59,"12345");
-		System.out.println( result.get("res"));
-		System.out.println(result.get("depth"));
-	}
- 
+
 }

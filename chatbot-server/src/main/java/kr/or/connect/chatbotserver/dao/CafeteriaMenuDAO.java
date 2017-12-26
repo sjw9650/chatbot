@@ -33,4 +33,12 @@ public class CafeteriaMenuDAO {
         entityManager.createNativeQuery("DELETE from cafeteria_menus").executeUpdate();
     }
 
+    public CafeteriaMenu FindMenu(String menuName){
+        String hql = CafeteriaMenuSqls.FIND_MENU;
+        String[] weekDay = {"일", "월", "화", "수", "목", "금", "토"};
+        Calendar cal = Calendar.getInstance();
+        int num = cal.get(Calendar.DAY_OF_WEEK)-1;
+        String date = "%"+weekDay[num]+"%";
+        return (CafeteriaMenu) entityManager.createQuery(hql).setParameter("date",date).setParameter("menu",menuName).getSingleResult();
+    }
 }

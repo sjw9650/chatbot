@@ -29,24 +29,26 @@ public class VoteDAO {
         Calendar cal = Calendar.getInstance();
         int num = cal.get(Calendar.DAY_OF_WEEK)-1;
         String date = "%"+weekDay[num]+"%";
-        List<String> menus = (List<String>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
-       System.out.println(menus.get(0));
-        System.out.println(menus.get(1));
-        System.out.println(menus.size());
-        List<Rank> result = new ArrayList<Rank>();
 
-        hql = VoteSqls.SELECT_SUM;
-        for(int i=0;i<menus.size();i++){
-            Rank temp = new Rank();
-            temp.setMenu(menus.get(i));
-            String menu = "%"+menus.get(i)+"%";
-            System.out.println(menu);
-            BigDecimal sum = (BigDecimal)entityManager.createNativeQuery(hql).setParameter("date",date).setParameter("menu",menu).getSingleResult();
-            temp.setScore(sum.intValue());
-            result.add(temp);
+        List<String> menuList = (List<String>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
+        String hql2 = VoteSqls.SELECT_SUM;
+
+        int length = menuList.size();
+        List<Rank> resultRank = new ArrayList<Rank>();
+
+        for(int i =0;i<length;i++){
+            Rank rank = new Rank();
+            String menu = menuList.get(i);
+            rank.setMenu(menu);
+            int score = ((BigDecimal)(entityManager.createNativeQuery(hql2).setParameter("date",date).setParameter("menu",menu).getSingleResult())).intValue();
+            rank.setScore(1.0);
+
+            System.out.println(rank.getMenu()+ " "+rank.getScore());
+            resultRank.add(rank);
         }
 
-        return result;
+        return resultRank;
+
     }
 
 

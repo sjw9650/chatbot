@@ -21,4 +21,8 @@ public class CafeteriaMenuService {
         return cafeteriaMenuDAO.getAllCafeteriaMenu();
     }
 
+    public CafeteriaMenu FindMenu(String menu){
+        return cafeteriaMenuDAO.FindMenu(menu);
+    }
+
 }

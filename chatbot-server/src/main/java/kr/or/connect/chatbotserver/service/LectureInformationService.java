@@ -35,7 +35,6 @@ public class LectureInformationService {
         if(depth==51){
             if(content.equals("등록")) {
                 text="강의정보입력을 등록하시려구요?!(최고)\n" +
-                        "다른 학우에게 도움이 되어주셔서 감사합니다.\n" +
                         "강의명이 어떻게 되나요?(궁금)(궁금)\n\n\n"+
                         "취소하시려면 \"취소\" 를 입력해주세요.";
 
@@ -116,11 +115,11 @@ public class LectureInformationService {
                         "다른 키워드를 입력해주시겠어요??\n\n" +
                         "취소하시려면 \"취소\" 를 입력해주세요.";
             } else {
-                text = content + "에 해당하는 강의 정보목록은 총 " + listSize + "건 입니다.\n";
+                text = "\""+content + "\"에 해당하는 강의 정보목록은 총 \"" + listSize + "\"건 입니다.\n\n";
                 for (int i = 0; i < listSize; i++) {
                     text += listLectureInformation.get(i).getLectureInformationId() + "번 " + listLectureInformation.get(i).getProfessor() + " 교수님의 " + listLectureInformation.get(i).getLecture() + "\n\n";
                 }
-                text += "\n 보고 싶은 후기의 번호를 입력해주세요. ex) 1\n" +
+                text += "\n 보고 싶은 후기의 번호를 입력해주세요.\nex) 1\n" +
                         "취소하시려면 \"취소\" 를 입력해주세요.";
 
                 tempDepth = 59;
@@ -139,7 +138,7 @@ public class LectureInformationService {
 
                 }
                 else{
-                    text = "선택하신 정보인"+lectureInformation.getProfessor()+"교수님의 강의 "+lectureInformation.getLecture()+"강의의 별점은"+lectureInformation.getStars()+"점 입니다.\n" +
+                    text = "선택하신 정보인\n\""+lectureInformation.getProfessor()+"\"교수님의 강의 \""+lectureInformation.getLecture()+"\"의 별점은 \""+lectureInformation.getStars()+"점\" 입니다.\n" +
                             "후기 내용은 다음과 같습니다.\n" +
                             "\""+lectureInformation.getReview()+"\"\n\n" +
                             "초기 메뉴로 이동합니다.\n";

@@ -43,6 +43,9 @@ public class ChatbotController {
     VoteDAO voteDAO;
 
     @Autowired
+    FoodEvaluationService foodEvaluationService;
+
+    @Autowired
     LectureInformationService lectureInformationService;
 
     // 키보드 초기화면에 대한 설정
@@ -83,6 +86,8 @@ public class ChatbotController {
             }
             else  if(depth >= 51 && depth <=59){
                 lectureInformationService.lectureInformationCancel(user.getConvertId(),depth);
+            }else if(depth==90){
+                foodEvaluationService.foodEvaluationCancel(user.getConvertId());
             }
 
             jobjText.put("text","취소를 누르셨습니다.(씨익)\n\n초기메뉴로 이동하겠습니다.\n" );
@@ -197,7 +202,8 @@ public class ChatbotController {
             user.setDepth(51);
 
         }else if(content.equals("학교식당")){
-            jobjText.put("text","학식메뉴 입니다\n" );
+            jobjText.put("text","학교식당에 메뉴에 대해서 궁금하신가요?? (웃음)\n\n " +
+                    "오늘 메뉴에 대해서 평가하실건가요?? (궁금)\n\n" );
             jobjRes.put("message", jobjText);
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
@@ -213,10 +219,8 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("학식평가")){
-            String text = getRankedData();
-            if(text.isEmpty()){
-                text = "데이터가 없습니다\n";
-            }
+            String text = foodEvaluationService.resultFoodEvaluation();
+            text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
             jobjText.put("text",text);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard",voteButton());
@@ -307,11 +311,32 @@ public class ChatbotController {
                     "초기 메뉴로 돌아가시려면 \"취소\"를 입력하세요.\n\n");
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
+            user.setDepth(61);
         }
         else if(depth==62){
             libraryCrawling(content,jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", libraryButton());
+        }else if(depth==89){
+            CafeteriaMenu cafeteriaMenu = new CafeteriaMenu();
+            cafeteriaMenu = cafeteriaMenuService.FindMenu(content);
+
+            jobjText.put("text",foodEvaluationService.selectMenu(cafeteriaMenu,content,user.getConvertId()));
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("취소");
+            btns.add("★★★★★");
+            btns.add("★★★");
+            btns.add("★");
+            josonKeyboard.put("buttons", btns);
+            jobjRes.put("keyboard", josonKeyboard);
+            jobjRes.put("message", jobjText);
+            user.setDepth(90);
+
+        }else if(depth==90){
+            jobjText.put("text",foodEvaluationService.Evaluating(content,user.getConvertId()));
+            jobjRes.put("message", jobjText);
         }
         else if(depth==100){
             JSONObject result = phoneNumberOfUniversityService.infomPhoneNumber(content);
@@ -494,7 +519,7 @@ public class ChatbotController {
         jobjBtn.put("type", "buttons");
         ArrayList<String> btns = new ArrayList<>();
         for(CafeteriaMenu data: temp) {
-            if(data.getCafeteria_managements_cafeteria_managements_id()>3) continue;
+            if(data.getCafeteria_managements_cafeteria_managements_id()>3 || data.getMenu().contains("오늘은 쉽니다")) continue;
             btns.add(data.getMenu());
         }
         btns.add("취소");
@@ -502,15 +527,18 @@ public class ChatbotController {
         return jobjBtn;
     }
 
+
+
     public String getRankedData(){
         List<Rank> test = voteDAO.getRankedData();
         StringBuilder text = new StringBuilder();
         int idx = 0;
         for(Rank data : test){
             if(idx>2) break;
-            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
+            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"점"+'\n');
             idx++;
         }
+
         return text.toString();
     }
 
