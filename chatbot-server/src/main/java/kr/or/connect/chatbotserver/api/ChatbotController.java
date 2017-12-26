@@ -181,7 +181,7 @@ public class ChatbotController {
 
             user.setDepth(51);
 
-        }else if(content.equals("학교식당")){
+        }else if(content.equals("학교식당")||depth==88){
             jobjText.put("text","학교식당에 메뉴에 대해서 궁금하신가요?? (웃음)\n\n " +
                     "오늘 메뉴에 대해서 평가하실건가요?? (궁금)\n\n" );
             jobjRes.put("message", jobjText);
