@@ -412,6 +412,7 @@ public class ChatbotController {
         btns.add("자유열람실2");
         btns.add("자유열람실3");
         btns.add("노트북코너");
+        btns.add("취소");
         jobjBtn.put("buttons",btns);
         return jobjBtn;
     }
