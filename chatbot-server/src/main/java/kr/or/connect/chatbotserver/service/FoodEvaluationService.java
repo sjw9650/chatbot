@@ -1,17 +1,26 @@
 package kr.or.connect.chatbotserver.service;
 
+import kr.or.connect.chatbotserver.dao.CafeteriaMenuDAO;
 import kr.or.connect.chatbotserver.dao.FoodEvaluationDAO;
 import kr.or.connect.chatbotserver.model.CafeteriaMenu;
 import kr.or.connect.chatbotserver.model.FoodEvaluation;
+import kr.or.connect.chatbotserver.model.Rank;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class FoodEvaluationService {
 
     @Autowired
     private FoodEvaluationDAO foodEvaluationDAO;
+    @Autowired
+    private CafeteriaMenuDAO cafeteriaMenuDAO;
 
     public String selectMenu(CafeteriaMenu cafeteriaMenu,String contents,String userid){
 
@@ -52,6 +61,47 @@ public class FoodEvaluationService {
         return text;
 
     }
+
+    public String resultFoodEvaluation(){
+        String text = "";
+        List<CafeteriaMenu> list = cafeteriaMenuDAO.getAllCafeteriaMenu();
+        int lenghtList = list.size();
+        List<Rank> rankList = new ArrayList<>();
+
+        for(int i= 0; i<lenghtList;i++){
+            Rank tempRank = new Rank();
+            tempRank.setMenu(list.get(i).getMenu());
+            if(foodEvaluationDAO.getScore(list.get(i).getCafeteria_menus_id())!=null){
+                tempRank.setScore(foodEvaluationDAO.getScore(list.get(i).getCafeteria_menus_id()));
+                rankList.add(tempRank);
+            }
+        }
+
+        int lengthRank =rankList.size();
+        if(lengthRank>0) {
+            Collections.sort(rankList,new Comparator<Rank>() {
+                @Override
+                public int compare(Rank rank, Rank t1) {
+                    if (rank.getScore() < t1.getScore())
+                        return 1;
+                    else if (rank.getScore() > t1.getScore())
+                        return -1;
+                    else
+                        return 0;
+                }
+            });
+            for(int i=0;i<lengthRank && i<3;i++){
+                text += (i+1)+"위 : "+rankList.get(i).getMenu()+' '+rankList.get(i).getScore()+"점"+"\n";
+            }
+        }
+        else {
+            text = "현재 투표에 대한 데이터가 없습니다.ㅠㅠ\n";
+        }
+
+        return text;
+    }
+
+
     public void foodEvaluationCancel(String userId){
         foodEvaluationDAO.deleteFoodEvaluation(foodEvaluationDAO.getFoodEvaluation(foodEvaluationDAO.FindFoodEvaluation(userId)));
     }

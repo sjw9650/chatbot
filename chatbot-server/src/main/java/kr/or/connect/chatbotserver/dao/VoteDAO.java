@@ -31,7 +31,7 @@ public class VoteDAO {
         String date = "%"+weekDay[num]+"%";
 
         List<String> menuList = (List<String>) entityManager.createNativeQuery(hql).setParameter("date",date).getResultList();
-        String hql2 = VoteSqls.SELECT_AVG;
+        String hql2 = VoteSqls.SELECT_SUM;
 
         int length = menuList.size();
         List<Rank> resultRank = new ArrayList<Rank>();
@@ -40,8 +40,8 @@ public class VoteDAO {
             Rank rank = new Rank();
             String menu = menuList.get(i);
             rank.setMenu(menu);
-            Double score = (Double) entityManager.createNativeQuery(hql2).setParameter("date",date).setParameter("menu",menu).getSingleResult();
-            rank.setScore(score);
+            int score = ((BigDecimal)(entityManager.createNativeQuery(hql2).setParameter("date",date).setParameter("menu",menu).getSingleResult())).intValue();
+            rank.setScore(1.0);
 
             System.out.println(rank.getMenu()+ " "+rank.getScore());
             resultRank.add(rank);

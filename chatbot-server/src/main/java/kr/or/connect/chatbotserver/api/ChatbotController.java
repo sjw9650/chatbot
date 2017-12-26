@@ -219,10 +219,7 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
         }
         else if(content.equals("학식평가")){
-            String text = getRankedData();
-            if(text.isEmpty()){
-                text = "아직 평가된 기록이 존재하지 않습니다.\n";
-            }
+            String text = foodEvaluationService.resultFoodEvaluation();
             text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
             jobjText.put("text",text);
             jobjRes.put("message", jobjText);
