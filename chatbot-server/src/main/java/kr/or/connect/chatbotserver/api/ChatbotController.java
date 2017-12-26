@@ -298,6 +298,7 @@ public class ChatbotController {
             libraryCrawling(content,jobjText);
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", libraryButton());
+            user.setDepth(62);
         }else if(depth==89){
             CafeteriaMenu cafeteriaMenu = new CafeteriaMenu();
             cafeteriaMenu = cafeteriaMenuService.FindMenu(content);
