@@ -119,26 +119,6 @@ public class ChatbotController {
             jobjRes.put("message", jobjText);
             jobjRes.put("keyboard", noticeButton());
             user.setDepth(77);
-        } else if(content.equals("취업")){
-            noticeCrawling("취업",jobjText);
-            jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard", noticeButton());
-            user.setDepth(77);
-        } else if(content.equals("장학금")){
-            noticeCrawling("장학금",jobjText);
-            jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard", noticeButton());
-            user.setDepth(77);
-        } else if(content.equals("일반")){
-            noticeCrawling("일반",jobjText);
-            jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard", noticeButton());
-            user.setDepth(77);
-        } else if(content.equals("행사")){
-            noticeCrawling("행사",jobjText);
-            jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard", noticeButton());
-            user.setDepth(77);
         }else if(content.equals("분실물")) {
             jobjText.put("text", "분실물을 습득하신 분은 \"등록\"을\n" +
                     "분실물을 찾으시는 분들은 \"찾기\"를\n" +
@@ -217,6 +197,7 @@ public class ChatbotController {
         }else if(content.equals("학식메뉴")){
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
+            user.setDepth(90);
         }
         else if(content.equals("학식평가")){
             String text = foodEvaluationService.resultFoodEvaluation();
@@ -345,6 +326,12 @@ public class ChatbotController {
             user.setDepth((int)result.get("depth"));
             userService.setDepth(user);
         }
+        else if(depth==77){
+            noticeCrawling(content,jobjText);
+            jobjRes.put("message", jobjText);
+            jobjRes.put("keyboard", noticeButton());
+            user.setDepth(77);
+        }
         else {
             // 분실물 등록시 위치별 다른 형태의 버튼을 출력하기 위해서 jobjRes를 받아올 수 있게
             // 하기위해 그렇지 않은건 jobjRes 형식을 message로 통일시키고 추후에 변경 예정
@@ -457,6 +444,7 @@ public class ChatbotController {
         jobjTest.put("text",data);
     }
     public void libraryCrawling(String subject,JSONObject jobjTest) throws  Exception{
+        JSONObject messageButton = new JSONObject();
         String URL="";
         if(subject.equals("자유열람실1")){
             URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=1";
@@ -467,6 +455,8 @@ public class ChatbotController {
         }else if(subject.equals("노트북코너")){
             URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=4";
         }
+        messageButton.put("label","좌석표 보기");
+        messageButton.put("url",URL);
         Document doc = Jsoup.connect(URL).get();
         Elements links = doc.select("b"); //b태그 안에 있는 사용중 좌석 수, 사용가능 좌석 수 Crawring
         StringBuilder data = new StringBuilder();
@@ -481,6 +471,7 @@ public class ChatbotController {
             idx++;
         }
         jobjTest.put("text",data.toString());
+        jobjTest.put("message_button",messageButton);
     }
 
     public String getAllCafeteriaMenu() {
