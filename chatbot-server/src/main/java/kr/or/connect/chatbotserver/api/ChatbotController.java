@@ -204,7 +204,7 @@ public class ChatbotController {
             josonKeyboard.put("buttons", btns);
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
-            user.setDepth(90);
+            user.setDepth(88);
         }
         else if(content.equals("학식평가")){
             String text = foodEvaluationService.resultFoodEvaluation();
