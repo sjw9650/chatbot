@@ -193,27 +193,30 @@ public class ChatbotController {
             btns.add("취소");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
-            user.setDepth(88);
-        }else if(content.equals("학식메뉴")){
-            JSONObject josonKeyboard = new JSONObject();
-            josonKeyboard.put("type", "buttons");
-            ArrayList<String> btns = new ArrayList<>();
-            btns.add("학식메뉴");
-            btns.add("학식평가");
-            btns.add("취소");
-            josonKeyboard.put("buttons", btns);
-            jobjText.put("text",getAllCafeteriaMenu());
-            jobjRes.put("message", jobjText);
-            user.setDepth(88);
+            user.setDepth(87);
+        }else if(depth == 87){
+          if  (content.equals("학식메뉴")){
+              JSONObject josonKeyboard = new JSONObject();
+              josonKeyboard.put("type", "buttons");
+              ArrayList<String> btns = new ArrayList<>();
+              btns.add("학식메뉴");
+              btns.add("학식평가");
+              btns.add("취소");
+              josonKeyboard.put("buttons", btns);
+              jobjText.put("text",getAllCafeteriaMenu());
+              jobjRes.put("message", jobjText);
+              jobjRes.put("keyboard", josonKeyboard);
+              user.setDepth(88);
+          } else if(content.equals("학식평가")){
+              String text = foodEvaluationService.resultFoodEvaluation();
+              text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
+              jobjText.put("text",text);
+              jobjRes.put("message", jobjText);
+              jobjRes.put("keyboard",voteButton());
+              user.setDepth(89);
+          }
         }
-        else if(content.equals("학식평가")){
-            String text = foodEvaluationService.resultFoodEvaluation();
-            text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
-            jobjText.put("text",text);
-            jobjRes.put("message", jobjText);
-            jobjRes.put("keyboard",voteButton());
-            user.setDepth(89);
-        }
+
         else if(content.equals("기타")){
             jobjText.put("text","기타 사항은 현재 준비중인 서비스 입니다.\n\n 초기메뉴로 이동하겠습니다.\n" );
             jobjRes.put("keyboard", home());
