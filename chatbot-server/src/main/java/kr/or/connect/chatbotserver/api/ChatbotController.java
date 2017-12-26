@@ -328,9 +328,10 @@ public class ChatbotController {
             JSONObject josonKeyboard = new JSONObject();
             josonKeyboard.put("type", "buttons");
             ArrayList<String> btns = new ArrayList<>();
-            btns.add("맛있어요!");
-            btns.add("별로에요!");
             btns.add("취소");
+            btns.add("★★★★★");
+            btns.add("★★★");
+            btns.add("★");
             josonKeyboard.put("buttons", btns);
             jobjRes.put("keyboard", josonKeyboard);
             jobjRes.put("message", jobjText);
@@ -537,7 +538,7 @@ public class ChatbotController {
         int idx = 0;
         for(Rank data : test){
             if(idx>2) break;
-            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"표"+'\n');
+            text.append((idx+1)+"위 : "+data.getMenu()+' '+data.getScore()+"점"+'\n');
             idx++;
         }
 
