@@ -195,6 +195,13 @@ public class ChatbotController {
             jobjRes.put("keyboard", josonKeyboard);
             user.setDepth(88);
         }else if(content.equals("학식메뉴")){
+            JSONObject josonKeyboard = new JSONObject();
+            josonKeyboard.put("type", "buttons");
+            ArrayList<String> btns = new ArrayList<>();
+            btns.add("학식메뉴");
+            btns.add("학식평가");
+            btns.add("취소");
+            josonKeyboard.put("buttons", btns);
             jobjText.put("text",getAllCafeteriaMenu());
             jobjRes.put("message", jobjText);
             user.setDepth(90);
