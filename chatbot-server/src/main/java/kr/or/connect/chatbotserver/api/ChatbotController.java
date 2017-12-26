@@ -181,7 +181,7 @@ public class ChatbotController {
 
             user.setDepth(51);
 
-        }else if(content.equals("학교식당")||depth==88){
+        }else if(content.equals("학교식당")){
             jobjText.put("text","학교식당에 메뉴에 대해서 궁금하신가요?? (웃음)\n\n " +
                     "오늘 메뉴에 대해서 평가하실건가요?? (궁금)\n\n" );
             jobjRes.put("message", jobjText);
@@ -206,7 +206,7 @@ public class ChatbotController {
               jobjText.put("text",getAllCafeteriaMenu());
               jobjRes.put("message", jobjText);
               jobjRes.put("keyboard", josonKeyboard);
-              user.setDepth(88);
+              user.setDepth(87);
           } else if(content.equals("학식평가")){
               String text = foodEvaluationService.resultFoodEvaluation();
               text+="\n투표하시려면 투표하고 싶은 메뉴를 선택해주세요!\n";
