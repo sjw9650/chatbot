@@ -38,11 +38,11 @@ public class ScheduleController {
 	
 	@GetMapping
 	public ResponseEntity<List<Schedule>> getAllSchedules(HttpSession session){
-		String session_user_key = (String) session.getAttribute("userKey");
-		if(session_user_key == null || session_user_key.equals("")){
-			// 이후에 처리
-		}	
-		Schedule schedule = new Schedule();
+			String session_user_key = (String) session.getAttribute("userKey");
+			if(session_user_key == null || session_user_key.equals("")){
+				// 이후에 처리
+			}
+			Schedule schedule = new Schedule();
 		schedule.setUserKey(session_user_key);
 		List<Schedule> scheduleList = scheduleService.getAllSchedules(schedule);
 		return new ResponseEntity<List<Schedule>>(scheduleList, HttpStatus.OK);

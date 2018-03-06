@@ -18,7 +18,7 @@ public class PhoneNumberOfUniversityDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
-
+    
     public List<PhoneNumberOfUniversity> searchingPhoneNumber(String contents){
         String hql = PhoneNumberOfUniversitySqls.selectPhonNumber;
         String searching_data = "%"+contents+"%";
