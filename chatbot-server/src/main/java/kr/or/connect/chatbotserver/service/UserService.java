@@ -24,8 +24,8 @@ public class UserService {
     public synchronized boolean AddUser(String user_key){
 
         if (userDAO.UserExists(user_key)) {
-            // 아이디가 존재하면
-            return false;
+                // 아이디가 존재하면
+                return false;
         } else {
             // 존재하지않으면
             User user = new User();

@@ -69,6 +69,11 @@ public class ChatbotController {
         // 메시지 구현
 
         String user_key = (String)resObj.get("user_key");
+        if(!userService.AddUser(user_key))
+            System.out.println("\n-------------user Add Fail---------------\n");
+
+
+
 
         // User Key 값을 이용하여 user의 Depth를 추적
         // 30~50  분실물
