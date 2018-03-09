@@ -28,6 +28,7 @@ public class LostDAO {
     }
 
     public int getId(String user_key){
+        
         String hql = LostSqls.GETIDMAX;
         return (int) entityManager.createNativeQuery(hql).setParameter(1,user_key).getSingleResult();
     }
