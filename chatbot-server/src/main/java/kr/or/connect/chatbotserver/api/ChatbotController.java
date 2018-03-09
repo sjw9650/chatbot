@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatbotController {
     @Autowired
     ScheduleService ScheduleService;
-
     @Autowired
     PhoneNumberOfUniversityService phoneNumberOfUniversityService;
     @Autowired
