@@ -22,7 +22,7 @@ public class ScheduleDAO {
 		String hql = ScheduleSqls.SELECT_ALL;
 		return (List<Schedule>) entityManager.createQuery(hql).setParameter("userKeys", schedule.getUserKey()).getResultList();
 	}
-	
+
 	public void insertSchedule(Schedule schedule){
 		entityManager.persist(schedule);
 	}
