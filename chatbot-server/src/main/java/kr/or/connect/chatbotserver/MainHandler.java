@@ -23,8 +23,6 @@ public class MainHandler implements RequestStreamHandler {
     public MainHandler(){
         ac = new ChatbotServerApplication().getApplicationContext();
     }
-
-
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context)
         throws IOException {
         CafeteriaMenuDAO cafeteriaMenuDAO = ac.getBean(CafeteriaMenuDAO.class);
@@ -63,7 +61,7 @@ public class MainHandler implements RequestStreamHandler {
         for(int j=0;j<7;j++){
             for(int k=j*5;k<j*5+5;k++){
                 String temp[];
-                if(k-j*5<2) {
+                if(k-j*5<3) {
                     temp = menus[k].split("\\/");
                 }
                 else{
@@ -72,7 +70,7 @@ public class MainHandler implements RequestStreamHandler {
                 for(int L=0;L<temp.length;L++) {
                     menuex.setDay(krDays[j]);
                     menuex.setCafeteria_managements_cafeteria_managements_id(k-j*5+1);
-                    menuex.setMenu(temp[L]);
+                    menuex.setMenu(temp[L].trim());
                     cafeteriaMenuDAO.insertCafeteriaMenu(menuex);
                     menuex = new CafeteriaMenu();
                 }

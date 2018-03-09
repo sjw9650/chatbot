@@ -7,8 +7,8 @@
 	<artifactId>chatbot-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>chatbot-server</name>
+
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -136,10 +136,13 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin>!-->
+
+			<!-- Lambda mvn clean package 돌릴때 필수 !-->
 			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

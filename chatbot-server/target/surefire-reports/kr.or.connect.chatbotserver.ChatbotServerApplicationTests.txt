@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: kr.or.connect.chatbotserver.ChatbotServerApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.838 sec - in kr.or.connect.chatbotserver.ChatbotServerApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 40.561 sec - in kr.or.connect.chatbotserver.ChatbotServerApplicationTests
