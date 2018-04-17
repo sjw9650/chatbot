@@ -166,7 +166,7 @@ public class ChatbotController {
             String url = "http://52.78.164.183:9090/user/schedules/start/" + user.getConvertId();
             jsonMB.put("url",url);
             jobjText.put("text","\"일정관리\"를하기 위해 해당 URL에서\n" +
-                    "하실수 있습니다.(굿)\n"+url);
+                    "하실수 있습니다.(굿)\n");
             jobjText.put("message_button",jsonMB);
             jobjRes.put("message", jobjText);
 
@@ -463,13 +463,13 @@ public class ChatbotController {
         JSONObject messageButton = new JSONObject();
         String URL="";
         if(subject.equals("자유열람실1")){
-            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=1";
+            URL = "http://117.16.225.193:8080/seatmate/SeatMate.php?classInfo=1";
         }else if(subject.equals("자유열람실2")){
-            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=2";
+            URL = "http://117.16.225.193:8080/seatmate/SeatMate.php?classInfo=2";
         }else if(subject.equals("자유열람실3")){
-            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=3";
+            URL = "http://117.16.225.193:8080/seatmate/SeatMate.php?classInfo=3";
         }else if(subject.equals("노트북코너")){
-            URL = "http://117.16.225.214:8080/SeatMate.php?classInfo=4";
+            URL = "http://117.16.225.193:8080/seatmate/SeatMate.php?classInfo=4";
         }
         messageButton.put("label","좌석표 보기");
         messageButton.put("url",URL);
