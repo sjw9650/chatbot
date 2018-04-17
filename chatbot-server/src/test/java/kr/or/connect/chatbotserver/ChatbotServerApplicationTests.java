@@ -18,9 +18,26 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ChatbotServerApplicationTests {
+
+	@Autowired
+	ScheduleService scheduleService;
+
+	@Autowired
+	CafeteriaMenuService cafeteriaMenuService;
+
+	@Autowired
+	LostDAO lostDAO;
+
+	@Autowired
+	LectureInformationService lectureInformationService;
+	@Autowired
+	PhoneNumberOfUniversityService phoneNumberOfUniversityService;
+	@Autowired
+	VoteDAO voteDAO;
+	@Autowired
+	FoodEvaluationService foodEvaluationService;
 	@Test
 	public void contextLoads() throws IOException {
-		System.out.println("good");
+		System.out.println(foodEvaluationService.resultFoodEvaluation());
 	}
-	
 }
