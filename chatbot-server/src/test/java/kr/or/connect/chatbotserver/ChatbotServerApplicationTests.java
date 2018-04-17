@@ -38,6 +38,5 @@ public class ChatbotServerApplicationTests {
 	FoodEvaluationService foodEvaluationService;
 	@Test
 	public void contextLoads() throws IOException {
-		System.out.println(foodEvaluationService.resultFoodEvaluation());
 	}
 }
